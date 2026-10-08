@@ -1,8 +1,8 @@
 import Link from "next/link";
-import ThreeDoors from "@/components/ThreeDoors";
+import HomeHero from "@/components/HomeHero";
 import ProjectCard from "@/components/ProjectCard";
 import FounderCard from "@/components/FounderCard";
-import { projects, site, team, isCrossLab } from "@/lib/content";
+import { projects, team, isCrossLab } from "@/lib/content";
 
 const steps = [
   { title: "Idea", text: "You tell us the problem. We ask a lot of questions." },
@@ -18,13 +18,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="home-hero">
-        <div className="home-hero__text">
-          <h1>{site.tagline}</h1>
-          <p>{site.intro}</p>
-        </div>
-        <ThreeDoors />
-      </section>
+      <HomeHero />
 
       <section className="home-section">
         <div className="home-section__head">

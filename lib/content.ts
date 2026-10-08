@@ -125,7 +125,7 @@ export type Founder = {
 export const team: Founder[] = [
   {
     id: "founder-software",
-    name: "Kavindu",
+    name: "hithush",
     role: "Software Lab lead",
     lab: "software",
     bio: "Builds websites, ERP systems and AI agents. Happiest when a slow manual process becomes one button.",
@@ -135,7 +135,7 @@ export const team: Founder[] = [
   },
   {
     id: "founder-creative",
-    name: "Ayesha",
+    name: "Arkesh",
     role: "Creative Studio lead",
     lab: "creative",
     bio: "Designs brands, edits video and runs campaigns. Thinks about how something looks and who it reaches.",
@@ -145,7 +145,7 @@ export const team: Founder[] = [
   },
   {
     id: "founder-hardware",
-    name: "Malith",
+    name: "abieshake",
     role: "Hardware Lab lead",
     lab: "hardware",
     bio: "Mechatronics engineer. Designs circuits, writes firmware and draws the parts in AutoCAD.",

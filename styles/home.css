@@ -1,52 +1,144 @@
-/* ===== Home ===== */
+/* ===== Home hero ===== */
 .home-hero { padding: clamp(2rem, 4.5vw, 3.5rem) var(--pad) 0; max-width: calc(var(--max) + 2 * var(--pad)); margin: 0 auto; }
 .home-hero__text { display: grid; gap: 1.5rem 3rem; grid-template-columns: 1.4fr 1fr; align-items: end; margin-bottom: 2rem; }
-.home-hero__text h1 { font-family: var(--f-brand); font-weight: 800; font-size: clamp(2.4rem, 6.2vw, 5.4rem); letter-spacing: -0.035em; line-height: 0.98; margin: 0; }
 .home-hero__text p { margin: 0; font-size: 1.1rem; }
 @media (max-width: 860px) { .home-hero__text { grid-template-columns: 1fr; } }
 
-/* three doors */
-.doors { display: flex; gap: 10px; height: min(calc(100vh - 330px), 600px); min-height: 440px; }
-.door {
-  position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; text-decoration: none;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  border-radius: 18px; transition: flex-grow 0.55s cubic-bezier(.2,.8,.2,1);
+/* headline: verbs light up in their lab colour */
+.hh-title { font-family: var(--f-brand); font-weight: 800; font-size: clamp(2.4rem, 6.2vw, 5.4rem); letter-spacing: -0.035em; line-height: 1.02; margin: 0; }
+.verb {
+  position: relative; display: inline-block; padding: 0 0.08em; margin: 0 -0.04em;
+  background-repeat: no-repeat; background-size: 0% 100%; background-position: left center;
+  transition: background-size 0.45s cubic-bezier(.2,.8,.2,1), color 0.3s, transform 0.3s;
 }
-.door:hover, .door:focus-visible { flex-grow: 2.1; }
-.door__preview { position: absolute; inset: 0; }
-.door__label { position: relative; padding: 1.5rem; }
-.door__label h2 { font-size: clamp(1.4rem, 2.4vw, 2rem); margin-bottom: 0.2rem; white-space: nowrap; }
-.door__label p { margin: 0; white-space: nowrap; }
+.verb--software { background-image: linear-gradient(var(--sw-amber), var(--sw-amber)); }
+.verb--creative { background-image: linear-gradient(var(--cr-pink), var(--cr-pink)); }
+.verb--hardware { background-image: linear-gradient(var(--hw-bg), var(--hw-bg)); }
+.verb.is-lit { background-size: 100% 100%; transform: rotate(-2deg); }
+.verb--software.is-lit { color: var(--sw-bg); }
+.verb--creative.is-lit { color: #fff; transform: rotate(2deg); }
+.verb--hardware.is-lit { color: #fff; }
 
+/* ===== Three doors ===== */
+.doors { display: flex; gap: 12px; height: min(calc(100vh - 330px), 600px); min-height: 440px; }
+.door {
+  --mx: 50%; --my: 50%; --px: 0; --py: 0; --rx: 0deg; --ry: 0deg;
+  position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; text-decoration: none;
+  display: flex; flex-direction: column; justify-content: flex-end; border-radius: 18px;
+  transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: flex-grow 0.6s cubic-bezier(.2,.8,.2,1), transform 0.25s ease-out, filter 0.35s, box-shadow 0.35s;
+  animation: door-in 0.9s cubic-bezier(.2,.8,.2,1) both;
+  cursor: none;
+}
+@keyframes door-in { from { translate: 0 60px; opacity: 0; } to { translate: 0 0; opacity: 1; } }
+.door:hover, .door:focus-visible { flex-grow: 2.2; }
+.doors.has-active .door:not(.is-active) { filter: saturate(0.5) brightness(0.8); }
+.door.is-active { box-shadow: 0 30px 60px -25px rgba(27, 21, 48, 0.55); }
+
+.door__preview { position: absolute; inset: 0; }
+.door__label { position: relative; padding: 1.5rem; z-index: 2; }
+.door__label h2 { font-size: clamp(1.4rem, 2.4vw, 2rem); margin-bottom: 0.2rem; white-space: nowrap; transition: transform 0.4s cubic-bezier(.2,.8,.2,1); }
+.door__label p { margin: 0; white-space: nowrap; }
+.door:hover .door__label h2 { transform: translateX(6px); }
+.door__label { transform-origin: left bottom; transition: transform 0.5s cubic-bezier(.2,.8,.2,1), opacity 0.3s; }
+.doors.has-active .door:not(.is-active) .door__label { transform: scale(0.72); }
+.doors.has-active .door:not(.is-active) .door__label p { opacity: 0; }
+
+/* spotlight that follows the cursor */
+.door__glow {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  background: radial-gradient(260px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.16), transparent 70%);
+}
+.door:hover .door__glow { opacity: 1; }
+.door--creative .door__glow { background: radial-gradient(240px circle at var(--mx) var(--my), rgba(91, 61, 245, 0.12), transparent 70%); }
+
+/* "Enter" badge that replaces the cursor */
+.door__enter {
+  position: absolute; z-index: 3; left: var(--mx); top: var(--my); translate: -50% -50%;
+  width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center;
+  font-weight: 700; font-size: 0.9rem; pointer-events: none;
+  scale: 0; transition: scale 0.3s cubic-bezier(.3,1.6,.5,1);
+}
+.door:hover .door__enter { scale: 1; }
+.door--software .door__enter { background: var(--sw-amber); color: var(--sw-bg); font-family: var(--f-mono); }
+.door--creative .door__enter { background: var(--ink); color: var(--cr-yellow); font-family: var(--f-cr); font-size: 1.05rem; }
+.door--hardware .door__enter { background: var(--hw-orange); color: #fff; font-family: var(--f-hw); font-size: 1.1rem; }
+@media (hover: none) { .door { cursor: pointer; } .door__enter { display: none; } }
+
+/* --- software door --- */
 .door--software { background: var(--sw-bg); color: var(--sw-fg); }
-.door--software pre { margin: 0; padding: 1.75rem 1.5rem; font-family: var(--f-mono); font-size: 0.85rem; line-height: 1.7; white-space: pre; overflow: hidden; }
 .door--software h2 { font-family: var(--f-mono); color: #fff; }
 .door--software .door__label p { color: var(--sw-amber); font-family: var(--f-mono); font-size: 0.9rem; }
+.hd-term { margin: 0; padding: 1.75rem 1.5rem; font-family: var(--f-mono); font-size: 0.85rem; line-height: 1.75; white-space: pre; overflow: hidden; }
+.hd-term > span:not(.caret) { display: block; }
+.hd-term__cmd { color: #fff; }
+.hd-term__dim { color: var(--sw-dim); animation: line-in 0.3s ease both; }
+.hd-term__ok { color: var(--sw-amber); animation: line-in 0.3s ease both; }
+@keyframes line-in { from { opacity: 0; translate: -8px 0; } }
+.door--software::before { /* scanlines */
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0.35;
+  background: repeating-linear-gradient(0deg, rgba(255, 176, 0, 0.05) 0 1px, transparent 1px 3px);
+}
 
+/* --- creative door --- */
 .door--creative { background: var(--cr-paper); color: var(--ink); }
 .door--creative h2 { font-family: var(--f-cr); font-weight: 800; font-variation-settings: "wdth" 80; font-size: clamp(1.7rem, 3vw, 2.5rem); }
-
-.door--hardware {
-  background-color: var(--hw-bg); color: var(--hw-line);
-  background-image: linear-gradient(var(--hw-grid) 1px, transparent 1px), linear-gradient(90deg, var(--hw-grid) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-.door--hardware .door__preview { display: grid; place-items: center; padding: 1.5rem 1.5rem 6rem; }
-.door--hardware h2 { font-family: var(--f-hw); font-weight: 700; color: #fff; font-size: clamp(1.8rem, 3vw, 2.6rem); }
-.door--hardware .door__label p { font-family: var(--f-hw); font-size: 1.1rem; color: var(--hw-orange); }
-
-/* risograph composition (used by door + creative hero) */
 .riso { position: absolute; inset: 0; }
-.riso__shape { position: absolute; mix-blend-mode: multiply; display: block; }
-.riso__shape--a { width: 62%; aspect-ratio: 1; border-radius: 50%; background: var(--cr-pink); top: 6%; left: -10%; }
-.riso__shape--b { width: 48%; aspect-ratio: 1; background: var(--cr-yellow); top: 26%; right: -6%; transform: rotate(14deg); }
-.riso__shape--c { width: 70%; height: 22%; background: var(--cr-blue); top: 52%; left: 14%; border-radius: 999px; transform: rotate(-8deg); }
+.riso__shape { position: absolute; mix-blend-mode: multiply; display: block; transition: translate 0.25s ease-out; }
+.riso__shape--a { width: 62%; aspect-ratio: 1; border-radius: 50%; background: var(--cr-pink); top: 6%; left: -10%;
+  translate: calc(var(--px, 0) * -60px) calc(var(--py, 0) * -40px); animation: float-a 7s ease-in-out infinite alternate; }
+.riso__shape--b { width: 48%; aspect-ratio: 1; background: var(--cr-yellow); top: 26%; right: -6%;
+  translate: calc(var(--px, 0) * 80px) calc(var(--py, 0) * 60px); animation: spin-b 12s linear infinite; }
+.riso__shape--c { width: 70%; height: 22%; background: var(--cr-blue); top: 52%; left: 14%; border-radius: 999px;
+  translate: calc(var(--px, 0) * -40px) calc(var(--py, 0) * 90px); animation: float-c 6s ease-in-out infinite alternate; }
+@keyframes float-a { to { transform: scale(1.08); } }
+@keyframes spin-b { from { transform: rotate(14deg); } to { transform: rotate(374deg); } }
+@keyframes float-c { from { transform: rotate(-8deg); } to { transform: rotate(4deg) scaleX(1.1); } }
 .riso__words {
-  position: absolute; top: 8%; left: 1.25rem; margin: 0;
+  position: absolute; top: 8%; left: 1.25rem; margin: 0; z-index: 1;
   font-family: var(--f-cr); font-weight: 800; font-variation-settings: "wdth" 75;
   font-size: clamp(3rem, 7vw, 6rem); line-height: 0.82; letter-spacing: -0.03em; color: var(--ink);
   text-shadow: 3px 2px 0 rgba(255, 72, 176, 0.65);
 }
+.riso__swap { display: inline-block; animation: word-pop 0.55s cubic-bezier(.3,1.6,.5,1) both; transform-origin: left bottom; }
+@keyframes word-pop { from { transform: scale(0.4, 1.4) translateY(30%); opacity: 0; } }
+
+/* --- hardware door --- */
+.door--hardware {
+  background-color: var(--hw-bg); color: var(--hw-line);
+  background-image: linear-gradient(var(--hw-grid) 1px, transparent 1px), linear-gradient(90deg, var(--hw-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: calc(var(--px) * 24px) calc(var(--py) * 24px);
+}
+.door--hardware .door__preview { display: grid; place-items: center; padding: 1.5rem 1.5rem 6rem; }
+.door--hardware h2 { font-family: var(--f-hw); font-weight: 700; color: #fff; font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.door--hardware .door__label p { font-family: var(--f-hw); font-size: 1.1rem; color: var(--hw-orange); }
+.hd-cross { position: absolute; background: var(--hw-orange); opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.hd-cross--x { left: 0; right: 0; height: 1px; top: var(--my); }
+.hd-cross--y { top: 0; bottom: 0; width: 1px; left: var(--mx); }
+.hd-coords {
+  position: absolute; left: calc(var(--mx) + 14px); top: calc(var(--my) + 14px); opacity: 0; transition: opacity 0.2s;
+  font-family: var(--f-hw); font-size: 0.95rem; color: var(--hw-orange); white-space: pre; pointer-events: none;
+}
+.door--hardware:hover .hd-cross, .door--hardware:hover .hd-coords { opacity: 0.85; }
+
+/* robot arm */
+.arm { width: 100%; height: auto; max-height: 100%; overflow: visible; }
+.arm__draw * { fill: none; stroke: var(--hw-line); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.arm__draw > line, .arm__draw > rect { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 1.6s ease 0.4s forwards; }
+.arm__shoulder { transform-box: view-box; transform-origin: 200px 230px; animation: arm-shoulder 6s ease-in-out infinite; }
+.arm__elbow { transform-box: view-box; transform-origin: 165px 132px; animation: arm-elbow 6s ease-in-out infinite; }
+.arm__wrist { transform-box: view-box; transform-origin: 284px 96px; animation: arm-wrist 6s ease-in-out infinite; }
+.arm__jaw--top { transform-box: view-box; transform-origin: 292px 90px; animation: jaw-top 6s ease-in-out infinite; }
+.arm__jaw--bottom { transform-box: view-box; transform-origin: 292px 102px; animation: jaw-bottom 6s ease-in-out infinite; }
+@keyframes arm-shoulder { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-16deg); } 65% { transform: rotate(10deg); } }
+@keyframes arm-elbow { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(22deg); } 65% { transform: rotate(-12deg); } }
+@keyframes arm-wrist { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-20deg); } 65% { transform: rotate(15deg); } }
+@keyframes jaw-top { 0%, 25%, 100% { transform: rotate(0); } 35%, 60% { transform: rotate(12deg); } }
+@keyframes jaw-bottom { 0%, 25%, 100% { transform: rotate(0); } 35%, 60% { transform: rotate(-12deg); } }
+.arm__dims line { stroke: var(--hw-orange); stroke-width: 1; stroke-dasharray: 4 3; }
+.arm__dims text { fill: var(--hw-orange); font-family: var(--f-hw); font-size: 13px; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
 
 @media (max-width: 760px) {
   .doors { flex-direction: column; height: auto; min-height: 0; }
