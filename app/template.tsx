@@ -1,1 +1,18 @@
-/* Runs on every page change: three lab-coloured stripes sweep away to reveal the new page. */ export default function Template({ children }: { children: React.ReactNode }) { return ( <> <div className="wipe" aria-hidden="true"> <span className="wipe__bar wipe__bar--software" /> <span className="wipe__bar wipe__bar--creative" /> <span className="wipe__bar wipe__bar--hardware" /> </div> <div className="page-in">{children}</div> </> ); }
+/* Runs on every page change: three lab-coloured stripes sweep away to reveal the new page. */ export default function Template({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      {" "}
+      <div className="wipe" aria-hidden="true">
+        {" "}
+        <span className="wipe__bar wipe__bar--software" />{" "}
+        <span className="wipe__bar wipe__bar--creative" />{" "}
+        <span className="wipe__bar wipe__bar--hardware" />{" "}
+      </div>{" "}
+      <div className="page-in">{children}</div>{" "}
+    </>
+  );
+}

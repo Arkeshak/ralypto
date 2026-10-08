@@ -10,9 +10,18 @@ export default function HardwareHero() {
         <p>{labs.hardware.promise}</p>
         <table className="title-block">
           <tbody>
-            <tr><th scope="row">Drawn by</th><td>Ralypto</td></tr>
-            <tr><th scope="row">Sheet</th><td>1 of 1</td></tr>
-            <tr><th scope="row">Scale</th><td>1 : idea</td></tr>
+            <tr>
+              <th scope="row">Drawn by</th>
+              <td>Ralypto</td>
+            </tr>
+            <tr>
+              <th scope="row">Sheet</th>
+              <td>1 of 1</td>
+            </tr>
+            <tr>
+              <th scope="row">Scale</th>
+              <td>1 : idea</td>
+            </tr>
           </tbody>
         </table>
       </div>

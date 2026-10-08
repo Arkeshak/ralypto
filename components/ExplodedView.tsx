@@ -15,13 +15,17 @@ export default function ExplodedView() {
   const [spread, setSpread] = useState(0);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setSpread(1); return; }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setSpread(1);
+      return;
+    }
     const onScroll = () => {
       const el = ref.current;
       if (!el) return;
       const r = el.getBoundingClientRect();
       // 0 when the section enters the screen, 1 when its centre reaches the screen centre
-      const p = (window.innerHeight - r.top) / (window.innerHeight / 2 + r.height / 2);
+      const p =
+        (window.innerHeight - r.top) / (window.innerHeight / 2 + r.height / 2);
       setSpread(Math.max(0, Math.min(1, p)));
     };
     onScroll();
@@ -34,11 +38,14 @@ export default function ExplodedView() {
       <div className="exploded__text">
         <h2>Inside a build</h2>
         <p>
-          Every device we make is drawn before it is built. Scroll to take this one apart:
-          each layer is designed, sourced and tested on its own.
+          Every device we make is drawn before it is built. Scroll to take this
+          one apart: each layer is designed, sourced and tested on its own.
         </p>
       </div>
-      <div className="exploded__stage" aria-label="Exploded view of a device, top cover to base">
+      <div
+        className="exploded__stage"
+        aria-label="Exploded view of a device, top cover to base"
+      >
         {layers.map((l, i) => (
           <div
             key={l.name}

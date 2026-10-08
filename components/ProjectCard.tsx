@@ -17,7 +17,9 @@ export default function ProjectCard({ p }: { p: Project }) {
     return (
       <Link href={href} className="pcard pcard--cross">
         <div className="pcard__stripes" aria-hidden="true">
-          {p.labs.map((l) => <span key={l} className={`stripe stripe--${l}`} />)}
+          {p.labs.map((l) => (
+            <span key={l} className={`stripe stripe--${l}`} />
+          ))}
         </div>
         <h3>{p.title}</h3>
         <p>{p.summary}</p>
@@ -34,13 +36,20 @@ export default function ProjectCard({ p }: { p: Project }) {
   if (lab === "software") {
     return (
       <Link href={href} className="pcard pcard--software">
-        <p className="repo">ralypto / <strong>{p.slug}</strong></p>
+        <p className="repo">
+          ralypto / <strong>{p.slug}</strong>
+        </p>
         <h3>{p.title}</h3>
         <p>{p.summary}</p>
         <ul className="repo__tags">
-          {p.tools.slice(0, 4).map((t) => <li key={t}>{t}</li>)}
+          {p.tools.slice(0, 4).map((t) => (
+            <li key={t}>{t}</li>
+          ))}
         </ul>
-        <p className="pcard__meta"><span>{statusLabel[p.status]}</span><span>{p.year}</span></p>
+        <p className="pcard__meta">
+          <span>{statusLabel[p.status]}</span>
+          <span>{p.year}</span>
+        </p>
       </Link>
     );
   }
@@ -48,13 +57,20 @@ export default function ProjectCard({ p }: { p: Project }) {
   if (lab === "creative") {
     const bg = pick(p.slug);
     return (
-      <Link href={href} className="pcard pcard--creative" style={{ ["--poster" as string]: bg }}>
+      <Link
+        href={href}
+        className="pcard pcard--creative"
+        style={{ ["--poster" as string]: bg }}
+      >
         <div className="poster" aria-hidden="true">
           <span className="poster__blob" />
           <span className="poster__blob poster__blob--two" />
         </div>
         <h3>{p.title}</h3>
-        <p className="pcard__meta"><span>{statusLabel[p.status]}</span><span>{p.year}</span></p>
+        <p className="pcard__meta">
+          <span>{statusLabel[p.status]}</span>
+          <span>{p.year}</span>
+        </p>
       </Link>
     );
   }
@@ -66,15 +82,26 @@ export default function ProjectCard({ p }: { p: Project }) {
         <circle cx="70" cy="45" r="12" />
         <circle cx="130" cy="45" r="12" />
         <line x1="40" y1="80" x2="160" y2="80" />
-        <text x="100" y="88" textAnchor="middle">{p.tools[0]}</text>
+        <text x="100" y="88" textAnchor="middle">
+          {p.tools[0]}
+        </text>
       </svg>
       <h3>{p.title}</h3>
       <p>{p.summary}</p>
       <table className="spec__block">
         <tbody>
-          <tr><th scope="row">Type</th><td>{statusLabel[p.status]}</td></tr>
-          <tr><th scope="row">Year</th><td>{p.year}</td></tr>
-          <tr><th scope="row">Core</th><td>{p.tools.slice(0, 2).join(", ")}</td></tr>
+          <tr>
+            <th scope="row">Type</th>
+            <td>{statusLabel[p.status]}</td>
+          </tr>
+          <tr>
+            <th scope="row">Year</th>
+            <td>{p.year}</td>
+          </tr>
+          <tr>
+            <th scope="row">Core</th>
+            <td>{p.tools.slice(0, 2).join(", ")}</td>
+          </tr>
         </tbody>
       </table>
     </Link>

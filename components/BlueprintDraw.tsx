@@ -1,7 +1,16 @@
 /* A robot-arm technical drawing that draws itself (CSS stroke animation). */
-export default function BlueprintDraw({ compact = false }: { compact?: boolean }) {
+export default function BlueprintDraw({
+  compact = false,
+}: {
+  compact?: boolean;
+}) {
   return (
-    <svg className={`bp-draw ${compact ? "bp-draw--compact" : ""}`} viewBox="0 0 400 300" role="img" aria-label="Technical drawing of a robot arm">
+    <svg
+      className={`bp-draw ${compact ? "bp-draw--compact" : ""}`}
+      viewBox="0 0 400 300"
+      role="img"
+      aria-label="Technical drawing of a robot arm"
+    >
       <g className="bp-draw__lines">
         {/* base */}
         <rect x="140" y="240" width="120" height="30" />
@@ -24,13 +33,23 @@ export default function BlueprintDraw({ compact = false }: { compact?: boolean }
         <line x1="140" y1="285" x2="260" y2="285" />
         <line x1="140" y1="280" x2="140" y2="290" />
         <line x1="260" y1="280" x2="260" y2="290" />
-        <text x="200" y="298" textAnchor="middle">120</text>
+        <text x="200" y="298" textAnchor="middle">
+          120
+        </text>
         <line x1="60" y1="132" x2="60" y2="230" />
         <line x1="55" y1="132" x2="65" y2="132" />
         <line x1="55" y1="230" x2="65" y2="230" />
-        <text x="48" y="185" textAnchor="middle" transform="rotate(-90 48 185)">98</text>
-        {!compact && <circle cx="165" cy="132" r="26" className="bp-draw__callout" />}
-        {!compact && <text x="120" y="96" className="bp-draw__note">joint A, 180° servo</text>}
+        <text x="48" y="185" textAnchor="middle" transform="rotate(-90 48 185)">
+          98
+        </text>
+        {!compact && (
+          <circle cx="165" cy="132" r="26" className="bp-draw__callout" />
+        )}
+        {!compact && (
+          <text x="120" y="96" className="bp-draw__note">
+            joint A, 180° servo
+          </text>
+        )}
       </g>
     </svg>
   );

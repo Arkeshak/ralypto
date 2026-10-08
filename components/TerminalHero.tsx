@@ -22,7 +22,10 @@ export default function TerminalHero() {
     }
     const id = setInterval(() => {
       setShown((s) => {
-        if (s >= total) { clearInterval(id); return s; }
+        if (s >= total) {
+          clearInterval(id);
+          return s;
+        }
         return s + 2;
       });
     }, 28);
@@ -35,7 +38,12 @@ export default function TerminalHero() {
   return (
     <div className="term-hero">
       <div className="term-window" aria-hidden="true">
-        <div className="term-window__bar"><i /><i /><i /><span>~/ralypto</span></div>
+        <div className="term-window__bar">
+          <i />
+          <i />
+          <i />
+          <span>~/ralypto</span>
+        </div>
         <pre>
           {script.map((line, i) => {
             const visible = Math.max(0, Math.min(line.text.length, left));

@@ -12,7 +12,9 @@ export default function Footer() {
         <div>
           <h2>Labs</h2>
           {labOrder.map((id) => (
-            <Link key={id} href={labs[id].path}>{labs[id].name}</Link>
+            <Link key={id} href={labs[id].path}>
+              {labs[id].name}
+            </Link>
           ))}
         </div>
         <div>
@@ -29,11 +31,15 @@ export default function Footer() {
         <div>
           <h2>Follow</h2>
           {site.socials.map((s) => (
-            <a key={s.label} href={s.href} target="_blank" rel="noreferrer">{s.label}</a>
+            <a key={s.label} href={s.href} target="_blank" rel="noreferrer">
+              {s.label}
+            </a>
           ))}
         </div>
       </div>
-      <p className="footer__fine">© {new Date().getFullYear()} Ralypto, {site.location}</p>
+      <p className="footer__fine">
+        © {new Date().getFullYear()} Ralypto, {site.location}
+      </p>
     </footer>
   );
 }

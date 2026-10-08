@@ -7,12 +7,30 @@ import RobotArm from "./RobotArm";
 /* ---------- Software door: a terminal that keeps typing new commands ---------- */
 type TLine = { t: string; k: "cmd" | "dim" | "ok" };
 const scripts: { cmd: string; out: TLine[] }[] = [
-  { cmd: "ralypto build --your-idea", out: [
-    { t: "compiling idea.ts ...", k: "dim" }, { t: "tests passed 12/12", k: "dim" }, { t: "ready on ralypto.com", k: "ok" } ] },
-  { cmd: "ralypto deploy erp --client=shop", out: [
-    { t: "migrating database ...", k: "dim" }, { t: "stock synced, 1,284 items", k: "dim" }, { t: "billing is live", k: "ok" } ] },
-  { cmd: "ralypto agent start --whatsapp", out: [
-    { t: "loading knowledge base ...", k: "dim" }, { t: "replying in 0.8s", k: "dim" }, { t: "3 bookings confirmed", k: "ok" } ] },
+  {
+    cmd: "ralypto build --your-idea",
+    out: [
+      { t: "compiling idea.ts ...", k: "dim" },
+      { t: "tests passed 12/12", k: "dim" },
+      { t: "ready on ralypto.com", k: "ok" },
+    ],
+  },
+  {
+    cmd: "ralypto deploy erp --client=shop",
+    out: [
+      { t: "migrating database ...", k: "dim" },
+      { t: "stock synced, 1,284 items", k: "dim" },
+      { t: "billing is live", k: "ok" },
+    ],
+  },
+  {
+    cmd: "ralypto agent start --whatsapp",
+    out: [
+      { t: "loading knowledge base ...", k: "dim" },
+      { t: "replying in 0.8s", k: "dim" },
+      { t: "3 bookings confirmed", k: "ok" },
+    ],
+  },
 ];
 
 function useTypingLoop() {
@@ -24,7 +42,8 @@ function useTypingLoop() {
     }
     let cancelled = false;
     const timers: number[] = [];
-    const wait = (ms: number) => new Promise<void>((r) => timers.push(window.setTimeout(r, ms)));
+    const wait = (ms: number) =>
+      new Promise<void>((r) => timers.push(window.setTimeout(r, ms)));
     (async () => {
       for (let s = 0; !cancelled; s++) {
         const sc = scripts[s % scripts.length];
@@ -40,7 +59,10 @@ function useTypingLoop() {
         await wait(2600);
       }
     })();
-    return () => { cancelled = true; timers.forEach(clearTimeout); };
+    return () => {
+      cancelled = true;
+      timers.forEach(clearTimeout);
+    };
   }, []);
   return lines;
 }
@@ -68,7 +90,10 @@ function CreativePreview() {
   const [i, setI] = useState(0);
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(() => setI((n) => (n + 1) % creativeWords.length), 2200);
+    const id = setInterval(
+      () => setI((n) => (n + 1) % creativeWords.length),
+      2200,
+    );
     return () => clearInterval(id);
   }, []);
   return (
@@ -77,21 +102,31 @@ function CreativePreview() {
       <span className="riso__shape riso__shape--b" />
       <span className="riso__shape riso__shape--c" />
       <p className="riso__words">
-        make<br />it<br />
-        <span key={i} className="riso__swap">{creativeWords[i]}</span>
+        {" "}
+        <span className="riso__word">make</span>{" "}
+        <span className="riso__word">it</span>{" "}
+        <span key={i} className="riso__word riso__swap">
+          {creativeWords[i]}
+        </span>{" "}
       </p>
     </div>
   );
 }
 
 /* ---------- Hardware door: moving robot arm + cursor crosshair with coordinates ---------- */
-function HardwarePreview({ coordsRef }: { coordsRef: React.RefObject<HTMLSpanElement | null> }) {
+function HardwarePreview({
+  coordsRef,
+}: {
+  coordsRef: React.RefObject<HTMLSpanElement | null>;
+}) {
   return (
     <>
       <RobotArm />
       <span className="hd-cross hd-cross--x" aria-hidden="true" />
       <span className="hd-cross hd-cross--y" aria-hidden="true" />
-      <span className="hd-coords" ref={coordsRef} aria-hidden="true">X 000 Y 000</span>
+      <span className="hd-coords" ref={coordsRef} aria-hidden="true">
+        X 000 Y 000
+      </span>
     </>
   );
 }
@@ -110,7 +145,8 @@ export default function HomeHero() {
 
   // While nobody is hovering, the headline verbs light up one after another.
   useEffect(() => {
-    if (active || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (active || window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+      return;
     const id = setInterval(() => setPulse((p) => (p + 1) % 3), 1800);
     return () => clearInterval(id);
   }, [active]);
@@ -132,8 +168,7 @@ export default function HomeHero() {
     el.style.setProperty("--rx", `${(-ny * 6).toFixed(2)}deg`);
     el.style.setProperty("--ry", `${(nx * 6).toFixed(2)}deg`);
     if (el.dataset.lab === "hardware" && coordsRef.current) {
-      coordsRef.current.textContent =
-        `X ${String(Math.round(x)).padStart(3, "0")}  Y ${String(Math.round(y)).padStart(3, "0")}`;
+      coordsRef.current.textContent = `X ${String(Math.round(x)).padStart(3, "0")}  Y ${String(Math.round(y)).padStart(3, "0")}`;
     }
   }
 
@@ -151,7 +186,11 @@ export default function HomeHero() {
           We{" "}
           {verbs.map((v, i) => (
             <span key={v.word}>
-              <span className={`verb verb--${v.lab} ${lit === v.lab ? "is-lit" : ""}`}>{v.word}</span>
+              <span
+                className={`verb verb--${v.lab} ${lit === v.lab ? "is-lit" : ""}`}
+              >
+                {v.word}
+              </span>
               {i === 0 ? " it, " : i === 1 ? " it, and " : " it."}
             </span>
           ))}
@@ -179,7 +218,9 @@ export default function HomeHero() {
               {id === "hardware" && <HardwarePreview coordsRef={coordsRef} />}
             </div>
             <span className="door__glow" aria-hidden="true" />
-            <span className="door__enter" aria-hidden="true">Enter</span>
+            <span className="door__enter" aria-hidden="true">
+              Enter
+            </span>
             <div className="door__label">
               <h2>{labs[id].name}</h2>
               <p>{labs[id].doorLine}</p>

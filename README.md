@@ -15,15 +15,15 @@ npm start        # serve the production build
 
 ## Where things are
 
-| What | File |
-| --- | --- |
-| All text, projects, team, email, WhatsApp | `lib/content.ts` |
-| Brand colours and fonts | top of `styles/base.css` |
-| Home page | `app/page.tsx` |
-| Lab pages | `app/software`, `app/creative`, `app/hardware` |
-| Shared lab layout | `components/LabPage.tsx` |
-| Case study template | `app/work/[slug]/page.tsx` |
-| Start-a-project form | `components/BriefBuilder.tsx` |
+| What                                      | File                                           |
+| ----------------------------------------- | ---------------------------------------------- |
+| All text, projects, team, email, WhatsApp | `lib/content.ts`                               |
+| Brand colours and fonts                   | top of `styles/base.css`                       |
+| Home page                                 | `app/page.tsx`                                 |
+| Lab pages                                 | `app/software`, `app/creative`, `app/hardware` |
+| Shared lab layout                         | `components/LabPage.tsx`                       |
+| Case study template                       | `app/work/[slug]/page.tsx`                     |
+| Start-a-project form                      | `components/BriefBuilder.tsx`                  |
 
 ## Add a project
 

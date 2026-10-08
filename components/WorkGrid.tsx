@@ -13,7 +13,11 @@ export default function WorkGrid() {
     { id: "cross", label: "Cross-lab" },
   ];
   const list = projects.filter((p) =>
-    filter === "all" ? true : filter === "cross" ? isCrossLab(p) : p.labs[0] === filter && !isCrossLab(p)
+    filter === "all"
+      ? true
+      : filter === "cross"
+        ? isCrossLab(p)
+        : p.labs[0] === filter && !isCrossLab(p),
   );
 
   return (
@@ -30,9 +34,13 @@ export default function WorkGrid() {
           </button>
         ))}
       </div>
-      <p className="filters__count" aria-live="polite">{list.length} projects</p>
+      <p className="filters__count" aria-live="polite">
+        {list.length} projects
+      </p>
       <div className="card-grid">
-        {list.map((p) => <ProjectCard key={p.slug} p={p} />)}
+        {list.map((p) => (
+          <ProjectCard key={p.slug} p={p} />
+        ))}
       </div>
     </>
   );

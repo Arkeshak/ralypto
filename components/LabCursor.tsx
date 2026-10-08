@@ -1,1 +1,63 @@
-"use client"; import { useEffect, useRef } from "react"; import { usePathname } from "next/navigation"; /* A soft follower that trails the mouse. Its shape changes with the lab you are in: amber block on Software, pink ink blob on Creative, orange crosshair ring on Hardware. */ export default function LabCursor() { const ref = useRef<HTMLDivElement>(null); const path = usePathname(); const mode = path.startsWith("/software") ? "software" : path.startsWith("/creative") ? "creative" : path.startsWith("/hardware") ? "hardware" : "brand"; useEffect(() => { const el = ref.current; if (!el) return; if (window.matchMedia("(hover: none), (prefers-reduced-motion: reduce)").matches) return; let x = -100, y = -100, tx = -100, ty = -100, raf = 0; const move = (e: PointerEvent) => { tx = e.clientX; ty = e.clientY; const t = e.target as HTMLElement; el.classList.toggle("is-big", !!t.closest("a, button, input, textarea, [role=button]")); el.classList.toggle("is-hidden", !!t.closest(".door")); }; const loop = () => { x += (tx - x) * 0.18; y += (ty - y) * 0.18; el.style.transform = `translate3d(${x}px, ${y}px, 0)`; raf = requestAnimationFrame(loop); }; const leave = () => el.classList.add("is-hidden"); window.addEventListener("pointermove", move); document.addEventListener("pointerleave", leave); raf = requestAnimationFrame(loop); el.classList.add("is-on"); return () => { window.removeEventListener("pointermove", move); document.removeEventListener("pointerleave", leave); cancelAnimationFrame(raf); }; }, []); return <div ref={ref} className={`lab-cursor lab-cursor--${mode}`} aria-hidden="true"><span /></div>; }
+"use client";
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+/* A soft follower that trails the mouse. Its shape changes with the lab you are in: amber block on Software, pink ink blob on Creative, orange crosshair ring on Hardware. */ export default function LabCursor() {
+  const ref = useRef<HTMLDivElement>(null);
+  const path = usePathname();
+  const mode = path.startsWith("/software")
+    ? "software"
+    : path.startsWith("/creative")
+      ? "creative"
+      : path.startsWith("/hardware")
+        ? "hardware"
+        : "brand";
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (
+      window.matchMedia("(hover: none), (prefers-reduced-motion: reduce)")
+        .matches
+    )
+      return;
+    let x = -100,
+      y = -100,
+      tx = -100,
+      ty = -100,
+      raf = 0;
+    const move = (e: PointerEvent) => {
+      tx = e.clientX;
+      ty = e.clientY;
+      const t = e.target as HTMLElement;
+      el.classList.toggle(
+        "is-big",
+        !!t.closest("a, button, input, textarea, [role=button]"),
+      );
+      el.classList.toggle("is-hidden", !!t.closest(".door"));
+    };
+    const loop = () => {
+      x += (tx - x) * 0.18;
+      y += (ty - y) * 0.18;
+      el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      raf = requestAnimationFrame(loop);
+    };
+    const leave = () => el.classList.add("is-hidden");
+    window.addEventListener("pointermove", move);
+    document.addEventListener("pointerleave", leave);
+    raf = requestAnimationFrame(loop);
+    el.classList.add("is-on");
+    return () => {
+      window.removeEventListener("pointermove", move);
+      document.removeEventListener("pointerleave", leave);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+  return (
+    <div
+      ref={ref}
+      className={`lab-cursor lab-cursor--${mode}`}
+      aria-hidden="true"
+    >
+      <span />
+    </div>
+  );
+}

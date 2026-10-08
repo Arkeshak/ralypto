@@ -5,7 +5,10 @@ import MarketingSection from "@/components/MarketingSection";
 import BeforeAfter from "@/components/BeforeAfter";
 import { labs } from "@/lib/content";
 
-export const metadata: Metadata = { title: labs.creative.name, description: labs.creative.promise };
+export const metadata: Metadata = {
+  title: labs.creative.name,
+  description: labs.creative.promise,
+};
 
 export default function CreativePage() {
   return (
@@ -18,10 +21,10 @@ export default function CreativePage() {
           <section className="lab-section">
             <h2>Photo editing, side by side</h2>
             {/* Replace with real files: before="/work/shoe-before.jpg" after="/work/shoe-after.jpg" */}
-            <BeforeAfter 
-              before="/work/shoe-before.jpg" 
-              after="/work/shoe-after.jpg" 
-              caption="Product retouch: colour, light and background cleaned up for an online store." 
+            <BeforeAfter
+              before="/work/shoe-before.jpg"
+              after="/work/shoe-after.jpg"
+              caption="Product retouch: colour, light and background cleaned up for an online store."
             />
           </section>
         </>

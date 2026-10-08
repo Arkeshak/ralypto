@@ -20,12 +20,12 @@ The site's job: when the team finds a potential client, they send this website t
 
 Each lab page is its own visual world, tied together by the Ralypto brand. Never flatten them into one generic style.
 
-| Area | World | Colours | Display font |
-| --- | --- | --- | --- |
-| Brand (home, work, about, contact) | Clean studio | violet ink `#1b1530`, cool paper `#f5f6f8`, Ralypto violet `#5b3df5` | Unbounded |
-| Software Lab | Amber phosphor terminal | `#121008` background, `#ffb000` amber, `#e9e2cf` text | JetBrains Mono |
-| Creative Studio | Risograph print magazine | white paper, pink `#ff48b0`, blue `#0078bf`, yellow `#ffe800`, multiply-blended overlapping shapes | Bricolage Grotesque (condensed widths) |
-| Hardware Lab | Engineering blueprint | `#1c4ba0` blue with grid lines, `#dce8ff` lines, `#ff7a1a` orange for dimensions and annotations | Barlow Condensed |
+| Area                               | World                    | Colours                                                                                            | Display font                           |
+| ---------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| Brand (home, work, about, contact) | Clean studio             | violet ink `#1b1530`, cool paper `#f5f6f8`, Ralypto violet `#5b3df5`                               | Unbounded                              |
+| Software Lab                       | Amber phosphor terminal  | `#121008` background, `#ffb000` amber, `#e9e2cf` text                                              | JetBrains Mono                         |
+| Creative Studio                    | Risograph print magazine | white paper, pink `#ff48b0`, blue `#0078bf`, yellow `#ffe800`, multiply-blended overlapping shapes | Bricolage Grotesque (condensed widths) |
+| Hardware Lab                       | Engineering blueprint    | `#1c4ba0` blue with grid lines, `#dce8ff` lines, `#ff7a1a` orange for dimensions and annotations   | Barlow Condensed                       |
 
 Body text everywhere: Instrument Sans. All tokens live at the top of `styles/base.css`; use the CSS variables, never hard-code new colours.
 
