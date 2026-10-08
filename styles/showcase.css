@@ -845,7 +845,8 @@
   transition:
     opacity 0.7s ease,
     transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
-    clip-path 0.7s ease;
+    clip-path 0.7s ease,
+    -webkit-clip-path 0.7s ease;
 }
 .reveal-ready [data-reveal].is-in {
   opacity: 1;
@@ -854,18 +855,24 @@
 .reveal-ready .lab--software [data-reveal] {
   transform: none;
   clip-path: inset(0 100% 0 0);
+  -webkit-clip-path: inset(0 100% 0 0);
 }
 .reveal-ready .lab--software [data-reveal].is-in {
+  opacity: 1;
   clip-path: inset(0 0 0 0);
+  -webkit-clip-path: inset(0 0 0 0);
 }
 .reveal-ready .lab--software h2[data-reveal] {
   transition:
     clip-path 0.8s steps(16),
+    -webkit-clip-path 0.8s steps(16),
     opacity 0.1s;
 }
 .lab--software .service {
   position: relative;
-  transition: background 0.2s;
+}
+.lab--software .service:hover {
+  background: rgba(255, 176, 0, 0.08);
 }
 .lab--software .service::before {
   content: "";
