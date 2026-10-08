@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import LabCursor from "@/components/LabCursor";
 import { site } from "@/lib/content";
 import "@/styles/base.css";
 import "@/styles/home.css";
@@ -8,6 +9,7 @@ import "@/styles/software.css";
 import "@/styles/creative.css";
 import "@/styles/hardware.css";
 import "@/styles/pages.css";
+import "@/styles/extras.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ralypto.com'),
@@ -47,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        <LabCursor />
       </body>
     </html>
   );

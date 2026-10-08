@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HomeHero from "@/components/HomeHero";
+import IdeaMachine from "@/components/IdeaMachine";
 import ProjectCard from "@/components/ProjectCard";
 import FounderCard from "@/components/FounderCard";
 import { projects, team, isCrossLab } from "@/lib/content";
@@ -19,6 +20,7 @@ export default function Home() {
   return (
     <>
       <HomeHero />
+      <IdeaMachine />
 
       <section className="home-section">
         <div className="home-section__head">

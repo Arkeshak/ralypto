@@ -9,10 +9,10 @@ const stepTitles = ["What do you need?", "Tell us the idea", "Timing and budget"
 
 export default function BriefBuilder() {
   const params = useSearchParams();
-  const initial = params.get("need") as LabId | null;
+  const initialNeeds = (params.get("need") ?? "").split(",").filter((n): n is LabId => n in labs);
   const [step, setStep] = useState(0);
-  const [needs, setNeeds] = useState<LabId[]>(initial && labs[initial] ? [initial] : []);
-  const [idea, setIdea] = useState("");
+  const [needs, setNeeds] = useState<LabId[]>(initialNeeds);
+  const [idea, setIdea] = useState(params.get("idea") ?? "");
   const [timeline, setTimeline] = useState("");
   const [budget, setBudget] = useState("");
   const [name, setName] = useState("");
