@@ -80,16 +80,22 @@ export default function ProjectCard({ p }: { p: Project }) {
   }
 
   return (
-    <Link href={href} className="pcard pcard--hardware">
-      <svg viewBox="0 0 200 90" aria-hidden="true" className="spec__drawing">
-        <rect x="40" y="20" width="120" height="50" />
-        <circle cx="70" cy="45" r="12" />
-        <circle cx="130" cy="45" r="12" />
-        <line x1="40" y1="80" x2="160" y2="80" />
-        <text x="100" y="88" textAnchor="middle">
-          {p.tools[0]}
-        </text>
-      </svg>
+    <Link 
+      href={href} 
+      className={`pcard pcard--hardware ${p.images?.length ? 'pcard--has-bg' : ''}`}
+      style={p.images?.length ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(${p.images[0]})` } : undefined}
+    >
+      {!p.images?.length && (
+        <svg viewBox="0 0 200 90" aria-hidden="true" className="spec__drawing">
+          <rect x="40" y="20" width="120" height="50" />
+          <circle cx="70" cy="45" r="12" />
+          <circle cx="130" cy="45" r="12" />
+          <line x1="40" y1="80" x2="160" y2="80" />
+          <text x="100" y="88" textAnchor="middle">
+            {p.tools[0]}
+          </text>
+        </svg>
+      )}
       <h3>{p.title}</h3>
       <p>{p.summary}</p>
       <table className="spec__block">

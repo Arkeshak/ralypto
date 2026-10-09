@@ -407,6 +407,11 @@ button {
   border: 1px solid var(--hw-line);
   border-radius: 2px;
 }
+.pcard--hardware.pcard--has-bg {
+  background-size: cover;
+  background-position: center;
+  border-color: rgba(255, 255, 255, 0.2);
+}
 .pcard--hardware h3 {
   font-family: var(--f-hw);
   font-weight: 700;
