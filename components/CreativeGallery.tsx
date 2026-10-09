@@ -10,11 +10,25 @@ export default function CreativeGallery({ category, items }: { category: string,
             {p.status === "generated" && p.imageBefore && p.imageAfter ? (
               <div className="cr-ba-preview">
                 {/* Simplified before/after for grid */}
-                <Image src={p.imageBefore} alt="Before" fill className="cr-ba-img" />
+                <Image 
+                  src={p.imageBefore} 
+                  alt={`${p.title} Before`} 
+                  fill 
+                  className="cr-ba-img"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
                 <div className="cr-ba-mask" style={{ clipPath: "polygon(50% 0, 100% 0, 100% 100%, 50% 100%)" }}>
-                  <Image src={p.imageAfter} alt="After" fill className="cr-ba-img" />
+                  <Image 
+                    src={p.imageAfter} 
+                    alt={`${p.title} After`} 
+                    fill 
+                    className="cr-ba-img"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
                 <div className="cr-ba-line" />
+                <span className="cr-ba-chip cr-ba-chip--before">Before</span>
+                <span className="cr-ba-chip cr-ba-chip--after">After</span>
               </div>
             ) : (
               <div className="cr-placeholder">
@@ -39,7 +53,13 @@ export default function CreativeGallery({ category, items }: { category: string,
           <div key={p.id} className="cr-card">
             {p.status === "generated" && p.image ? (
               <div className="cr-img-wrap">
-                <Image src={p.image} alt={p.title} fill className="cr-img" />
+                <Image 
+                  src={p.image} 
+                  alt={p.title} 
+                  fill 
+                  className="cr-img"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
                 <div className="cr-play">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
                 </div>
@@ -67,7 +87,13 @@ export default function CreativeGallery({ category, items }: { category: string,
         <div key={p.id} className="cr-card">
           {p.status === "generated" && p.image ? (
             <div className="cr-img-wrap">
-              <Image src={p.image} alt={p.title} fill className="cr-img" />
+              <Image 
+                src={p.image} 
+                alt={p.title} 
+                fill 
+                className="cr-img"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
             </div>
           ) : (
             <div className="cr-placeholder">
