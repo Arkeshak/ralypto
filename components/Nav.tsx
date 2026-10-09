@@ -32,24 +32,7 @@ export default function Nav() {
           <i />
           <i />
         </span>
-        <svg
-          width="80"
-          height="24"
-          viewBox="0 0 80 24"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-label="Ralypto"
-        >
-          <text
-            x="0"
-            y="18"
-            fontFamily="inherit"
-            fontSize="20"
-            fontWeight="bold"
-          >
-            ralypto
-          </text>
-        </svg>
+        <span className="wordmark__name">ralypto</span>
       </Link>
       <button
         className="nav__toggle"
