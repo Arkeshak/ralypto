@@ -406,3 +406,102 @@
 .lab--creative .lab-cta h2 {
   font-variation-settings: "wdth" 75;
 }
+
+/* ===== Creative Galleries ===== */
+.cr-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.cr-gallery--photo {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+.cr-card {
+  position: relative;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.cr-img-wrap, .cr-ba-preview {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  background: #111;
+}
+.cr-img {
+  object-fit: cover;
+}
+.cr-ba-mask {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.cr-ba-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: #fff;
+  transform: translateX(-50%);
+}
+.cr-play {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cr-play svg {
+  width: 16px;
+  height: 16px;
+  color: #fff;
+}
+.cr-duration {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+.cr-placeholder {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  background: #2a2a2a;
+}
+.cr-status {
+  font-size: 0.85rem;
+  color: var(--cr-yellow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+.cr-info {
+  padding: 1rem;
+}
+.cr-info h4 {
+  margin: 0 0 0.2rem;
+  font-size: 1.1rem;
+}
+.cr-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
