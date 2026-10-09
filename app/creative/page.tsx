@@ -27,8 +27,11 @@ export default function CreativePage() {
                 title="Side by side"
                 intro="Drag the slider to compare a raw product photo with our edit."
               />
-              {/* Replace with real files: before="/work/shoe-before.jpg" after="/work/shoe-after.jpg" */}
-              <BeforeAfter caption="Product retouch: colour, light and background cleaned up for an online store." />
+              <BeforeAfter 
+                before="/work/shoe-before.jpg" 
+                after="/work/shoe-after.jpg" 
+                caption="Product retouch: colour, light and background cleaned up for an online store." 
+              />
             </div>
           </section>
         </>

@@ -5,6 +5,7 @@ import ExplodedView from "@/components/ExplodedView";
 import HardwareViewer from "@/components/three/HardwareViewer";
 import SectionHead from "@/components/SectionHead";
 import LabLabel from "@/components/LabLabel";
+import HardwareShowcases from "@/components/hardware/HardwareShowcases";
 import { labs } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export default function HardwarePage() {
       hero={<HardwareHero />}
       extra={
         <>
+          <HardwareShowcases />
           <section className="lab-band lab-band--3d" data-chapter="3D models">
             <div className="lab-band__inner">
               <SectionHead

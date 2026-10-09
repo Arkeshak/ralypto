@@ -215,6 +215,9 @@ export const labs: Record<LabId, Lab> = {
       "KiCad",
       "3D printing",
       "C / C++",
+      "Python",
+      "ROS 2",
+      "YOLO",
     ],
     process: [
       {
@@ -294,7 +297,8 @@ export const team: Founder[] = [
 ];
 
 export type Visual =
-  "device" | "dashboard" | "chat" | "brand" | "social" | "circuit" | "robot";
+  | "device" | "dashboard" | "chat" | "brand" | "social" | "circuit" | "robot"
+  | "farm" | "factory" | "security" | "product" | "office-delivery" | "tea-plucking";
 
 export type Project = {
   slug: string;
@@ -478,6 +482,114 @@ export const projects: Project[] = [
     visual: "robot",
     featured: true,
   },
+  {
+    slug: "smart-agriculture-platform",
+    title: "Smart Agriculture Platform",
+    labs: ["hardware", "software"],
+    status: "concept",
+    year: 2026,
+    client: "Concept Demonstration",
+    summary: "A smart farming system connecting physical sensors and automated irrigation to a web dashboard.",
+    challenge: "Monitoring crop conditions and managing irrigation manually is inefficient and resource-intensive.",
+    built: "Soil-moisture sensors, ESP32 integration, pump automation, and a responsive data-analytics dashboard.",
+    tools: ["ESP32", "Sensors", "React", "Python", "Data Analytics"],
+    result: "Automated irrigation based on real-time soil data and historical trend analysis.",
+    metrics: [
+      { value: "Hardware", label: "Sensors & Pump" },
+      { value: "Software", label: "Dashboard & AI" },
+    ],
+    visual: "farm",
+    featured: true,
+  },
+  {
+    slug: "factory-machine-monitoring",
+    title: "Factory Machine Monitoring",
+    labs: ["hardware", "software"],
+    status: "concept",
+    year: 2026,
+    client: "Concept Demonstration",
+    summary: "Industrial sensor network and connected software for machine condition monitoring.",
+    challenge: "Unexpected machine downtime due to unnoticed faults or temperature spikes.",
+    built: "Sensor integration for temperature/vibration, backend APIs, and a live monitoring dashboard with anomaly detection.",
+    tools: ["Sensors", "IoT", "Next.js", "Python", "Predictive AI"],
+    result: "Live status reporting, alerts, and historical trend analysis for predictive maintenance.",
+    metrics: [
+      { value: "Hardware", label: "Sensor modules" },
+      { value: "Software", label: "Anomaly detection" },
+    ],
+    visual: "factory",
+    featured: true,
+  },
+  {
+    slug: "ai-security-monitoring",
+    title: "AI Security and Monitoring",
+    labs: ["hardware", "software"],
+    status: "concept",
+    year: 2026,
+    client: "Concept Demonstration",
+    summary: "A connected security system combining cameras, sensors, computer vision, and a web application.",
+    challenge: "Traditional surveillance requires manual observation and lacks automated event classification.",
+    built: "Edge camera integration, motion sensors, computer vision pipeline, and an alert-management interface.",
+    tools: ["Cameras", "OpenCV", "YOLO", "Node.js", "WebSockets"],
+    result: "Automated person-detection, event timeline, and instant notification dashboard.",
+    metrics: [
+      { value: "Hardware", label: "Camera & Edge" },
+      { value: "Software", label: "Vision & Alerts" },
+    ],
+    visual: "security",
+    featured: true,
+  },
+  {
+    slug: "digital-product-dev",
+    title: "Digital Product Development",
+    labs: ["hardware", "software", "creative"],
+    status: "concept",
+    year: 2026,
+    client: "Concept Demonstration",
+    summary: "Taking a product idea from mechanical design and electronics through to connected software and branding.",
+    challenge: "Coordinating physical product design with companion software and launch marketing.",
+    built: "Mechanical CAD, embedded electronics, companion web application, cloud APIs, and launch assets.",
+    tools: ["SolidWorks", "KiCad", "Next.js", "Cloud APIs", "Figma"],
+    result: "A cohesive product ecosystem showing the workflow: Hardware → Software → Data and AI.",
+    metrics: [
+      { value: "Hardware", label: "CAD & PCB" },
+      { value: "Software", label: "Companion App" },
+    ],
+    visual: "product",
+    featured: true,
+  },
+  {
+    slug: "office-delivery-robot",
+    title: "Autonomous Office Delivery Robot",
+    labs: ["hardware", "software"],
+    status: "personal",
+    year: 2026,
+    client: "Internal R&D",
+    summary: "An autonomous mobile robot designed to transport files and documents between office cabins using SLAM-based mapping.",
+    challenge: "Transporting files and documents between office cabins requires dedicated personnel time.",
+    built: "An autonomous mobile robot with mapping, localisation, path planning, obstacle avoidance, differential-drive control, and an ESP32 microcontroller.",
+    tools: ["ROS 2", "SLAM", "LiDAR", "A*", "AMCL", "ESP32", "Robotics"],
+    result: "Generates its own path and dynamically plans alternative routes to avoid obstacles.",
+    images: ["/work/office-delivery-robot.jpg"],
+    visual: "office-delivery",
+    featured: true,
+  },
+  {
+    slug: "tea-leaf-plucking-robot",
+    title: "Autonomous Tea-Leaf Plucking Robot",
+    labs: ["hardware", "software"],
+    status: "personal",
+    year: 2026,
+    client: "Internal R&D",
+    summary: "An agricultural robotics project combining mobility, machine vision, and automated harvesting.",
+    challenge: "Identifying suitable tea leaves and automating the picking process in agricultural environments.",
+    built: "A mobile rover integrating a rocker-bogie chassis, robotic arm, and computer vision powered by a Raspberry Pi 5 and ESP32.",
+    tools: ["Robotics", "Raspberry Pi 5", "ESP32", "Computer Vision", "Embedded Systems", "AI"],
+    result: "Demonstrates the potential of automated tea harvesting through integrated mechanical design and AI-based image processing.",
+    images: ["/work/tea-leaf-plucking-robot.jpg"],
+    visual: "tea-plucking",
+    featured: true,
+  }
 ];
 
 export function getProject(slug: string) {

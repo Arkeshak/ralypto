@@ -52,11 +52,20 @@ export default async function CaseStudy({
         <p className="case__summary">{p.summary}</p>
       </header>
 
-      {!p.images?.length && (
-        <div className="case__visual">
+      {p.images && p.images.length > 0 && (
+        <div className="case__visual case__photos">
+          {p.images.map((img) => (
+            <img key={img} src={img} alt={`${p.title} photograph`} />
+          ))}
+        </div>
+      )}
+
+      {(!p.images?.length || ["office-delivery", "tea-plucking"].includes(p.visual)) && (
+        <div className="case__visual" style={{ marginTop: '2rem' }}>
           <MockVisual kind={p.visual} title={p.title} />
         </div>
       )}
+
       {p.metrics && (
         <dl className="case__metrics">
           {p.metrics.map((m) => (

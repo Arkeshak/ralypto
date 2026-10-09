@@ -1,5 +1,18 @@
+"use client";
+
 import { Visual } from "@/lib/content";
-/* Animated mock "screenshots" for projects that have no real images yet. When a project gets real images, the first image is shown instead. */ export default function MockVisual({
+import dynamic from "next/dynamic";
+
+const CrossLabVisual = dynamic(() => import("./three/CrossLabVisual"), {
+  ssr: false,
+});
+
+const RealProjectsVisual = dynamic(() => import("./three/RealProjectsVisual"), {
+  ssr: false,
+});
+
+/* Animated mock "screenshots" for projects that have no real images yet. When a project gets real images, the first image is shown instead. */ 
+export default function MockVisual({
   kind,
   title,
 }: {
@@ -154,6 +167,12 @@ import { Visual } from "@/lib/content";
             <circle cx="8" cy="12" r="4" />{" "}
           </g>{" "}
         </svg>
+      )}{" "}
+      {["farm", "factory", "security", "product"].includes(kind) && (
+        <CrossLabVisual kind={kind} />
+      )}{" "}
+      {["office-delivery", "tea-plucking"].includes(kind) && (
+        <RealProjectsVisual kind={kind} />
       )}{" "}
     </div>
   );

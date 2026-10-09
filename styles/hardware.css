@@ -299,3 +299,125 @@
 .lab--hardware button:focus-visible {
   outline-color: var(--hw-orange);
 }
+
+/* Hardware Showcases Grid */
+.hw-showcases-band {
+  background: var(--hw-bg);
+}
+.hw-showcases-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 3rem;
+}
+.hw-sc-row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  align-items: center;
+  background: rgba(22, 60, 130, 0.4);
+  border: 1px solid var(--hw-line);
+  padding: 2.5rem;
+  border-radius: 8px;
+}
+.hw-sc-row--reversed {
+  grid-template-columns: 1.2fr 1fr;
+}
+.hw-sc-row--reversed .hw-sc-content {
+  grid-column: 2;
+  grid-row: 1;
+}
+.hw-sc-row--reversed .hw-sc-model-panel {
+  grid-column: 1;
+  grid-row: 1;
+}
+.hw-sc-content h3 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.hw-sc-desc {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.hw-sc-content h4 {
+  font-family: var(--f-hw);
+  font-size: 1rem;
+  color: var(--hw-orange);
+  margin-bottom: 0.5rem;
+}
+.hw-sc-caps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+}
+.hw-sc-caps li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #dce8ff;
+  line-height: 1.4;
+}
+.hw-sc-caps li::before {
+  content: "»";
+  position: absolute;
+  left: 0;
+  color: var(--hw-orange);
+}
+.hw-sc-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+.hw-sc-tool-chip {
+  background: rgba(255, 122, 26, 0.15);
+  border: 1px solid var(--hw-orange);
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  font-family: var(--f-hw);
+}
+.hw-sc-btn {
+  display: inline-block;
+}
+.hw-sc-model-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+.hw-sc-viewer-wrapper {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--hw-line);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 400px;
+}
+.hw-sc-controls {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  font-family: var(--f-hw);
+  font-size: 0.95rem;
+  color: #fff;
+}
+.hw-sc-controls .h3d__toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 960px) {
+  .hw-sc-row, .hw-sc-row--reversed {
+    grid-template-columns: 1fr;
+  }
+  .hw-sc-row--reversed .hw-sc-content,
+  .hw-sc-row--reversed .hw-sc-model-panel {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
