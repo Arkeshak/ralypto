@@ -459,6 +459,7 @@ button {
 /* cross-lab */
 .pcard--cross {
   background: #fff;
+  color: var(--ink);
   border: 2px solid var(--ink);
   padding: 0 1.5rem 1.5rem;
   border-radius: 14px;
