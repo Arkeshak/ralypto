@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { LabId, labs, projectsForLab, team } from "@/lib/content";
+import { LabId, labs, projectsForLab } from "@/lib/content";
 import ProjectCard from "./ProjectCard";
-import FounderCard from "./FounderCard";
 import SectionHead from "./SectionHead";
 import LabLabel from "./LabLabel";
 
@@ -59,7 +58,6 @@ export default function LabPage({
 }) {
   const L = labs[lab];
   const work = projectsForLab(lab);
-  const lead = team.find((t) => t.id === L.leadId);
 
   return (
     <div className={`lab lab--${lab}`}>
@@ -149,20 +147,6 @@ export default function LabPage({
         </div>
       </section>
 
-      {lead && (
-        <section className="lab-band lab-band--a" data-chapter="Lead">
-          <div className="lab-band__inner">
-            <SectionHead
-              label={<LabLabel lab={lab} name="Lead" />}
-              title="Who runs this lab"
-              intro="The person you will talk to about your project."
-            />
-            <div className="lab-lead">
-              <FounderCard f={lead} />
-            </div>
-          </div>
-        </section>
-      )}
 
       <section className="lab-cta" data-chapter="Start">
         <h2>Got something for the {L.name}?</h2>

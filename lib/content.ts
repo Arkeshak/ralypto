@@ -11,7 +11,7 @@ export const site = {
   name: "Ralypto",
   tagline: "We code it, design it, and build it.",
   intro:
-    "Ralypto is a three-person studio from Sri Lanka. One of us writes software, one designs and markets, one builds machines. Bring us an idea and we take it all the way to something real.",
+    "Ralypto is a software, creative and hardware studio from Sri Lanka. Our team writes software, designs and markets brands, and builds machines. Bring us an idea and we take it all the way to something real.",
   email: "hello@ralypto.com",
   whatsapp: "94771234567",
   location: "Sri Lanka",

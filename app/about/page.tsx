@@ -23,12 +23,10 @@ export default function AboutPage() {
   return (
     <div className="page about">
       <header className="page-head">
-        <h1>Three friends, three skills, one studio.</h1>
+        <h1>One team, three skills, one studio.</h1>
         <p>
           {/* TODO: write your real story in two or three sentences */}
-          We met as students who kept helping each other with projects: one of
-          us wrote the code, one made it look good, one built the hardware.
-          Clients kept asking for all three at once, so we started Ralypto.
+          Our team brings together people who write code, people who design and market, and people who build hardware. Clients kept asking for all three at once, so we started Ralypto.
         </p>
       </header>
 
