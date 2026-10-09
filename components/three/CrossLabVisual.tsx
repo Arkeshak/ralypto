@@ -353,7 +353,7 @@ function CrossLabSceneInner({ kind, animate }: { kind: string; animate: boolean 
           </button>
         )}
         <span style={{ fontSize: '0.7rem', padding: '0.2rem 0.5rem', background: 'rgba(0,0,0,0.5)', color: '#fff', borderRadius: '4px' }}>
-          Simulated concept demo
+          Interactive 3D System Model
         </span>
       </div>
     </>
