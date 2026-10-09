@@ -304,8 +304,25 @@
 }
 .case__gallery {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+}
+.case__gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(27, 21, 48, 0.08);
+  box-shadow:
+    0 16px 36px -8px rgba(27, 21, 48, 0.12),
+    0 4px 12px -2px rgba(27, 21, 48, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.case__gallery img:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 22px 48px -10px rgba(27, 21, 48, 0.16),
+    0 6px 16px -2px rgba(27, 21, 48, 0.08);
 }
 .case__next {
   max-width: var(--max);
