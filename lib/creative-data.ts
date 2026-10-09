@@ -21,7 +21,8 @@ export const creativeManifest: CreativeProject[] = [
     subtitle: "TECH SOLUTIONS",
     category: "logo",
     description: "Technology brand identity.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/logo-nexora.jpg",
     prompt: "A modern, minimalist technology logo with the letter N and the text 'Nexora TECH SOLUTIONS', dark background, professional branding mockup.",
   },
   {
@@ -30,7 +31,8 @@ export const creativeManifest: CreativeProject[] = [
     subtitle: "COFFEE ROASTERS",
     category: "logo",
     description: "Speciality coffee brand.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/logo-brewlab.jpg",
     prompt: "A craft coffee brand logo featuring a coffee cup and the text 'BrewLab COFFEE ROASTERS', warm earthy tones, on a dark background.",
   },
   {
@@ -39,7 +41,8 @@ export const creativeManifest: CreativeProject[] = [
     subtitle: "NATURAL SKINCARE",
     category: "logo",
     description: "Botanical skincare brand.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/logo-leafora.jpg",
     prompt: "An elegant botanical skincare logo featuring a leaf and the text 'Leafora NATURAL SKINCARE', soft green tones, dark background.",
   },
   {
@@ -48,7 +51,8 @@ export const creativeManifest: CreativeProject[] = [
     subtitle: "EV SOLUTIONS",
     category: "logo",
     description: "Electric mobility brand.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/logo-volttix.jpg",
     prompt: "A bold electric mobility brand logo featuring a stylized V/lightning bolt and the text 'Volttix EV SOLUTIONS', vibrant green and blue, dark background.",
   },
   {
@@ -57,7 +61,8 @@ export const creativeManifest: CreativeProject[] = [
     subtitle: "REAL ESTATE",
     category: "logo",
     description: "Property and real estate brand.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/logo-skyline.jpg",
     prompt: "A premium real estate logo featuring buildings and the text 'Skyline REAL ESTATE', gold and white, dark background.",
   },
   {
