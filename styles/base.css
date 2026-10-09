@@ -465,6 +465,12 @@ button {
   border-radius: 14px;
   overflow: hidden;
 }
+.pcard--cross.pcard--has-bg {
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.1);
+}
 .pcard__stripes {
   display: flex;
   height: 14px;
@@ -490,6 +496,9 @@ button {
 }
 .pcard--cross .pcard__meta {
   color: #5b5670;
+}
+.pcard--cross.pcard--has-bg .pcard__meta {
+  color: rgba(255, 255, 255, 0.7);
 }
 .pcard--cross:hover {
   border-color: var(--brand);

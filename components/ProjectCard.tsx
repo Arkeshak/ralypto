@@ -15,7 +15,11 @@ export default function ProjectCard({ p }: { p: Project }) {
 
   if (isCrossLab(p)) {
     return (
-      <Link href={href} className="pcard pcard--cross">
+      <Link 
+        href={href} 
+        className={`pcard pcard--cross ${p.images?.length ? 'pcard--has-bg' : ''}`}
+        style={p.images?.length ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(${p.images[0]})` } : undefined}
+      >
         <div className="pcard__stripes" aria-hidden="true">
           {p.labs.map((l) => (
             <span key={l} className={`stripe stripe--${l}`} />
