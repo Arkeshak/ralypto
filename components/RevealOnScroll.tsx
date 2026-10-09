@@ -1,46 +1,56 @@
 "use client";
+
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-/* Adds the class "is-in" to any element with data-reveal when it scrolls into view. Each lab's CSS decides what that entrance looks like. */ export default function RevealOnScroll() {
+
+/* Adds the class "is-in" to any element with data-reveal once it scrolls into view.
+   Uses element positions (not IntersectionObserver) so it works even for elements 
+   that start fully clipped, like the Software Lab "typing" entrance. */
+
+export default function RevealOnScroll() {
   const path = usePathname();
+
   useEffect(() => {
     document.documentElement.classList.add("reveal-ready");
+    let pending = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-in)"));
 
-    const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!("IntersectionObserver" in window) || isReduced) {
-      document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-in"));
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      pending.forEach((el) => el.classList.add("is-in"));
       return;
     }
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-in");
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
-    );
+    let ticking = false;
 
-    const observeNewElements = () => {
-      document.querySelectorAll("[data-reveal]:not(.is-in):not(.is-observing)").forEach((el) => {
-        el.classList.add("is-observing");
-        io.observe(el);
+    const check = () => {
+      ticking = false;
+      const limit = window.innerHeight * 0.9;
+      pending = pending.filter((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < limit && r.bottom > 0) {
+          el.classList.add("is-in");
+          return false;
+        }
+        return true;
       });
+      if (!pending.length) window.removeEventListener("scroll", onScroll);
     };
 
-    observeNewElements();
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(check);
+      }
+    };
 
-    const mo = new MutationObserver(() => observeNewElements());
-    mo.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    check();
 
     return () => {
-      io.disconnect();
-      mo.disconnect();
-      document.querySelectorAll(".is-observing").forEach(el => el.classList.remove("is-observing"));
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, [path]);
+
   return null;
 }

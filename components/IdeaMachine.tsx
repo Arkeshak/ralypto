@@ -247,16 +247,7 @@ export default function IdeaMachine() {
     ? `/contact?need=${plan.labs.join(",")}&idea=${encodeURIComponent(idea)}`
     : "/contact";
   return (
-    <section className="im" aria-labelledby="im-title">
-      {" "}
-      <div className="im__head">
-        {" "}
-        <h2 id="im-title">Try us. Type an idea.</h2>{" "}
-        <p>
-          Describe something you want made. Watch our three labs sketch it in
-          seconds, then send it to us as a real brief.
-        </p>{" "}
-      </div>{" "}
+    <div className="im">
       <div className="im__console">
         {" "}
         <label htmlFor="im-input" className="im__label">
@@ -468,6 +459,6 @@ export default function IdeaMachine() {
           </>
         )}{" "}
       </div>{" "}
-    </section>
+    </div>
   );
 }

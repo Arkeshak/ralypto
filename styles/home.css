@@ -395,9 +395,8 @@
   color: var(--hw-line);
 }
 .door--hardware .door__preview {
-  display: grid;
-  place-items: center;
-  padding: 1.25rem 1.5rem 1.75rem;
+  display: block;
+  padding: 1rem 1.25rem;
   background-color: var(--hw-bg);
   background-image:
     linear-gradient(rgba(220, 232, 255, 0.08) 1px, transparent 1px),
@@ -453,11 +452,11 @@
 .door--hardware:hover .hd-cross,
 .door--hardware:hover .hd-coords {
   opacity: 0.85;
-} /* robot arm */
+} /* robot arm: fills the picture area without cropping; motion is driven by JS */
 .arm {
   width: 100%;
-  height: auto;
-  max-height: 100%;
+  height: 100%;
+  display: block;
   overflow: visible;
 }
 .arm__draw * {
@@ -472,89 +471,6 @@
   stroke-dasharray: 600;
   stroke-dashoffset: 600;
   animation: draw 1.6s ease 0.4s forwards;
-}
-.arm__shoulder {
-  transform-box: view-box;
-  transform-origin: 200px 230px;
-  animation: arm-shoulder 6s ease-in-out infinite;
-}
-.arm__elbow {
-  transform-box: view-box;
-  transform-origin: 165px 132px;
-  animation: arm-elbow 6s ease-in-out infinite;
-}
-.arm__wrist {
-  transform-box: view-box;
-  transform-origin: 284px 96px;
-  animation: arm-wrist 6s ease-in-out infinite;
-}
-.arm__jaw--top {
-  transform-box: view-box;
-  transform-origin: 292px 90px;
-  animation: jaw-top 6s ease-in-out infinite;
-}
-.arm__jaw--bottom {
-  transform-box: view-box;
-  transform-origin: 292px 102px;
-  animation: jaw-bottom 6s ease-in-out infinite;
-}
-@keyframes arm-shoulder {
-  0%,
-  100% {
-    transform: rotate(0);
-  }
-  30% {
-    transform: rotate(-16deg);
-  }
-  65% {
-    transform: rotate(10deg);
-  }
-}
-@keyframes arm-elbow {
-  0%,
-  100% {
-    transform: rotate(0);
-  }
-  30% {
-    transform: rotate(22deg);
-  }
-  65% {
-    transform: rotate(-12deg);
-  }
-}
-@keyframes arm-wrist {
-  0%,
-  100% {
-    transform: rotate(0);
-  }
-  30% {
-    transform: rotate(-20deg);
-  }
-  65% {
-    transform: rotate(15deg);
-  }
-}
-@keyframes jaw-top {
-  0%,
-  25%,
-  100% {
-    transform: rotate(0);
-  }
-  35%,
-  60% {
-    transform: rotate(12deg);
-  }
-}
-@keyframes jaw-bottom {
-  0%,
-  25%,
-  100% {
-    transform: rotate(0);
-  }
-  35%,
-  60% {
-    transform: rotate(-12deg);
-  }
 }
 .arm__dims line {
   stroke: var(--hw-orange);

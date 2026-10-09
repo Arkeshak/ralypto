@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { labs, labOrder, site, LabId } from "@/lib/content";
 import RobotArm from "./RobotArm";
+import StudioStatus from "./StudioStatus";
 
 /* ---------- Software door: a terminal that keeps typing new commands ---------- */
 type TLine = { t: string; k: "cmd" | "dim" | "ok" };
@@ -180,7 +181,7 @@ export default function HomeHero() {
   }
 
   return (
-    <section className="home-hero">
+    <section className="home-hero" data-chapter="Welcome">
       <div className="home-hero__text">
         <h1 className="hh-title">
           We{" "}
@@ -195,7 +196,10 @@ export default function HomeHero() {
             </span>
           ))}
         </h1>
-        <p>{site.intro}</p>
+        <div className="home-hero__aside">
+          <p>{site.intro}</p>
+          <StudioStatus />
+        </div>
       </div>
 
       <div className={`doors ${active ? "has-active" : ""}`}>

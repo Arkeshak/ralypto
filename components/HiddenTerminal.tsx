@@ -119,6 +119,7 @@ export default function HiddenTerminal() {
         <div className="hterm" role="dialog" aria-label="Ralypto terminal">
           <div
             className="hterm__body"
+            data-lenis-prevent
             onClick={() => inputRef.current?.focus()}
           >
             {lines.map((l, i) => (

@@ -3,7 +3,18 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import LabCursor from "@/components/LabCursor";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import Chapters from "@/components/Chapters";
+import SmoothScroll from "@/components/SmoothScroll";
 import { site } from "@/lib/content";
+import "@fontsource-variable/figtree";
+import "@fontsource-variable/sora";
+import "@fontsource-variable/jetbrains-mono";
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource/instrument-serif/400.css";
+import "@fontsource/instrument-serif/400-italic.css";
+import "@fontsource/barlow-semi-condensed/500.css";
+import "@fontsource/barlow-semi-condensed/600.css";
+import "@fontsource/barlow-semi-condensed/700.css";
 import "@/styles/base.css";
 import "@/styles/home.css";
 import "@/styles/software.css";
@@ -12,6 +23,8 @@ import "@/styles/hardware.css";
 import "@/styles/pages.css";
 import "@/styles/extras.css";
 import "@/styles/showcase.css";
+import "@/styles/structure.css";
+import "@/styles/type.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ralypto.com"),
@@ -37,9 +50,6 @@ export const metadata: Metadata = {
   },
 };
 
-const fonts =
-  "https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Barlow+Condensed:wght@400;600;700&display=swap";
-
 export default function RootLayout({
   children,
 }: {
@@ -47,16 +57,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link rel="stylesheet" href={fonts} />
-      </head>
       <body>
         <a className="skip" href="#main">
           Skip to content
@@ -66,6 +66,8 @@ export default function RootLayout({
         <Footer />
         <LabCursor />
         <RevealOnScroll />
+        <Chapters />
+        <SmoothScroll />
       </body>
     </html>
   );

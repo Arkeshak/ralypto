@@ -1,0 +1,115 @@
+/* =====================================================
+   TYPOGRAPHY
+   Rule: paragraphs everywhere use one friendly, readable font (Figtree).
+   Each lab's own font is used only for headings, labels and short details.
+     Brand    Sora                    clean and modern, for headings outside the labs
+     Body     Figtree                 very readable, for all paragraphs
+     Software JetBrains Mono          a real coding font: headings, tags, code
+     Creative Bricolage Grotesque     expressive poster headings
+              + Instrument Serif      italic accent, like a design magazine
+     Hardware Barlow Semi Condensed   technical-drawing lettering: headings, specs
+   This file loads last, so it overrides older font rules.
+   ===================================================== */
+
+:root {
+  --f-brand: "Sora Variable", "Sora", system-ui, sans-serif;
+  --f-body: "Figtree Variable", "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --f-cr: "Bricolage Grotesque Variable", "Bricolage Grotesque", system-ui, sans-serif;
+  --f-cr-accent: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --f-hw: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+}
+
+/* ---------- Base readability ---------- */
+body {
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+p, li { text-wrap: pretty; }
+h1, h2, h3 { font-family: var(--f-brand); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; text-wrap: balance; }
+h3 { letter-spacing: -0.01em; }
+
+/* Paragraph-style text is always the body font, even inside lab-styled boxes */
+.lab p, .lab li, .lab td, .lab th, .lab figcaption,
+.pcard p, .founder p, .labsum__item p, .im__card p, .h3d__panel p,
+.ws__info p, .shead__intro, .case p, .brief__lab span {
+  font-family: var(--f-body);
+}
+
+/* ---------- Brand (home, work, about, contact) ---------- */
+.wordmark { font-family: var(--f-brand); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.035em; }
+.hh-title { font-family: var(--f-brand); font-weight: 800; font-size: clamp(2.2rem, 4.8vw, 4.2rem); letter-spacing: -0.04em; line-height: 1.04; }
+.shead h2 { font-family: var(--f-brand); font-weight: 700; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.035em; }
+.shead__label { font-family: var(--f-body); font-weight: 700; letter-spacing: 0.01em; }
+.shead__intro { font-size: 1.125rem; line-height: 1.6; }
+.page-head h1 { font-family: var(--f-brand); font-weight: 800; letter-spacing: -0.04em; }
+.btn, .nav__links a { font-family: var(--f-body); font-weight: 600; }
+.ws__info h3, .steps h3, .about__values h2 { font-family: var(--f-brand); }
+
+/* ---------- Software Lab: coding font for headings and details ---------- */
+.lab--software h1, .lab--software h2, .lab--software h3,
+.lab--software .shead h2,
+.pcard--software h3, .founder--software h3, .im__card--software h3,
+.door--software h2, .labsum__item--software h3, .case--software .case__head h1 {
+  font-family: var(--f-mono); font-weight: 700; letter-spacing: -0.02em;
+}
+.lab--software .shead h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+.lab--software .service h3 { font-size: 1.05rem; letter-spacing: 0; }
+.pcard .repo, .repo__tags li, .lbl--software, .stack-code, .hd-term, .term-window pre,
+.labsum__item--software li, .labsum__item--software .labsum__go,
+.door--software .door__label p, .lane--software, .brief__lab--software strong, .hterm {
+  font-family: var(--f-mono);
+}
+.lab--software .service p, .pcard--software p { font-size: 0.97rem; }
+
+/* ---------- Creative Studio: expressive headings, italic serif accent ---------- */
+.lab--creative h1, .lab--creative h2, .lab--creative h3,
+.lab--creative .shead h2, .labsum__item--creative h3, .door--creative h2,
+.pcard--creative h3, .founder--creative h3, .im__card--creative h3, .im__brand strong,
+.case--creative .case__head h1, .brief__lab--creative strong {
+  font-family: var(--f-cr); font-weight: 800; letter-spacing: -0.03em; font-variation-settings: normal;
+}
+.lab--creative .shead h2 { font-size: clamp(2.4rem, 5vw, 3.9rem); line-height: 1; }
+.lab--creative .service h3 { font-size: 1.5rem; }
+.lbl--creative { font-family: var(--f-cr); font-weight: 800; letter-spacing: -0.01em; }
+
+/* hero: bold poster word + elegant italic serif word */
+.cr-hero__title { font-family: var(--f-cr); font-weight: 800; font-variation-settings: normal; font-size: clamp(3.4rem, 8vw, 7rem); line-height: 0.9; letter-spacing: -0.045em; }
+.cr-hero__title span + span {
+  font-family: var(--f-cr-accent); font-style: italic; font-weight: 400; letter-spacing: -0.01em;
+  color: var(--cr-pink); -webkit-text-stroke: 0; font-size: 1.12em; margin-left: 0.35em;
+}
+.cr-hero__promise { font-family: var(--f-body); }
+
+/* the italic accent, reusable: <em className="accent">word</em> */
+.accent { font-family: var(--f-cr-accent); font-style: italic; font-weight: 400; letter-spacing: 0; }
+
+.riso__words { font-family: var(--f-cr); font-weight: 800; font-variation-settings: normal; font-size: clamp(2.1rem, 4.2vw, 3.6rem); letter-spacing: -0.035em; }
+.tool-wall li { font-family: var(--f-cr); font-weight: 700; font-variation-settings: normal; font-size: clamp(1.15rem, 2vw, 1.6rem); letter-spacing: -0.02em; }
+.tool-wall--small li { font-size: 1.2rem; }
+.lane--creative .lane__item { font-family: var(--f-cr); font-weight: 700; font-variation-settings: normal; font-size: clamp(1.15rem, 2vw, 1.55rem); letter-spacing: -0.02em; }
+.lane--creative .lane__name { font-family: var(--f-cr); font-weight: 800; }
+.mk__funnel h3 { font-size: 1.45rem; }
+.mv-brand__name, .mv-brand__logo span { font-family: var(--f-cr); font-variation-settings: normal; }
+
+/* ---------- Hardware Lab: technical-drawing lettering ---------- */
+.lab--hardware h1, .lab--hardware h2, .lab--hardware h3,
+.lab--hardware .shead h2, .labsum__item--hardware h3, .door--hardware h2,
+.pcard--hardware h3, .founder--hardware h3, .im__card--hardware h3, .h3d__panel h3,
+.case--hardware .case__head h1, .brief__lab--hardware strong {
+  font-family: var(--f-hw); font-weight: 700; letter-spacing: 0.005em;
+}
+.lab--hardware .shead h2 { font-size: clamp(2.3rem, 4.6vw, 3.6rem); line-height: 1.02; }
+.lab--hardware .service h3 { font-size: 1.4rem; }
+.lbl--hardware, .labsum__item--hardware li, .labsum__item--hardware .labsum__go,
+.door--hardware .door__label p, .lane--hardware, .h3d__tabs button, .h3d__toggle, .h3d__hint, .h3d__loading,
+.parts-list th, .parts-list td, .parts-list caption, .title-block th, .title-block td,
+.spec__block th, .spec__block td, .h3d__specs th, .h3d__specs td, .layer__label, .im__parts, .hd-coords {
+  font-family: var(--f-hw); font-variant-numeric: tabular-nums;
+}
+.parts-list th, .parts-list td, .h3d__specs th, .h3d__specs td, .title-block th, .title-block td { font-weight: 500; font-size: 1.05rem; }
+.parts-list th, .h3d__specs th, .title-block th { font-weight: 600; }
