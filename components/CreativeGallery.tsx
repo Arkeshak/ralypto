@@ -51,6 +51,10 @@ export default function CreativeGallery({ category, items }: { category: string,
                 <p>{p.title}</p>
               </div>
             )}
+            <div className="cr-info">
+              <h4>{p.title}</h4>
+              <p>{p.description}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -71,6 +75,10 @@ export default function CreativeGallery({ category, items }: { category: string,
               <p>{p.title}</p>
             </div>
           )}
+          <div className="cr-info">
+            <h4>{p.title}</h4>
+            <p>{p.description}</p>
+          </div>
         </div>
       ))}
     </div>

@@ -71,7 +71,8 @@ export const creativeManifest: CreativeProject[] = [
     subtitle: "PURE WATER",
     category: "logo",
     description: "Water and sustainability brand.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/logo-aqualis.jpg",
     prompt: "A clean sustainability logo featuring a water drop and the text 'Aqualis PURE WATER', blue tones, dark background.",
   },
 
@@ -81,7 +82,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Tech Conference 2025",
     category: "graphic",
     description: "Technology conference poster.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/graphic-tech-conf.jpg",
     prompt: "A futuristic technology conference poster with the text 'Tech Conference 2025', neon blue and purple gradients, high quality typography.",
   },
   {
@@ -89,7 +91,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Performance Meets Style",
     category: "graphic",
     description: "Product launch poster for running shoes.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/graphic-shoe-ad.jpg",
     prompt: "A dynamic poster for running shoes with the text 'PERFORMANCE MEETS STYLE', featuring a sleek black and red running shoe, dark background.",
   },
   {
@@ -97,7 +100,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Delicious Food",
     category: "graphic",
     description: "Food and beverage promotional poster.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/graphic-food.jpg",
     prompt: "A mouth-watering promotional poster featuring a gourmet burger with the text 'Delicious FOOD', warm lighting, dark background.",
   },
   {
@@ -105,7 +109,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Explore Sri Lanka",
     category: "graphic",
     description: "Travel campaign poster.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/graphic-travel.jpg",
     prompt: "A breathtaking travel poster featuring Sigiriya rock fortress with the text 'Explore SRI LANKA', lush greens, stunning sky.",
   },
   {
@@ -113,7 +118,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Modern Living",
     category: "graphic",
     description: "Product brochure for furniture.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/graphic-furniture.jpg",
     prompt: "An elegant editorial brochure spread featuring mid-century modern furniture, clean typography, neutral tones.",
   },
   {
@@ -121,7 +127,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Smart Home",
     category: "graphic",
     description: "Packaging and promotional collateral.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/graphic-smart-home.jpg",
     prompt: "A sleek promotional graphic for a smart home device, blue glowing accents, futuristic dark background.",
   },
 
@@ -131,7 +138,9 @@ export const creativeManifest: CreativeProject[] = [
     title: "Portrait Retouching",
     category: "photo",
     description: "Professional portrait retouching.",
-    status: "pending",
+    status: "generated",
+    imageBefore: "/creative/photo-portrait-before.jpg",
+    imageAfter: "/creative/photo-portrait-after.jpg",
     prompt: "A split image showing a raw portrait photograph on the left and a professionally color-graded and retouched portrait on the right.",
   },
   {
@@ -139,7 +148,9 @@ export const creativeManifest: CreativeProject[] = [
     title: "Landscape Enhancement",
     category: "photo",
     description: "Landscape enhancement.",
-    status: "pending",
+    status: "generated",
+    imageBefore: "/creative/photo-landscape-before.jpg",
+    imageAfter: "/creative/photo-landscape-after.jpg",
     prompt: "A split image showing a dull mountain landscape on the left and a vibrant, color-graded version with dramatic skies on the right.",
   },
   {
@@ -147,7 +158,9 @@ export const creativeManifest: CreativeProject[] = [
     title: "Automotive Editing",
     category: "photo",
     description: "Automotive photo editing.",
-    status: "pending",
+    status: "generated",
+    imageBefore: "/creative/photo-car-before.jpg",
+    imageAfter: "/creative/photo-car-after.jpg",
     prompt: "A split image showing an unedited photo of a blue sports car on the left and a dramatic, cinematic version with studio lighting on the right.",
   },
   {
@@ -155,7 +168,9 @@ export const creativeManifest: CreativeProject[] = [
     title: "Beauty Retouching",
     category: "photo",
     description: "Fashion or beauty retouching.",
-    status: "pending",
+    status: "generated",
+    imageBefore: "/creative/photo-beauty-before.jpg",
+    imageAfter: "/creative/photo-beauty-after.jpg",
     prompt: "A split image showing an unedited beauty portrait on the left and a high-end fashion magazine retouched version on the right.",
   },
   {
@@ -163,7 +178,9 @@ export const creativeManifest: CreativeProject[] = [
     title: "Product Enhancement",
     category: "photo",
     description: "Product photo enhancement.",
-    status: "pending",
+    status: "generated",
+    imageBefore: "/creative/photo-watch-before.jpg",
+    imageAfter: "/creative/photo-watch-after.jpg",
     prompt: "A split image showing a raw photo of a luxury watch on the left and a perfectly lit, sharp, commercial version on the right.",
   },
   {
@@ -171,7 +188,9 @@ export const creativeManifest: CreativeProject[] = [
     title: "Cinematic Color Grading",
     category: "photo",
     description: "Colour grading and cinematic enhancement.",
-    status: "pending",
+    status: "generated",
+    imageBefore: "/creative/photo-sunset-before.jpg",
+    imageAfter: "/creative/photo-sunset-after.jpg",
     prompt: "A split image showing a flat beach sunset photo on the left and a cinematic, warm, glowing color-graded version on the right.",
   },
 
@@ -182,7 +201,8 @@ export const creativeManifest: CreativeProject[] = [
     category: "video",
     duration: "01:24",
     description: "Brand introduction or studio showreel concept.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/video-showreel.jpg",
     prompt: "A cinematic video thumbnail with a glowing 'R' logo and the text 'RALYPTO STUDIO SHOWREEL', dark background, lens flares.",
   },
   {
@@ -191,7 +211,8 @@ export const creativeManifest: CreativeProject[] = [
     category: "video",
     duration: "00:45",
     description: "Product advertisement.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/video-earbuds.jpg",
     prompt: "A premium video thumbnail for wireless earbuds floating in space with the text 'NEXBUDS', dramatic lighting, dark background.",
   },
   {
@@ -200,7 +221,8 @@ export const creativeManifest: CreativeProject[] = [
     category: "video",
     duration: "01:12",
     description: "Travel film.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/video-travel.jpg",
     prompt: "A cinematic video thumbnail of a train journey through lush green tea plantations at sunset.",
   },
   {
@@ -209,7 +231,8 @@ export const creativeManifest: CreativeProject[] = [
     category: "video",
     duration: "00:58",
     description: "Smart agriculture promotional concept.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/video-ag.jpg",
     prompt: "A high-tech video thumbnail showing a drone flying over a farm with HUD elements and data overlays.",
   },
   {
@@ -218,7 +241,8 @@ export const creativeManifest: CreativeProject[] = [
     category: "video",
     duration: "00:40",
     description: "Social media reel or short-form advertisement.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/video-car.jpg",
     prompt: "An energetic video thumbnail featuring a sports car speeding through a neon-lit city with motion blur.",
   },
   {
@@ -227,7 +251,8 @@ export const creativeManifest: CreativeProject[] = [
     category: "video",
     duration: "01:00",
     description: "Technology product demonstration.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/video-tech.jpg",
     prompt: "A clean video thumbnail showing an exploded 3D view of an electronic device with glowing blue components.",
   },
 
@@ -237,7 +262,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "BrewLab Social",
     category: "social",
     description: "Coffee-shop promotional campaign.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/social-coffee.jpg",
     prompt: "A beautiful Instagram post design for an iced coffee with the text 'Good Coffee Brighter Days', warm aesthetic.",
   },
   {
@@ -245,7 +271,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Footwear Launch",
     category: "social",
     description: "Fashion or footwear product launch.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/social-shoes.jpg",
     prompt: "A bold social media post for a new sneaker drop with the text 'NEW ARRIVAL', high contrast blue and black.",
   },
   {
@@ -253,7 +280,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Healthy Living",
     category: "social",
     description: "Fitness and lifestyle campaign.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/social-food.jpg",
     prompt: "A clean social media post featuring a healthy salad bowl with the text 'Healthy Living Everyday', light green aesthetic.",
   },
   {
@@ -261,7 +289,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Tech Tips",
     category: "social",
     description: "Technology tips and educational content.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/social-tech.jpg",
     prompt: "An educational social media graphic showing a laptop and the text 'TECH TIPS FOR A SMARTER YOU', dark blue tones.",
   },
   {
@@ -269,7 +298,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Summer Sale",
     category: "social",
     description: "Retail seasonal sale.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/social-sale.jpg",
     prompt: "A vibrant social media post for a summer sale featuring a smiling person with sunglasses, bright pink and orange gradient.",
   },
   {
@@ -277,7 +307,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Skincare Campaign",
     category: "social",
     description: "Skincare brand content.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/social-skincare.jpg",
     prompt: "A minimalist social media post for a skincare bottle with the text 'Skincare That Cares', neutral beige background.",
   },
 
@@ -287,7 +318,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Skyline Billboard",
     category: "marketing",
     description: "Real estate advertising campaign.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/ad-realestate.jpg",
     prompt: "A photorealistic mockup of a large outdoor billboard displaying a luxury home advertisement for 'Skyline Real Estate'.",
   },
   {
@@ -295,7 +327,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Ralypto Innovation",
     category: "marketing",
     description: "Technology product campaign.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/ad-tech.jpg",
     prompt: "A photorealistic mockup of an airport digital billboard displaying a futuristic tech ad with the text 'Innovation Has No Limits'.",
   },
   {
@@ -303,7 +336,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Fresh & Natural",
     category: "marketing",
     description: "Restaurant or café promotion.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/ad-grocery.jpg",
     prompt: "A photorealistic mockup of a bus stop advertisement displaying a fresh produce ad 'Fresh & Natural'.",
   },
   {
@@ -311,7 +345,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Next Coffee Moment",
     category: "marketing",
     description: "Retail seasonal sale.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/ad-coffee.jpg",
     prompt: "A photorealistic mockup of an urban digital poster displaying a coffee ad with a glowing cup.",
   },
   {
@@ -319,7 +354,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Mega Sale Banner",
     category: "marketing",
     description: "Consumer product launch.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/ad-sale.jpg",
     prompt: "A bright red promotional banner mockup displaying 'MEGA SALE 50% OFF' with a model holding shopping bags.",
   },
   {
@@ -327,7 +363,8 @@ export const creativeManifest: CreativeProject[] = [
     title: "Clean Energy Campaign",
     category: "marketing",
     description: "Renewable energy campaign.",
-    status: "pending",
+    status: "generated",
+    image: "/creative/ad-energy.jpg",
     prompt: "A wide outdoor billboard mockup showing wind turbines and a white electric car with the text 'Clean Energy Brighter Tomorrow'.",
   }
 ];
