@@ -12,14 +12,21 @@ export const site = {
   tagline: "We code it, design it, and build it.",
   intro:
     "Ralypto is a software, creative and hardware studio from Sri Lanka. Our team writes software, designs and markets brands, and builds machines. Bring us an idea and we take it all the way to something real.",
-  email: "hello@ralypto.com",
-  whatsapp: "94771234567",
+  email: "ralypto@gmail.com",
+  whatsapp: "94755759435",
+  whatsappDisplay: "+94 75 575 9435",
+  phones: [
+    "+94 78 792 8324",
+    "+94 71 582 3833",
+    "+94 71 059 6628",
+  ],
   location: "Sri Lanka",
   socials: [
-    { label: "Instagram", href: "https://instagram.com/" },
-    { label: "LinkedIn", href: "https://linkedin.com/" },
-    { label: "Behance", href: "https://behance.net/" },
-    { label: "GitHub", href: "https://github.com/" },
+    { label: "Instagram", href: "https://www.instagram.com/ralypto_?psln=MTNkM2gxcWQ0YmNzYw==" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/ralypto/" },
+    { label: "TikTok", href: "https://www.tiktok.com/@ralypto4?_r=1&_t=ZS-9AT2tI6DkS9" },
+    { label: "Facebook", href: "https://www.facebook.com/share/14ysUgcxJKP/" },
+    { label: "WhatsApp", href: "https://wa.me/94755759435" },
   ],
 };
 

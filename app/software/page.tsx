@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LabPage from "@/components/LabPage";
 import TerminalHero from "@/components/TerminalHero";
 import HiddenTerminal from "@/components/HiddenTerminal";
+import SoftwareShowcases from "@/components/software/SoftwareShowcases";
 import { labs } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -12,8 +13,13 @@ export const metadata: Metadata = {
 export default function SoftwarePage() {
   return (
     <>
-      <LabPage lab="software" hero={<TerminalHero />} />
+      <LabPage
+        lab="software"
+        hero={<TerminalHero />}
+        extra={<SoftwareShowcases />}
+      />
       <HiddenTerminal />
     </>
   );
 }
+

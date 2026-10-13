@@ -87,7 +87,10 @@ export default function HiddenTerminal() {
       case "contact":
         res = [
           out(`email     ${site.email}`),
-          out(`whatsapp  +${site.whatsapp}`),
+          out(`whatsapp  ${site.whatsappDisplay}`),
+          ...site.phones.map((phone, i) =>
+            out(`${i === 0 ? "call      " : "          "}${phone}`)
+          ),
           out("or run: cd contact"),
         ];
         break;
