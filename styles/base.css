@@ -135,35 +135,20 @@ button {
   flex-shrink: 0;
   line-height: 1;
 }
-.wordmark__dots {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+.wordmark__logo {
+  width: 145px;
+  height: auto;
 }
-.wordmark__dots i {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
+.wordmark__logo--light {
+  display: none;
+}
+.nav--software .wordmark__logo--dark,
+.nav--hardware .wordmark__logo--dark {
+  display: none;
+}
+.nav--software .wordmark__logo--light,
+.nav--hardware .wordmark__logo--light {
   display: block;
-}
-.wordmark__dots i:nth-child(1) {
-  background: var(--sw-amber);
-}
-.wordmark__dots i:nth-child(2) {
-  background: var(--cr-pink);
-}
-.wordmark__dots i:nth-child(3) {
-  background: #3a78ff;
-}
-.wordmark__name {
-  font-family: var(--f-brand);
-  font-weight: 800;
-  font-size: 1.35rem;
-  letter-spacing: -0.025em;
-  line-height: 1;
-  color: inherit;
-  display: inline-block;
-  transform: translateY(-0.5px);
 }
 
 .nav__links {

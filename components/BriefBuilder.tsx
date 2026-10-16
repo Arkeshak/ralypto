@@ -1,7 +1,8 @@
 "use client";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { labOrder, labs, site, LabId } from "@/lib/content";
+import { labOrder, labs, LabId } from "@/lib/content";
+import { projectBriefLinks } from "@/lib/project-brief";
 
 const timelines = [
   "As soon as possible",
@@ -36,6 +37,7 @@ export default function BriefBuilder() {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [error, setError] = useState("");
+  const [copyStatus, setCopyStatus] = useState("");
 
   const toggle = (id: LabId) =>
     setNeeds((n) => (n.includes(id) ? n.filter((x) => x !== id) : [...n, id]));
@@ -52,6 +54,7 @@ export default function BriefBuilder() {
       ].join("\n"),
     [name, needs, idea, timeline, budget, contact],
   );
+  const draftLinks = projectBriefLinks(message);
 
   function nextStep() {
     const problems: (string | null)[] = [
@@ -176,7 +179,33 @@ export default function BriefBuilder() {
             <div className="brief__preview">
               <h3>Your brief</h3>
               <pre>{message}</pre>
+              <button
+                className="btn btn--ghost"
+                onClick={async () => {
+                  try {
+                    await navigator.clipboard.writeText(message);
+                    setCopyStatus("Brief copied. You can paste it into your message.");
+                  } catch {
+                    setCopyStatus("Could not copy automatically. Select and copy the brief above.");
+                  }
+                }}
+              >
+                Copy brief
+              </button>
+              <p role="status">{copyStatus}</p>
             </div>
+            <p className="brief__note">
+              Email opens a Gmail draft; WhatsApp opens a prepared message.
+              Review your brief there and press Send. Prefer another email app?{" "}
+              <a
+                href={draftLinks.emailApp}
+                onClick={(e) => {
+                  if (!nextStep()) e.preventDefault();
+                }}
+              >
+                Open your email app
+              </a>.
+            </p>
           </>
         )}
 
@@ -210,7 +239,7 @@ export default function BriefBuilder() {
             <>
               <a
                 className="btn"
-                href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(message)}`}
+                href={draftLinks.whatsapp}
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => {
@@ -221,7 +250,9 @@ export default function BriefBuilder() {
               </a>
               <a
                 className="btn btn--ghost"
-                href={`mailto:${site.email}?subject=${encodeURIComponent("New project brief")}&body=${encodeURIComponent(message)}`}
+                href={draftLinks.email}
+                target="_blank"
+                rel="noreferrer"
                 onClick={(e) => {
                   if (!nextStep()) e.preventDefault();
                 }}
