@@ -7,14 +7,16 @@
 export type LabId = "software" | "creative" | "hardware";
 export type ProjectStatus = "client" | "personal" | "concept";
 
+const whatsapp = "94755159435";
+
 export const site = {
   name: "Ralypto",
   tagline: "We code it, design it, and build it.",
   intro:
     "Ralypto is a software, creative and hardware studio from Sri Lanka. Our team writes software, designs and markets brands, and builds machines. Bring us an idea and we take it all the way to something real.",
   email: "ralypto@gmail.com",
-  whatsapp: "94755759435",
-  whatsappDisplay: "+94 75 575 9435",
+  whatsapp,
+  whatsappDisplay: "+94 75 515 9435",
   phones: [
     "+94 78 792 8324",
     "+94 71 582 3833",
@@ -26,7 +28,7 @@ export const site = {
     { label: "LinkedIn", href: "https://www.linkedin.com/company/ralypto/" },
     { label: "TikTok", href: "https://www.tiktok.com/@ralypto4?_r=1&_t=ZS-9AT2tI6DkS9" },
     { label: "Facebook", href: "https://www.facebook.com/share/14ysUgcxJKP/" },
-    { label: "WhatsApp", href: "https://wa.me/94755759435" },
+    { label: "WhatsApp", href: `https://wa.me/${whatsapp}` },
   ],
 };
 

@@ -27,12 +27,21 @@ export default function Nav() {
         aria-label="Ralypto home"
         onClick={() => setOpen(false)}
       >
-        <span className="wordmark__dots" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-        </span>
-        <span className="wordmark__name">ralypto</span>
+        <img
+          className="wordmark__logo wordmark__logo--dark"
+          src="/brand/ralypto-logo.svg"
+          alt="Ralypto"
+          width={690}
+          height={200}
+        />
+        <img
+          className="wordmark__logo wordmark__logo--light"
+          src="/brand/ralypto-logo-light.svg"
+          alt=""
+          aria-hidden="true"
+          width={690}
+          height={200}
+        />
       </Link>
       <button
         className="nav__toggle"
