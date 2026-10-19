@@ -686,6 +686,15 @@ button {
 .footer__cols a:hover {
   text-decoration: underline;
 }
+.footer__contact-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.45rem;
+}
+.footer__icon--whatsapp {
+  color: #25D366;
+  flex-shrink: 0;
+}
 .footer__fine {
   font-size: 0.85rem;
   opacity: 0.55;

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import FounderCard from "@/components/FounderCard";
-import { team } from "@/lib/content";
 
 export const metadata: Metadata = { title: "About" };
 
@@ -25,7 +23,6 @@ export default function AboutPage() {
       <header className="page-head">
         <h1>One team, three skills, one studio.</h1>
         <p>
-          {/* TODO: write your real story in two or three sentences */}
           Our team brings together people who write code, people who design and market, and people who build hardware. Clients kept asking for all three at once, so we started Ralypto.
         </p>
       </header>
@@ -39,13 +36,11 @@ export default function AboutPage() {
         ))}
       </section>
 
-      <section>
-        <h2 className="about__team-title">The team</h2>
-        <div className="founder-grid">
-          {team.map((f) => (
-            <FounderCard key={f.id} f={f} />
-          ))}
-        </div>
+      <section className="about__team">
+        <h2 className="about__team-title">Our Team</h2>
+        <p className="about__team-description">
+          We are a multidisciplinary team of engineers, designers, and builders. Rather than working in separate silos, our software developers, creative designers, and hardware engineers collaborate seamlessly under one studio to turn bold ideas into high-performance, real-world reality.
+        </p>
       </section>
     </div>
   );

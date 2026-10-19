@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { labOrder, labs, LabId } from "@/lib/content";
 import { projectBriefLinks } from "@/lib/project-brief";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 const timelines = [
   "As soon as possible",
@@ -238,15 +239,17 @@ export default function BriefBuilder() {
           {step === 3 && (
             <>
               <a
-                className="btn"
+                className="btn btn--whatsapp"
                 href={draftLinks.whatsapp}
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => {
                   if (!nextStep()) e.preventDefault();
                 }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
               >
-                Send on WhatsApp
+                <WhatsAppIcon size={16} />
+                <span>Send on WhatsApp</span>
               </a>
               <a
                 className="btn btn--ghost"
