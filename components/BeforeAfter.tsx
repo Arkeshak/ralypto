@@ -17,14 +17,14 @@ export default function BeforeAfter({
       <div className="ba__frame" style={{ ["--pos" as string]: `${pos}%` }}>
         <div className="ba__img ba__img--after">
           {after ? (
-            <img src={after} alt="After editing" />
+            <img src={after} alt="After editing" loading="lazy" decoding="async" />
           ) : (
             <span className="ba__demo ba__demo--after" />
           )}
         </div>
         <div className="ba__img ba__img--before">
           {before ? (
-            <img src={before} alt="Before editing" />
+            <img src={before} alt="Before editing" loading="lazy" decoding="async" />
           ) : (
             <span className="ba__demo ba__demo--before" />
           )}

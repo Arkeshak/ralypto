@@ -37,6 +37,7 @@ export default function WorkGrid() {
       <p className="filters__count" aria-live="polite">
         {list.length} projects
       </p>
+      <h2 className="sr-only">All projects</h2>
       <div className="card-grid">
         {list.map((p) => (
           <ProjectCard key={p.slug} p={p} />

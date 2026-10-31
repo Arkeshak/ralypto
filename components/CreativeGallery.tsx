@@ -37,7 +37,7 @@ export default function CreativeGallery({ category, items }: { category: string,
               </div>
             )}
             <div className="cr-info">
-              <h4>{p.title}</h4>
+              <h4 role="heading" aria-level={3}>{p.title}</h4>
               <p>{p.description}</p>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function CreativeGallery({ category, items }: { category: string,
               </div>
             )}
             <div className="cr-info">
-              <h4>{p.title}</h4>
+              <h4 role="heading" aria-level={3}>{p.title}</h4>
               <p>{p.description}</p>
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function CreativeGallery({ category, items }: { category: string,
             </div>
           )}
           <div className="cr-info">
-            <h4>{p.title}</h4>
+            <h4 role="heading" aria-level={3}>{p.title}</h4>
             <p>{p.description}</p>
           </div>
         </div>

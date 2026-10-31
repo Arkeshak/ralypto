@@ -266,7 +266,7 @@ export default function CreativeHero() {
                   className="cr-artboard__tag-pill"
                   style={{
                     backgroundColor: slide.accent,
-                    color: slide.accent === "#FFE800" ? "#111" : "#fff"
+                    color: "#111"
                   }}
                 >
                   {slide.discipline}

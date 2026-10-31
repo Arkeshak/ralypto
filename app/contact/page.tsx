@@ -41,7 +41,7 @@ export default function ContactPage() {
           </li>
         </ul>
       </header>
-      <Suspense fallback={null}>
+      <Suspense fallback={<div className="brief-skeleton" aria-hidden="true" />}>
         <BriefBuilder />
       </Suspense>
     </div>

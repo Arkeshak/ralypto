@@ -5,7 +5,7 @@ import { Project, labs, statusLabel, isCrossLab } from "@/lib/content";
 import MockVisual from "./MockVisual";
 const DURATION = 6000; // ms per slide 
 function Slide({ p }: { p: Project }) { 
-  return p.images?.[0] ? <img src={p.images[0]} alt={p.title} className="ws__img" /> : <MockVisual kind={p.visual} title={p.title} />; 
+  return p.images?.[0] ? <img src={p.images[0]} alt={p.title} className="ws__img" loading="lazy" decoding="async" /> : <MockVisual kind={p.visual} title={p.title} />; 
 } 
 export default function WorkShowcase({ items }: { items: Project[] }) { 
   const [i, setI] = useState(0); 

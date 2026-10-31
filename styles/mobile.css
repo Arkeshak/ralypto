@@ -1,0 +1,85 @@
+/* ===== Accessibility and mobile fixes (loaded last) ===== */
+
+/* Text contrast (WCAG AA) */
+.door--hardware .door__go { color: #ffa159; }
+.chip--creative { color: var(--ink); }
+.h3d__tabs button[aria-selected="true"] { color: var(--ink); }
+.brief__progress li { color: #5f5b72; }
+.ba figcaption { color: #4f5a75; }
+
+/* Tap targets: at least 24px high, with the thin bar drawn inside */
+.ws__dot {
+  height: 24px;
+  background: linear-gradient(var(--line), var(--line)) center / 100% 6px no-repeat;
+  border-radius: 0;
+  overflow: visible;
+}
+.ws__dot span {
+  height: 6px;
+  margin-top: 9px;
+  border-radius: 999px;
+}
+.cr-swatch-btn {
+  width: 24px;
+  height: 24px;
+}
+
+/* Contact form: reserve its space so the footer does not jump when it loads */
+.brief-skeleton { min-height: 520px; }
+
+@media (max-width: 600px) {
+  /* Bigger touch targets for menus and chips on phones */
+  .nav__toggle { min-height: 44px; min-width: 44px; }
+  .nav__links a { min-height: 44px; display: flex; align-items: center; }
+  .filter, .chip { min-height: 40px; }
+  .footer__cols a { padding-block: 0.35rem; }
+}
+
+/* More contrast fixes */
+:root { --sw-dim: #a39b86; }
+.pcard__badge--creative { color: var(--ink); }
+.pcard__meta-year { opacity: 1; color: #5b6573; }
+.pcard--software .pcard__meta-year,
+.pcard--has-bg .pcard__meta-year { color: #aab3c0; }
+.title-block td { color: #ffa159; }
+.h3d__panel .btn,
+.hw-sc-btn { color: var(--ink); }
+.sw-sim-tag.live-badge { color: #4ade80; }
+
+/* Creative hero dots: bigger touch area, same small dot */
+.cr-artboard__dot {
+  box-sizing: content-box;
+  padding: 8.5px;
+  background-clip: content-box;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  /* 13 progress bars cannot be tapped at this width; arrows and the counter remain */
+  .ws__dots { display: none; }
+}
+
+/* Final contrast fixes */
+.pcard--creative .pcard__client-kicker,
+.pcard--creative .pcard__arrow { color: #c2186f; }
+.live-badge { animation: none; color: #4ade80; }
+.lab--hardware .btn:not(.btn--ghost) { color: var(--ink); }
+
+/* Phones: no full-screen colour wipe or delayed fade, so content shows straight away */
+@media (max-width: 768px) {
+  .wipe { display: none; }
+  .page-in { animation: none; }
+}
+
+.pcard__badge--hardware { color: var(--ink); }

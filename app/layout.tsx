@@ -25,6 +25,7 @@ import "@/styles/extras.css";
 import "@/styles/showcase.css";
 import "@/styles/structure.css";
 import "@/styles/type.css";
+import "@/styles/mobile.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ralypto.tech"),
