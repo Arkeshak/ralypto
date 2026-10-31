@@ -3,9 +3,9 @@ import FounderCard from "@/components/FounderCard";
 import { team } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "About | Founder & Leadership",
+  title: "About | Leadership",
   description:
-    "Meet the founder of Ralypto — Arkeshkar prashanthkumar (Founder & Lead). Directing software engineering, creative design, and hardware systems under one studio.",
+    "Meet the leadership behind Ralypto — led by Founder & Software Lead Arkeshkar prashanthkumar. Uniting software engineering, creative design, and hardware systems under one studio.",
 };
 
 const values = [
@@ -27,7 +27,7 @@ export default function AboutPage() {
   return (
     <div className="page about">
       <header className="page-head">
-        <h1>Three crafts, one studio, one founder.</h1>
+        <h1>Three crafts, one studio.</h1>
         <p>
           Ralypto is founded and driven by Arkeshkar prashanthkumar. From writing
           production software and building scalable ERPs to brand design and
@@ -46,9 +46,9 @@ export default function AboutPage() {
       </section>
 
       <section className="about__team">
-        <h2 className="about__team-title">The Founder</h2>
+        <h2 className="about__team-title">Leadership</h2>
         <p className="about__team-description">
-          Leading and executing across all three disciplines — Software, Creative, and Hardware.
+          Directing and executing across all three disciplines — Software, Creative, and Hardware.
         </p>
         <div className="founder-grid founder-grid--single">
           {team.map((f) => (
