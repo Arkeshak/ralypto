@@ -180,7 +180,7 @@ export const labs: Record<LabId, Lab> = {
         text: "We publish, run the ads and report what worked each month.",
       },
     ],
-    leadId: "founder-creative",
+    leadId: "founder-software",
   },
   hardware: {
     id: "hardware",
@@ -247,7 +247,7 @@ export const labs: Record<LabId, Lab> = {
         text: "Drawings, code and documentation so the device can be built again.",
       },
     ],
-    leadId: "founder-hardware",
+    leadId: "founder-software",
   },
 };
 
@@ -268,40 +268,22 @@ export const team: Founder[] = [
   {
     id: "founder-software",
     name: "Arkeshkar prashanthkumar",
-    role: "Founder, Software Lead",
+    role: "Founder & Lead",
     lab: "software",
-    bio: "Founder and Software Lead of Ralypto. Full-stack software architect building high-performance web systems, ERP platforms, and cloud engineering.",
-    skills: ["Full-stack web", "ERP systems", "AI Agents", "Cloud Architecture"],
+    bio: "Founder and Lead at Ralypto. Handles software engineering, creative direction, and hardware development — building everything from full-stack web applications and ERP platforms to brand design and physical machines.",
+    skills: [
+      "Full-stack web",
+      "Next.js & TypeScript",
+      "Cloud & ERP Systems",
+      "AI Agents",
+      "Branding & Design",
+      "Embedded Systems",
+    ],
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/arkeshak" },
       { label: "GitHub", href: "https://github.com/Arkeshak" },
     ],
     photo: "/team/founder-software.jpg",
-  },
-  {
-    id: "founder-creative",
-    name: "Hithush Mohanaraja",
-    role: "Co-Founder, Creative Studio Lead",
-    lab: "creative",
-    bio: "Co-Founder and Creative Studio Lead at Ralypto. Directs brand identity, video production, and digital campaign marketing.",
-    skills: ["Branding", "Video editing", "Digital marketing"],
-    links: [
-      { label: "Instagram", href: "https://www.instagram.com/ralypto_" },
-      { label: "TikTok", href: "https://www.tiktok.com/@ralypto4" },
-    ],
-    photo: "/team/founder-creative.jpg",
-  },
-  {
-    id: "founder-hardware",
-    name: "Abieshake",
-    role: "Co-Founder, Hardware Lab Lead",
-    lab: "hardware",
-    bio: "Co-Founder and Hardware Lab Lead at Ralypto. Mechatronics engineer designing custom circuits, robotics, and firmware.",
-    skills: ["Embedded systems", "Robotics", "AutoCAD"],
-    links: [
-      { label: "LinkedIn", href: "https://www.linkedin.com/company/ralypto/" },
-    ],
-    photo: "/team/founder-hardware.jpg",
   },
 ];
 

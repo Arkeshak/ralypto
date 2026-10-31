@@ -105,7 +105,7 @@ const jsonLd = {
           "@id": "https://www.ralypto.tech/#arkeshkar",
           name: "Arkeshkar prashanthkumar",
           alternateName: ["Arkeshak", "Arkeshkar"],
-          jobTitle: "Founder & Software Lead",
+          jobTitle: "Founder & Lead",
           url: "https://www.ralypto.tech/about",
           sameAs: [
             "https://www.linkedin.com/in/arkeshak",
@@ -119,9 +119,9 @@ const jsonLd = {
       "@id": "https://www.ralypto.tech/#arkeshkar",
       name: "Arkeshkar prashanthkumar",
       alternateName: ["Arkeshak", "Arkeshkar"],
-      jobTitle: "Founder & Software Lead",
+      jobTitle: "Founder & Lead",
       description:
-        "Founder and Software Lead of Ralypto. Full-stack software architect building high-performance web systems, ERP platforms, and cloud engineering.",
+        "Founder and Lead of Ralypto. Software architect, creative designer, and hardware engineer building web platforms, ERP systems, brand identities, and embedded machines.",
       worksFor: {
         "@id": "https://www.ralypto.tech/#organization",
       },
@@ -138,6 +138,8 @@ const jsonLd = {
         "Next.js",
         "TypeScript",
         "AI Agents",
+        "Brand & Creative Direction",
+        "Embedded Systems & Hardware",
       ],
     },
   ],

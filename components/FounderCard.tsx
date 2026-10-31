@@ -1,4 +1,4 @@
-import { Founder, labs } from "@/lib/content";
+import { Founder } from "@/lib/content";
 
 /* Each founder card takes the look of the founder's lab. */
 export default function FounderCard({ f }: { f: Founder }) {
@@ -43,7 +43,7 @@ export default function FounderCard({ f }: { f: Founder }) {
           </a>
         ))}
       </p>
-      <p className="founder__lab">Leads the {labs[f.lab].name}</p>
+      <p className="founder__lab">Directs Software, Creative & Hardware</p>
     </article>
   );
 }

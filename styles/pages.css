@@ -382,6 +382,12 @@
   color: var(--muted);
   margin: 0;
 }
+.about__team .founder-grid {
+  margin-top: 2rem;
+}
+.founder-grid--single {
+  grid-template-columns: minmax(min(100%, 280px), 520px);
+}
 @media (max-width: 760px) {
   .about__values {
     grid-template-columns: 1fr;
