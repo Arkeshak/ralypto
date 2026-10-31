@@ -15,10 +15,16 @@ export default function ProjectCard({ p }: { p: Project }) {
 
   if (isCrossLab(p)) {
     return (
-      <Link 
-        href={href} 
-        className={`pcard pcard--cross ${p.images?.length ? 'pcard--has-bg' : ''}`}
-        style={p.images?.length ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(${p.images[0]})` } : undefined}
+      <Link
+        href={href}
+        className={`pcard pcard--cross ${p.images?.length ? "pcard--has-bg" : ""}`}
+        style={
+          p.images?.length
+            ? {
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.85)), url(${p.images[0]})`,
+              }
+            : undefined
+        }
       >
         <div className="pcard__stripes" aria-hidden="true">
           {p.labs.map((l) => (
@@ -39,7 +45,17 @@ export default function ProjectCard({ p }: { p: Project }) {
 
   if (lab === "software") {
     return (
-      <Link href={href} className="pcard pcard--software">
+      <Link
+        href={href}
+        className={`pcard pcard--software ${p.images?.length ? "pcard--has-bg" : ""}`}
+        style={
+          p.images?.length
+            ? {
+                backgroundImage: `linear-gradient(rgba(14, 18, 30, 0.88), rgba(8, 10, 16, 0.95)), url(${p.images[0]})`,
+              }
+            : undefined
+        }
+      >
         <p className="repo">
           ralypto / <strong>{p.slug}</strong>
         </p>
@@ -63,8 +79,14 @@ export default function ProjectCard({ p }: { p: Project }) {
     return (
       <Link
         href={href}
-        className="pcard pcard--creative"
-        style={{ ["--poster" as string]: bg }}
+        className={`pcard pcard--creative ${p.images?.length ? "pcard--has-bg" : ""}`}
+        style={
+          p.images?.length
+            ? {
+                backgroundImage: `linear-gradient(rgba(20, 10, 24, 0.82), rgba(12, 5, 15, 0.92)), url(${p.images[0]})`,
+              }
+            : { ["--poster" as string]: bg }
+        }
       >
         <div className="poster" aria-hidden="true">
           <span className="poster__blob" />
@@ -80,10 +102,16 @@ export default function ProjectCard({ p }: { p: Project }) {
   }
 
   return (
-    <Link 
-      href={href} 
-      className={`pcard pcard--hardware ${p.images?.length ? 'pcard--has-bg' : ''}`}
-      style={p.images?.length ? { backgroundImage: `linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(${p.images[0]})` } : undefined}
+    <Link
+      href={href}
+      className={`pcard pcard--hardware ${p.images?.length ? "pcard--has-bg" : ""}`}
+      style={
+        p.images?.length
+          ? {
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(${p.images[0]})`,
+            }
+          : undefined
+      }
     >
       {!p.images?.length && (
         <svg viewBox="0 0 200 90" aria-hidden="true" className="spec__drawing">

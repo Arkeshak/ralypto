@@ -14,30 +14,32 @@ export default function ContactPage() {
         <h1>Start a project</h1>
         <p className="contact__intro">
           Four quick steps and your brief is ready to send on WhatsApp or email.
-          Prefer to talk first? Call us directly:{" "}
-          <span className="contact__phone-list">
-            {site.phones.map((phone, i) => (
-              <span key={phone} className="contact__phone-item">
-                {i > 0 && <span className="contact__sep">·</span>}
-                <a href={`tel:${phone.replace(/\s+/g, "")}`} className="contact__link contact__link--phone">
-                  <PhoneIcon size={14} className="contact__icon" />
-                  <span>{phone}</span>
-                </a>
-              </span>
-            ))}
-          </span>{" "}
-          or message on{" "}
-          <a
-            href={`https://wa.me/${site.whatsapp}`}
-            target="_blank"
-            rel="noreferrer"
-            className="contact__link contact__link--whatsapp"
-          >
-            <WhatsAppIcon size={15} className="contact__icon contact__icon--whatsapp" />
-            <span>WhatsApp ({site.whatsappDisplay})</span>
-          </a>{" "}
-          or write to <a href={`mailto:${site.email}`}>{site.email}</a>.
+          Prefer to talk first? Reach us any of these ways.
         </p>
+        <ul className="contact__methods">
+          {site.phones.map((phone) => (
+            <li key={phone}>
+              <a href={`tel:${phone.replace(/s+/g, "")}`} className="contact__link contact__link--phone">
+                <PhoneIcon size={14} className="contact__icon" />
+                <span>{phone}</span>
+              </a>
+            </li>
+          ))}
+          <li>
+            <a
+              href={`https://wa.me/${site.whatsapp}`}
+              target="_blank"
+              rel="noreferrer"
+              className="contact__link contact__link--whatsapp"
+            >
+              <WhatsAppIcon size={15} className="contact__icon contact__icon--whatsapp" />
+              <span>WhatsApp ({site.whatsappDisplay})</span>
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${site.email}`} className="contact__link">{site.email}</a>
+          </li>
+        </ul>
       </header>
       <Suspense fallback={null}>
         <BriefBuilder />

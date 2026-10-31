@@ -10,11 +10,13 @@
   grid-template-columns: 1.4fr 1fr;
   align-items: end;
   margin-bottom: 2rem;
+  padding-top: clamp(0.5rem, 2vw, 1.5rem);
 }
 .home-hero__text p {
   margin: 0;
   font-size: 1.1rem;
 }
+.home-hero__text .status { font-size: 0.95rem; justify-self: start; }
 @media (max-width: 860px) {
   .home-hero__text {
     grid-template-columns: 1fr;

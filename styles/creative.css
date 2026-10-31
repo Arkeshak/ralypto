@@ -22,7 +22,7 @@
   grid-template-columns: 1.1fr 1fr;
   gap: clamp(1.5rem, 4vw, 3.5rem);
   align-items: center;
-  min-height: min(80vh, 720px);
+  min-height: min(70vh, 620px);
   padding: 2rem 0 1rem;
 }
 .cr-hero__title {

@@ -104,7 +104,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;
-  padding: 0 var(--pad);
+  padding: 0 max(var(--pad), calc((100% - var(--max)) / 2));
   background: var(--paper);
   border-bottom: 1px solid var(--line);
   box-sizing: border-box;
@@ -645,7 +645,7 @@ button {
 .footer {
   background: var(--ink);
   color: #fff;
-  padding: 4rem var(--pad) 2rem;
+  padding: 4rem max(var(--pad), calc((100% - var(--max)) / 2)) 2rem;
 }
 .footer__big {
   margin-bottom: 3.5rem;
@@ -734,7 +734,7 @@ button {
 }
 
 .card-grid {
-  align-items: start;
+  align-items: stretch;
 }
 .pcard--cross .pcard__meta {
   flex-direction: column;

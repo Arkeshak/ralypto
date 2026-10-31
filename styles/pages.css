@@ -609,8 +609,20 @@
 
 /* ===== Contact Page Links & Logos ===== */
 .contact__intro {
-  line-height: 1.8;
+  line-height: 1.6;
+  max-width: 60ch;
 }
+.contact__methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1rem;
+}
+.contact__methods li { display: flex; }
+.contact__methods .contact__link { min-height: 44px; }
 .contact__link {
   display: inline-flex;
   align-items: center;

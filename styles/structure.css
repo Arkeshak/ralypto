@@ -68,9 +68,10 @@
 }
 .shead__row {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: 1rem 3rem;
   align-items: end;
+  align-items: last baseline;
 }
 .shead h2 {
   margin: 0;
@@ -89,6 +90,7 @@
 .shead__action {
   margin-top: 1.5rem;
 }
+.shead__intro { line-height: 1.55; }
 @media (max-width: 860px) {
   .shead__row { grid-template-columns: 1fr; }
 }
@@ -102,7 +104,8 @@
   font-size: 0.92rem;
   font-weight: 500;
   padding: 0.5rem 0.95rem;
-  border-radius: 999px;
+  border-radius: 18px;
+  line-height: 1.4;
   background: #fff;
   border: 1px solid var(--line);
   max-width: 100%;
