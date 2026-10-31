@@ -661,7 +661,7 @@
     min-height: 0;
   }
   .door {
-    height: 300px;
+    height: auto;
     flex: none;
   }
   .door:hover,
@@ -762,4 +762,70 @@
   .steps {
     grid-template-columns: 1fr;
   }
+}
+
+/* ===== Home redesign: say what we do, one clear action, three clear paths ===== */
+.home-hero { padding-top: clamp(2.5rem, 6vw, 5rem); padding-bottom: clamp(1rem, 3vw, 2rem); }
+.hh-intro {
+  display: grid;
+  gap: 1.4rem;
+  justify-items: start;
+  max-width: 50rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.hh-title { font-size: clamp(2.6rem, 6.4vw, 5.2rem); }
+.hh-lead {
+  margin: 0;
+  max-width: 36em;
+  font-size: clamp(1.1rem, 1.7vw, 1.3rem);
+  line-height: 1.55;
+  color: #3c3752;
+}
+.hh-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.btn--lg { padding: 1rem 1.7rem; font-size: 1.05rem; }
+.hh-pick__title {
+  font-family: var(--f-brand);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  letter-spacing: -0.03em;
+  margin: 0 0 0.4rem;
+}
+.hh-pick__hint { margin: 0 0 1.5rem; color: #5b5670; max-width: 44em; }
+
+.doors {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  height: auto;
+}
+.door {
+  flex: none;
+  transform: none;
+  cursor: pointer;
+  animation: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.door:hover,
+.door:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 40px -22px rgba(27, 21, 48, 0.5);
+}
+.doors.has-active .door:not(.is-active) { filter: none; }
+.doors.has-active .door:not(.is-active) .door__label { transform: none; }
+.doors.has-active .door:not(.is-active) .door__label p { opacity: 1; }
+.door__glow, .door__enter { display: none; }
+.door__preview { flex: none; height: clamp(190px, 19vw, 250px); }
+.door__label { padding: 1.25rem 1.5rem 1.4rem; display: grid; gap: 0.5rem; }
+.door__label h2 { margin: 0; }
+.door__label p { white-space: normal; line-height: 1.45; }
+.door--software .door__label p { color: var(--sw-fg); font-size: 0.95rem; }
+.door--hardware .door__label p { color: var(--hw-line); font-size: 1.05rem; }
+.door--creative .door__label p { color: var(--cr-ink, #fff); opacity: 0.85; font-size: 1rem; }
+.door__go { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; margin-top: 0.25rem; }
+.door--software .door__go { color: var(--sw-amber); font-family: var(--f-mono); }
+.door--creative .door__go { color: var(--cr-yellow); font-family: var(--f-cr); }
+.door--hardware .door__go { color: var(--hw-orange); font-family: var(--f-hw); font-size: 1.05rem; }
+.door:hover .door__label h2 { transform: none; }
+@media (max-width: 860px) {
+  .doors { grid-template-columns: 1fr; }
+  .door__preview { height: 200px; }
 }

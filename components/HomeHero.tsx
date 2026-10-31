@@ -133,12 +133,6 @@ export default function HomeHero() {
     el.style.setProperty("--mx", `${x}px`);
     el.style.setProperty("--my", `${y}px`);
 
-    const nx = (x / rect.width - 0.5) * 2;
-    const ny = (y / rect.height - 0.5) * 2;
-    el.style.setProperty("--px", nx.toFixed(3));
-    el.style.setProperty("--py", ny.toFixed(3));
-    el.style.setProperty("--rx", `${(-ny * 6).toFixed(2)}deg`);
-    el.style.setProperty("--ry", `${(nx * 6).toFixed(2)}deg`);
     if (el.dataset.lab === "hardware" && coordsRef.current) {
       coordsRef.current.textContent = `X ${String(Math.round(x)).padStart(3, "0")}  Y ${String(Math.round(y)).padStart(3, "0")}`;
     }
@@ -146,14 +140,12 @@ export default function HomeHero() {
 
   function reset(e: React.PointerEvent<HTMLAnchorElement>) {
     const el = e.currentTarget;
-    ["--px", "--py"].forEach((v) => el.style.setProperty(v, "0"));
-    ["--rx", "--ry"].forEach((v) => el.style.setProperty(v, "0deg"));
     setActive(null);
   }
 
   return (
     <section className="home-hero" data-chapter="Welcome">
-      <div className="home-hero__text">
+      <div className="hh-intro">
         <h1 className="hh-title">
           We{" "}
           {verbs.map((v, i) => (
@@ -167,41 +159,54 @@ export default function HomeHero() {
             </span>
           ))}
         </h1>
-        <div className="home-hero__aside">
-          <p>{site.intro}</p>
-          <StudioStatus />
+        <p className="hh-lead">
+          Ralypto is a studio from Sri Lanka that builds software, brands and
+          hardware for businesses. Tell us your idea and we take it from first
+          sketch to launch.
+        </p>
+        <div className="hh-cta">
+          <Link href="/contact" className="btn btn--lg">
+            Start a project
+          </Link>
+          <Link href="/work" className="btn btn--ghost btn--lg">
+            See our work
+          </Link>
         </div>
+        <StudioStatus />
       </div>
 
-      <div className={`doors ${active ? "has-active" : ""}`}>
-        {labOrder.map((id, i) => (
-          <Link
-            key={id}
-            href={labs[id].path}
-            data-lab={id}
-            className={`door door--${id} ${active === id ? "is-active" : ""}`}
-            style={{ animationDelay: `${0.15 + i * 0.12}s` }}
-            onPointerEnter={() => setActive(id)}
-            onPointerMove={track}
-            onPointerLeave={reset}
-            onFocus={() => setActive(id)}
-            onBlur={() => setActive(null)}
-          >
-            <div className="door__preview" aria-hidden="true">
-              {id === "software" && <SoftwarePreview />}
-              {id === "creative" && <CreativeHeroPreview />}
-              {id === "hardware" && <HardwarePreview coordsRef={coordsRef} />}
-            </div>
-            <span className="door__glow" aria-hidden="true" />
-            <span className="door__enter" aria-hidden="true">
-              Enter
-            </span>
-            <div className="door__label">
-              <h2>{labs[id].name}</h2>
-              <p>{labs[id].doorLine}</p>
-            </div>
-          </Link>
-        ))}
+      <div className="hh-pick">
+        <h2 className="hh-pick__title">What do you need?</h2>
+        <p className="hh-pick__hint">
+          Pick the lab that fits. Not sure? Start a project and we will point you
+          the right way.
+        </p>
+        <div className={`doors ${active ? "has-active" : ""}`}>
+          {labOrder.map((id) => (
+            <Link
+              key={id}
+              href={labs[id].path}
+              data-lab={id}
+              className={`door door--${id} ${active === id ? "is-active" : ""}`}
+              onPointerEnter={() => setActive(id)}
+              onPointerMove={track}
+              onPointerLeave={reset}
+              onFocus={() => setActive(id)}
+              onBlur={() => setActive(null)}
+            >
+              <div className="door__preview" aria-hidden="true">
+                {id === "software" && <SoftwarePreview />}
+                {id === "creative" && <CreativeHeroPreview />}
+                {id === "hardware" && <HardwarePreview coordsRef={coordsRef} />}
+              </div>
+              <div className="door__label">
+                <h2>{labs[id].name}</h2>
+                <p>{labs[id].promise}</p>
+                <span className="door__go">Explore the {labs[id].name}</span>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

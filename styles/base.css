@@ -746,3 +746,36 @@ button {
   font-weight: 600;
   color: var(--brand);
 }
+
+/* ===== Image-backed project cards: keep text readable on the dark overlay ===== */
+.pcard--creative.pcard--has-bg {
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+}
+.pcard--creative.pcard--has-bg .poster {
+  background: transparent;
+}
+.pcard--creative.pcard--has-bg .poster__blob {
+  display: none;
+}
+.pcard--creative.pcard--has-bg h3 {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+.pcard--creative.pcard--has-bg .pcard__meta {
+  color: rgba(255, 255, 255, 0.85);
+}
+.pcard--cross.pcard--has-bg h3,
+.pcard--cross.pcard--has-bg p {
+  color: #fff;
+}
+.pcard--cross.pcard--has-bg .pcard__meta,
+.pcard--cross.pcard--has-bg .pcard__meta span {
+  color: rgba(255, 255, 255, 0.85);
+}
+.pcard--cross.pcard--has-bg .pcard__meta span {
+  color: var(--cr-yellow);
+}
