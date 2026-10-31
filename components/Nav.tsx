@@ -10,6 +10,7 @@ export default function Nav() {
   const zone = labOrder.find((id) => path.startsWith(labs[id].path)) ?? "brand";
 
   const links = [
+    { href: "/", label: "Home", lab: "" },
     ...labOrder.map((id) => ({
       href: labs[id].path,
       label: labs[id].name,
