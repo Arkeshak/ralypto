@@ -8,17 +8,23 @@ export default function FounderCard({ f }: { f: Founder }) {
     .join("")
     .slice(0, 2);
   return (
-    <article className={`founder founder--${f.lab}`}>
+    <article
+      className={`founder founder--${f.lab}`}
+      itemScope
+      itemType="https://schema.org/Person"
+    >
       <div className="founder__photo">
         {f.photo ? (
-          <img src={f.photo} alt={f.name} />
+          <img src={f.photo} alt={f.name} itemProp="image" />
         ) : (
           <span aria-hidden="true">{initials}</span>
         )}
       </div>
-      <h3>{f.name}</h3>
-      <p className="founder__role">{f.role}</p>
-      <p>{f.bio}</p>
+      <h3 itemProp="name">{f.name}</h3>
+      <p className="founder__role" itemProp="jobTitle">
+        {f.role}
+      </p>
+      <p itemProp="description">{f.bio}</p>
       <ul className="founder__skills">
         {f.skills.map((s) => (
           <li key={s}>{s}</li>
@@ -26,7 +32,13 @@ export default function FounderCard({ f }: { f: Founder }) {
       </ul>
       <p className="founder__links">
         {f.links.map((l) => (
-          <a key={l.label} href={l.href} target="_blank" rel="noreferrer">
+          <a
+            key={l.label}
+            href={l.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            itemProp="sameAs"
+          >
             {l.label}
           </a>
         ))}

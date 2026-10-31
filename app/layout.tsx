@@ -33,6 +33,25 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.intro,
+  keywords: [
+    "Ralypto",
+    "Arkeshkar prashanthkumar",
+    "Arkeshak",
+    "Founder of Ralypto",
+    "Ralypto Founder",
+    "Arkeshkar prashanthkumar Ralypto",
+    "Software Lead",
+    "Software Studio Sri Lanka",
+    "Creative Studio",
+    "Hardware Lab",
+  ],
+  authors: [
+    {
+      name: "Arkeshkar prashanthkumar",
+      url: "https://www.linkedin.com/in/arkeshak",
+    },
+  ],
+  creator: "Arkeshkar prashanthkumar",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -64,6 +83,66 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.ralypto.tech/#organization",
+      name: "Ralypto",
+      url: "https://www.ralypto.tech",
+      logo: "https://www.ralypto.tech/brand/icon-512.png",
+      description: site.intro,
+      sameAs: [
+        "https://www.linkedin.com/company/ralypto/",
+        "https://www.instagram.com/ralypto_",
+        "https://www.tiktok.com/@ralypto4",
+        "https://www.facebook.com/share/14ysUgcxJKP/",
+      ],
+      founder: [
+        {
+          "@type": "Person",
+          "@id": "https://www.ralypto.tech/#arkeshkar",
+          name: "Arkeshkar prashanthkumar",
+          alternateName: ["Arkeshak", "Arkeshkar"],
+          jobTitle: "Founder & Software Lead",
+          url: "https://www.ralypto.tech/about",
+          sameAs: [
+            "https://www.linkedin.com/in/arkeshak",
+            "https://github.com/Arkeshak",
+          ],
+        },
+      ],
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.ralypto.tech/#arkeshkar",
+      name: "Arkeshkar prashanthkumar",
+      alternateName: ["Arkeshak", "Arkeshkar"],
+      jobTitle: "Founder & Software Lead",
+      description:
+        "Founder and Software Lead of Ralypto. Full-stack software architect building high-performance web systems, ERP platforms, and cloud engineering.",
+      worksFor: {
+        "@id": "https://www.ralypto.tech/#organization",
+      },
+      url: "https://www.ralypto.tech/about",
+      sameAs: [
+        "https://www.linkedin.com/in/arkeshak",
+        "https://github.com/Arkeshak",
+      ],
+      knowsAbout: [
+        "Software Engineering",
+        "Full-Stack Web Development",
+        "Cloud Platforms",
+        "ERP Systems",
+        "Next.js",
+        "TypeScript",
+        "AI Agents",
+      ],
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -71,6 +150,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <a className="skip" href="#main">
           Skip to content

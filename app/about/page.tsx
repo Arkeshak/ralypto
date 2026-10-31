@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
+import FounderCard from "@/components/FounderCard";
+import { team } from "@/lib/content";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = {
+  title: "About | Founders & Leadership",
+  description:
+    "Meet the founders and leadership behind Ralypto — founded by Arkeshkar prashanthkumar (Founder & Software Lead). Uniting software engineering, creative studio, and hardware lab under one studio.",
+};
 
 const values = [
   {
@@ -23,7 +29,11 @@ export default function AboutPage() {
       <header className="page-head">
         <h1>One team, three skills, one studio.</h1>
         <p>
-          Our team brings together people who write code, people who design and market, and people who build hardware. Clients kept asking for all three at once, so we started Ralypto.
+          Ralypto was founded by Arkeshkar prashanthkumar to bridge the gap
+          between software engineering, creative design, and physical hardware.
+          Rather than working in separate silos, our developers, designers, and
+          hardware engineers collaborate seamlessly under one studio to build
+          end-to-end solutions.
         </p>
       </header>
 
@@ -37,10 +47,16 @@ export default function AboutPage() {
       </section>
 
       <section className="about__team">
-        <h2 className="about__team-title">Our Team</h2>
+        <h2 className="about__team-title">Founders & Leadership</h2>
         <p className="about__team-description">
-          We are a multidisciplinary team of engineers, designers, and builders. Rather than working in separate silos, our software developers, creative designers, and hardware engineers collaborate seamlessly under one studio to turn bold ideas into high-performance, real-world reality.
+          We are a multidisciplinary team of engineers, designers, and builders
+          turning bold ideas into high-performance, real-world reality.
         </p>
+        <div className="founder-grid">
+          {team.map((f) => (
+            <FounderCard key={f.id} f={f} />
+          ))}
+        </div>
       </section>
     </div>
   );
