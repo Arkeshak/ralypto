@@ -460,7 +460,7 @@ export const projects: Project[] = [
       { value: "0", label: "overflow incidents" },
       { value: "180+", label: "consecutive days uptime" },
     ],
-    images: ["/work/water-meter-dashboard.png", "/work/pump-controller.jpg"],
+    images: ["/work/pump-controller.jpg", "/work/water-meter-dashboard.png"],
     visual: "circuit",
     featured: true,
   },

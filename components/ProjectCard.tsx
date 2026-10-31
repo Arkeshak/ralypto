@@ -1,147 +1,122 @@
 import Link from "next/link";
 import { Project, labs, statusLabel, isCrossLab } from "@/lib/content";
 
-const posterColors = ["#FF48B0", "#0078BF", "#FFE800", "#00A95C", "#FF6C2F"];
-
-function pick(slug: string) {
-  let h = 0;
-  for (const c of slug) h = (h * 31 + c.charCodeAt(0)) % 997;
-  return posterColors[h % posterColors.length];
-}
-
-/* One card, four looks: repo (software), poster (creative), spec sheet (hardware), cross-lab. */
+/* One modern card architecture with distinct lab identities:
+   - Software: dark terminal repo aesthetic
+   - Creative: bold editorial magazine aesthetic
+   - Hardware: technical blueprint aesthetic
+   - Cross-lab: multi-disciplinary gradient stripes
+*/
 export default function ProjectCard({ p }: { p: Project }) {
   const href = `/work/${p.slug}`;
-
-  if (isCrossLab(p)) {
-    return (
-      <Link
-        href={href}
-        className={`pcard pcard--cross ${p.images?.length ? "pcard--has-bg" : ""}`}
-        style={
-          p.images?.length
-            ? {
-                backgroundImage: `linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.85)), url(${p.images[0]})`,
-              }
-            : undefined
-        }
-      >
-        <div className="pcard__stripes" aria-hidden="true">
-          {p.labs.map((l) => (
-            <span key={l} className={`stripe stripe--${l}`} />
-          ))}
-        </div>
-        <h3>{p.title}</h3>
-        <p>{p.summary}</p>
-        <p className="pcard__meta">
-          {p.labs.map((l) => labs[l].name).join(" + ")}
-          <span>{statusLabel[p.status]}</span>
-        </p>
-      </Link>
-    );
-  }
-
-  const lab = p.labs[0];
-
-  if (lab === "software") {
-    return (
-      <Link
-        href={href}
-        className={`pcard pcard--software ${p.images?.length ? "pcard--has-bg" : ""}`}
-        style={
-          p.images?.length
-            ? {
-                backgroundImage: `linear-gradient(rgba(14, 18, 30, 0.88), rgba(8, 10, 16, 0.95)), url(${p.images[0]})`,
-              }
-            : undefined
-        }
-      >
-        <p className="repo">
-          ralypto / <strong>{p.slug}</strong>
-        </p>
-        <h3>{p.title}</h3>
-        <p>{p.summary}</p>
-        <ul className="repo__tags">
-          {p.tools.slice(0, 4).map((t) => (
-            <li key={t}>{t}</li>
-          ))}
-        </ul>
-        <p className="pcard__meta">
-          <span>{statusLabel[p.status]}</span>
-          <span>{p.year}</span>
-        </p>
-      </Link>
-    );
-  }
-
-  if (lab === "creative") {
-    const bg = pick(p.slug);
-    return (
-      <Link
-        href={href}
-        className={`pcard pcard--creative ${p.images?.length ? "pcard--has-bg" : ""}`}
-        style={
-          p.images?.length
-            ? {
-                backgroundImage: `linear-gradient(rgba(20, 10, 24, 0.82), rgba(12, 5, 15, 0.92)), url(${p.images[0]})`,
-              }
-            : { ["--poster" as string]: bg }
-        }
-      >
-        <div className="poster" aria-hidden="true">
-          <span className="poster__blob" />
-          <span className="poster__blob poster__blob--two" />
-        </div>
-        <h3>{p.title}</h3>
-        <p className="pcard__meta">
-          <span>{statusLabel[p.status]}</span>
-          <span>{p.year}</span>
-        </p>
-      </Link>
-    );
-  }
+  const isCross = isCrossLab(p);
+  const primaryLab = isCross ? "cross" : p.labs[0];
+  const hasImage = Boolean(p.images && p.images.length > 0);
 
   return (
     <Link
       href={href}
-      className={`pcard pcard--hardware ${p.images?.length ? "pcard--has-bg" : ""}`}
-      style={
-        p.images?.length
-          ? {
-              backgroundImage: `linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(${p.images[0]})`,
-            }
-          : undefined
-      }
+      className={`pcard pcard--${primaryLab} ${hasImage ? "pcard--has-media" : ""}`}
     >
-      {!p.images?.length && (
-        <svg viewBox="0 0 200 90" aria-hidden="true" className="spec__drawing">
-          <rect x="40" y="20" width="120" height="50" />
-          <circle cx="70" cy="45" r="12" />
-          <circle cx="130" cy="45" r="12" />
-          <line x1="40" y1="80" x2="160" y2="80" />
-          <text x="100" y="88" textAnchor="middle">
-            {p.tools[0]}
-          </text>
-        </svg>
-      )}
-      <h3>{p.title}</h3>
-      <p>{p.summary}</p>
-      <table className="spec__block">
-        <tbody>
-          <tr>
-            <th scope="row">Type</th>
-            <td>{statusLabel[p.status]}</td>
-          </tr>
-          <tr>
-            <th scope="row">Year</th>
-            <td>{p.year}</td>
-          </tr>
-          <tr>
-            <th scope="row">Core</th>
-            <td>{p.tools.slice(0, 2).join(", ")}</td>
-          </tr>
-        </tbody>
-      </table>
+      {/* 1. Dedicated Media / Preview Window */}
+      <div className="pcard__media">
+        {hasImage ? (
+          <img
+            src={p.images![0]}
+            alt={p.title}
+            className="pcard__img"
+            loading="lazy"
+          />
+        ) : (
+          <div className="pcard__placeholder" aria-hidden="true">
+            {primaryLab === "software" && (
+              <div className="pcard__code-preview">
+                <span className="pcard__code-dot" />
+                <code>$ ralypto run {p.slug}</code>
+              </div>
+            )}
+            {primaryLab === "hardware" && (
+              <svg viewBox="0 0 200 90" className="pcard__spec-svg">
+                <rect x="30" y="15" width="140" height="60" rx="4" />
+                <circle cx="65" cy="45" r="14" />
+                <circle cx="135" cy="45" r="14" />
+                <line x1="30" y1="75" x2="170" y2="75" />
+              </svg>
+            )}
+            {primaryLab === "creative" && (
+              <div className="pcard__poster-preview">
+                <span className="pcard__blob pcard__blob--1" />
+                <span className="pcard__blob pcard__blob--2" />
+              </div>
+            )}
+            {isCross && (
+              <div className="pcard__cross-preview">
+                <span className="stripe stripe--software" />
+                <span className="stripe stripe--creative" />
+                <span className="stripe stripe--hardware" />
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Floating Lab & Status Badges on Preview */}
+        <div className="pcard__badges">
+          <span className={`pcard__badge pcard__badge--${primaryLab}`}>
+            {isCross ? "Cross-Lab" : labs[p.labs[0]].name}
+          </span>
+          <span className="pcard__badge pcard__badge--status">
+            {statusLabel[p.status]}
+          </span>
+        </div>
+      </div>
+
+      {/* 2. Structured Content Body */}
+      <div className="pcard__body">
+        {/* Lab-specific kicker */}
+        {primaryLab === "software" && (
+          <p className="repo">
+            ralypto / <strong>{p.slug}</strong>
+          </p>
+        )}
+
+        {primaryLab === "creative" && (
+          <p className="pcard__client-kicker">{p.client}</p>
+        )}
+
+        {primaryLab === "hardware" && (
+          <p className="pcard__client-kicker">{p.client}</p>
+        )}
+
+        {isCross && (
+          <div className="pcard__stripes" aria-hidden="true">
+            {p.labs.map((l) => (
+              <span key={l} className={`stripe stripe--${l}`} />
+            ))}
+          </div>
+        )}
+
+        {/* Project Title */}
+        <h3 className="pcard__title">{p.title}</h3>
+
+        {/* Full Rich Summary */}
+        <p className="pcard__summary">{p.summary}</p>
+
+        {/* Deliverables & Technology Tags */}
+        <ul className="pcard__tags" aria-label="Technologies and deliverables">
+          {p.tools.slice(0, 4).map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
+
+        {/* Card Footer with Metadata and CTA */}
+        <div className="pcard__footer">
+          <span className="pcard__meta-status">{statusLabel[p.status]}</span>
+          <span className="pcard__meta-year">{p.year}</span>
+          <span className="pcard__arrow" aria-hidden="true">
+            View case study →
+          </span>
+        </div>
+      </div>
     </Link>
   );
 }
