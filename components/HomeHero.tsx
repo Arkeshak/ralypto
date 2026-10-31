@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { labs, labOrder, site, LabId } from "@/lib/content";
 import RobotArm from "./RobotArm";
 import StudioStatus from "./StudioStatus";
+import CreativeHeroPreview from "./CreativeHeroPreview";
 
 /* ---------- Software door: a terminal that keeps typing new commands ---------- */
 type TLine = { t: string; k: "cmd" | "dim" | "ok" };
@@ -13,7 +14,7 @@ const scripts: { cmd: string; out: TLine[] }[] = [
     out: [
       { t: "compiling idea.ts ...", k: "dim" },
       { t: "tests passed 12/12", k: "dim" },
-      { t: "ready on ralypto.com", k: "ok" },
+      { t: "ready on ralypto.tech", k: "ok" },
     ],
   },
   {
@@ -84,36 +85,6 @@ function SoftwarePreview() {
   );
 }
 
-/* ---------- Creative door: shapes follow the cursor, words keep changing ---------- */
-const creativeWords = ["seen", "loud", "yours", "viral"];
-
-function CreativePreview() {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(
-      () => setI((n) => (n + 1) % creativeWords.length),
-      2200,
-    );
-    return () => clearInterval(id);
-  }, []);
-  return (
-    <div className="riso">
-      <span className="riso__shape riso__shape--a" />
-      <span className="riso__shape riso__shape--b" />
-      <span className="riso__shape riso__shape--c" />
-      <p className="riso__words">
-        {" "}
-        <span className="riso__word">make</span>{" "}
-        <span className="riso__word">it</span>{" "}
-        <span key={i} className="riso__word riso__swap">
-          {creativeWords[i]}
-        </span>{" "}
-      </p>
-    </div>
-  );
-}
-
 /* ---------- Hardware door: moving robot arm + cursor crosshair with coordinates ---------- */
 function HardwarePreview({
   coordsRef,
@@ -148,22 +119,22 @@ export default function HomeHero() {
   useEffect(() => {
     if (active || window.matchMedia("(prefers-reduced-motion: reduce)").matches)
       return;
-    const id = setInterval(() => setPulse((p) => (p + 1) % 3), 1800);
+    const id = setInterval(() => setPulse((n) => (n + 1) % verbs.length), 2200);
     return () => clearInterval(id);
   }, [active]);
 
-  const lit = active ?? verbs[pulse].lab;
+  const lit = active ?? verbs[pulse]?.lab;
 
   function track(e: React.PointerEvent<HTMLAnchorElement>) {
-    if (e.pointerType !== "mouse") return;
     const el = e.currentTarget;
-    const r = el.getBoundingClientRect();
-    const x = e.clientX - r.left;
-    const y = e.clientY - r.top;
-    const nx = x / r.width - 0.5; // -0.5 .. 0.5
-    const ny = y / r.height - 0.5;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
     el.style.setProperty("--mx", `${x}px`);
     el.style.setProperty("--my", `${y}px`);
+
+    const nx = (x / rect.width - 0.5) * 2;
+    const ny = (y / rect.height - 0.5) * 2;
     el.style.setProperty("--px", nx.toFixed(3));
     el.style.setProperty("--py", ny.toFixed(3));
     el.style.setProperty("--rx", `${(-ny * 6).toFixed(2)}deg`);
@@ -218,7 +189,7 @@ export default function HomeHero() {
           >
             <div className="door__preview" aria-hidden="true">
               {id === "software" && <SoftwarePreview />}
-              {id === "creative" && <CreativePreview />}
+              {id === "creative" && <CreativeHeroPreview />}
               {id === "hardware" && <HardwarePreview coordsRef={coordsRef} />}
             </div>
             <span className="door__glow" aria-hidden="true" />
