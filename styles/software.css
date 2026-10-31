@@ -1335,9 +1335,14 @@
   color: var(--sw-amber);
 }
 .sw-card-metric small {
+  display: block;
   font-size: 0.68rem;
+  line-height: 1.35;
   color: var(--sw-fg);
 }
+.sw-card-metric { flex: none; max-width: 45%; }
+.sw-card-head { gap: 0.75rem; }
+.sw-erp-metric small { line-height: 1.35; }
 .sw-card-title-block h3 {
   font-size: 1.25rem;
   color: #fff;
@@ -1859,3 +1864,15 @@
   }
 }
 
+
+@media (max-width: 600px) {
+  .sw-erp-table { font-size: 0.72rem; }
+  .sw-erp-thead,
+  .sw-erp-row {
+    grid-template-columns: minmax(0, 1.8fr) 0.5fr minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.4rem;
+    padding-inline: 0.55rem;
+  }
+  .sw-erp-thead span:nth-child(n + 3),
+  .sw-erp-row > :nth-child(n + 3) { text-align: right; }
+}

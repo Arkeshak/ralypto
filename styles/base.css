@@ -687,7 +687,8 @@ button {
   text-decoration: underline;
 }
 .footer__contact-link {
-  display: inline-flex !important;
+  display: flex !important;
+  width: fit-content;
   align-items: center;
   gap: 0.45rem;
 }
