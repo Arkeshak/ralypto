@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { labOrder, labs, projects } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://ralypto.com";
+  const baseUrl = "https://www.ralypto.tech";
 
   const labUrls = labOrder.map((id) => ({
     url: `${baseUrl}${labs[id].path}`,
