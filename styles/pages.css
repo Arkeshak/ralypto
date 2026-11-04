@@ -769,3 +769,45 @@
   .about-hero__orb,
   .about-hero__dot { animation: none; }
 }
+
+/* ===== About: roles list ===== */
+.about-roles {
+  margin: 3.5rem 0 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.about-roles__list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+}
+.about-role {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 2fr;
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 1.4rem 0 1.4rem 1rem;
+  border-top: 1px solid var(--line);
+  border-left: 4px solid var(--brand);
+}
+.about-role--software { border-left-color: var(--sw-amber); }
+.about-role--creative { border-left-color: var(--cr-pink); }
+.about-role--hardware { border-left-color: var(--hw-orange); }
+.about-role__name {
+  font-family: var(--f-brand);
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.about-role__title {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.about-role__desc {
+  color: var(--muted);
+  line-height: 1.6;
+}
+@media (max-width: 760px) {
+  .about-role { grid-template-columns: 1fr; gap: 0.4rem; }
+}

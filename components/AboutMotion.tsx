@@ -166,13 +166,51 @@ export function Leadership({ team }: { team: Founder[] }) {
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease, delay: 0.1 }}
       >
-        The people running the three labs — Software, Creative, and Hardware.
+        The team behind Ralypto.
       </motion.p>
       <div className="founder-grid about-team-grid">
         {team.map((f, i) => (
           <TiltCard key={f.id} f={f} index={i} />
         ))}
       </div>
+    </section>
+  );
+}
+
+/* Separate "who does what" list: one animated row per person with their role. */
+export function RolesSection({ team }: { team: Founder[] }) {
+  return (
+    <section className="about-roles">
+      <motion.h2
+        className="about__team-title"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease }}
+      >
+        Who does what
+      </motion.h2>
+      <motion.ul
+        className="about-roles__list"
+        variants={listVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {team.map((p) => (
+          <motion.li
+            key={p.id}
+            className={`about-role about-role--${p.lab}`}
+            variants={itemVariants}
+            whileHover={{ x: 12 }}
+            transition={{ type: "spring", stiffness: 300, damping: 22 }}
+          >
+            <span className="about-role__name">{p.name}</span>
+            <span className="about-role__title">{p.role}</span>
+            <span className="about-role__desc">{p.bio}</span>
+          </motion.li>
+        ))}
+      </motion.ul>
     </section>
   );
 }

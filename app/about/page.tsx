@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AboutHero, Leadership, ScrollProgress, ValuesGrid } from "@/components/AboutMotion";
+import { AboutHero, Leadership, RolesSection, ScrollProgress, ValuesGrid } from "@/components/AboutMotion";
 import { team } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -33,6 +33,7 @@ export default function AboutPage() {
       />
       <ValuesGrid values={values} />
       <Leadership team={team} />
+      <RolesSection team={team} />
     </div>
   );
 }
