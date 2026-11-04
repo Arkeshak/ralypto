@@ -68,19 +68,47 @@ export const metadata: Metadata = {
     shortcut: ["/favicon.ico"],
   },
   openGraph: {
-    title: `${site.name} — ${site.tagline}`,
-    description: site.intro,
+    title: "Ralypto | We Code It, Design It, and Build It",
+    description:
+      "Software, creative and hardware solutions from Sri Lanka. Full-stack software engineering, brand identity & motion, and custom hardware engineering.",
     url: "https://www.ralypto.tech",
-    siteName: site.name,
+    siteName: "Ralypto",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://www.ralypto.tech/og-image.jpg",
+        secureUrl: "https://www.ralypto.tech/og-image.jpg",
         width: 1200,
         height: 630,
+        alt: "Ralypto — Software, Creative and Hardware Studio",
+        type: "image/jpeg",
+      },
+      {
+        url: "https://www.ralypto.tech/og-image.png",
+        secureUrl: "https://www.ralypto.tech/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ralypto — Software, Creative and Hardware Studio",
+        type: "image/png",
       },
     ],
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ralypto | We Code It, Design It, and Build It",
+    description:
+      "Software, creative and hardware solutions from Sri Lanka. Full-stack software engineering, brand identity & motion, and custom hardware engineering.",
+    site: "@ralypto_",
+    creator: "@arkeshak",
+    images: [
+      {
+        url: "https://www.ralypto.tech/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ralypto — Software, Creative and Hardware Studio",
+      },
+    ],
   },
 };
 

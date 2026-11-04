@@ -261,6 +261,7 @@ export type Founder = {
   bio: string;
   skills: string[];
   links: { label: string; href: string }[];
+  directs?: string; // footer line on the card
   photo?: string; // e.g. "/team/founder-software.jpg" placed in /public/team
 };
 
@@ -283,7 +284,53 @@ export const team: Founder[] = [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/arkeshak" },
       { label: "GitHub", href: "https://github.com/Arkeshak" },
     ],
+    directs: "Directs Software, Creative & Hardware",
     photo: "/team/founder-software.jpg",
+  },
+  {
+    id: "founder-hardware",
+    name: "Joelmelcome Abieshake",
+    role: "Co-Founder & Hardware Lab Lead",
+    lab: "hardware",
+    bio: "Co-Founder of Ralypto and head of the Hardware Lab. Leads embedded systems, robotics and device prototyping, taking ideas from circuit sketches to working machines.",
+    skills: ["Embedded Systems", "Robotics", "Electronics & PCB", "CAD & Prototyping"],
+    links: [
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/a-j-m-abieshake-b68b772a4",
+      },
+    ],
+    directs: "Leads the Hardware Lab",
+    // photo: "/team/joelmelcome.jpg" (add a real photo to /public/team, then uncomment)
+  },
+  {
+    id: "cofounder-software",
+    name: "Hithush Mohanaraja",
+    role: "Co-Founder & Software Lab Lead",
+    lab: "software",
+    bio: "Co-Founder of Ralypto and head of the Software Lab. Leads web applications, ERP platforms and cloud systems, turning client ideas into reliable production software.",
+    skills: ["Full-stack web", "Next.js & TypeScript", "Cloud & ERP Systems", "APIs & Databases"],
+    links: [
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/hithush-mohanaraja-2059b130a/",
+      },
+    ],
+    directs: "Leads the Software Lab",
+    // photo: "/team/hithush.jpg" (add a real photo to /public/team, then uncomment)
+  },
+  {
+    id: "tech-lead",
+    name: "Velerian Vinith",
+    role: "Tech Lead",
+    lab: "software",
+    bio: "Tech Lead at Ralypto. Guides technical decisions and architecture, and keeps engineering work across the studio reliable and shipping on time.",
+    skills: ["Technical leadership", "System architecture", "Code review", "Delivery"],
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/velerian-vinith" },
+    ],
+    directs: "Technical lead across projects",
+    // photo: "/team/velerian.jpg" (add a real photo to /public/team, then uncomment)
   },
 ];
 

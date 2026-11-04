@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import FounderCard from "@/components/FounderCard";
+import { AboutHero, Leadership, ScrollProgress, ValuesGrid } from "@/components/AboutMotion";
 import { team } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About | Leadership",
   description:
-    "Meet the leadership behind Ralypto — led by Founder & Software Lead Arkeshkar prashanthkumar. Uniting software engineering, creative design, and hardware systems under one studio.",
+    "Meet the team behind Ralypto — Arkeshkar prashanthkumar, Joelmelcome Abieshake, Hithush Mohanaraja and Velerian Vinith. Software, creative design and hardware systems under one studio.",
 };
 
 const values = [
@@ -26,36 +26,13 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="page about">
-      <header className="page-head">
-        <h1>Three crafts, one studio.</h1>
-        <p>
-          Ralypto is founded and driven by Arkeshkar prashanthkumar. From writing
-          production software and building scalable ERPs to brand design and
-          hardware engineering, every project is handled directly with end-to-end
-          craft, speed, and personal accountability.
-        </p>
-      </header>
-
-      <section className="about__values">
-        {values.map((v) => (
-          <div key={v.title}>
-            <h2>{v.title}</h2>
-            <p>{v.text}</p>
-          </div>
-        ))}
-      </section>
-
-      <section className="about__team">
-        <h2 className="about__team-title">Leadership</h2>
-        <p className="about__team-description">
-          Directing and executing across all three disciplines — Software, Creative, and Hardware.
-        </p>
-        <div className="founder-grid founder-grid--single">
-          {team.map((f) => (
-            <FounderCard key={f.id} f={f} />
-          ))}
-        </div>
-      </section>
+      <ScrollProgress />
+      <AboutHero
+        title="Three crafts, one studio."
+        text="Ralypto is built by Arkeshkar prashanthkumar, Joelmelcome Abieshake, Hithush Mohanaraja and Velerian Vinith. From production software and scalable ERPs to brand design and embedded hardware, every project gets end-to-end craft, speed, and personal accountability."
+      />
+      <ValuesGrid values={values} />
+      <Leadership team={team} />
     </div>
   );
 }

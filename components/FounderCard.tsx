@@ -43,7 +43,7 @@ export default function FounderCard({ f }: { f: Founder }) {
           </a>
         ))}
       </p>
-      <p className="founder__lab">Directs Software, Creative & Hardware</p>
+      <p className="founder__lab">{f.directs ?? "Ralypto leadership"}</p>
     </article>
   );
 }
