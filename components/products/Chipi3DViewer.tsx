@@ -30,13 +30,6 @@ const EXPRESSIONS: { id: ExpressionType; label: string; mood: string }[] = [
   { id: "surprised", label: "Surprised", mood: "Curious (o o)" },
 ];
 
-const QUICK_ANGLES = [
-  { id: "front", label: "Front (OLED)", angle: 0 },
-  { id: "keychain", label: "Right (Keychain)", angle: -Math.PI / 2 },
-  { id: "usbc", label: "Left (USB-C Port)", angle: Math.PI / 2 },
-  { id: "back", label: "Back (Enclosure)", angle: Math.PI },
-];
-
 export default function Chipi3DViewer({
   expression = "normal",
   onExpressionChange,
@@ -44,11 +37,9 @@ export default function Chipi3DViewer({
 }: Chipi3DViewerProps) {
   const [internalExpr, setInternalExpr] = useState<ExpressionType>(expression);
   const [exploded, setExploded] = useState(false);
-  const [labels, setLabels] = useState(true);
+  const [labels, setLabels] = useState(false); // Clean and un-cluttered by default
   const [autoRotate, setAutoRotate] = useState(true);
   const [resetCount, setResetCount] = useState(0);
-  const [targetAngle, setTargetAngle] = useState<number | undefined>(undefined);
-  const [activeAngleId, setActiveAngleId] = useState<string>("front");
   const [visible, setVisible] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [webglSupported, setWebglSupported] = useState(true);
@@ -93,7 +84,6 @@ export default function Chipi3DViewer({
         if (entry.isIntersecting) {
           setVisible(true);
         } else {
-          // Pause/unmount off-screen to preserve GPU memory
           setVisible(false);
         }
       },
@@ -111,8 +101,6 @@ export default function Chipi3DViewer({
 
   const handleReset = useCallback(() => {
     setResetCount((prev) => prev + 1);
-    setTargetAngle(0);
-    setActiveAngleId("front");
     setHasInteracted(true);
   }, []);
 
@@ -123,13 +111,6 @@ export default function Chipi3DViewer({
     }
   };
 
-  const handleSelectAngle = (angleId: string, angle: number) => {
-    setActiveAngleId(angleId);
-    setTargetAngle(angle);
-    setAutoRotate(false); // Pause auto-rotation so user can inspect this side
-    setHasInteracted(true);
-  };
-
   return (
     <div
       ref={containerRef}
@@ -138,28 +119,22 @@ export default function Chipi3DViewer({
       aria-label="Interactive 3D CHIPI Showcase"
       onPointerDown={handlePointerDown}
     >
-      {/* Top Header Bar */}
-      <div className="chipi-3d__header">
-        <div className="chipi-3d__status-pill">
-          <span className="chipi-3d__status-dot" aria-hidden="true" />
-          <span>Real-time 3D Engine</span>
-        </div>
-        <div className="chipi-3d__badge">
-          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
-          </svg>
-          <span>360° Free Orbit</span>
-        </div>
-      </div>
-
       {/* 3D WebGL Canvas Stage */}
       <div className="chipi-3d__stage">
         {/* Ambient Warm Studio Glow Behind Model */}
         <div className="chipi-3d__ambient-glow" aria-hidden="true" />
 
-        {/* Interaction Hint Pill */}
+        {/* 360 Indicator Badge (Top-Right, Never collides with pre-order badge on top-left) */}
+        <div className="chipi-3d__orbit-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+          </svg>
+          <span>360° Orbit</span>
+        </div>
+
+        {/* Interaction Hint Pill (Placed cleanly at bottom-center of stage) */}
         <div className={`chipi-3d__hint ${hasInteracted ? "is-faded" : ""}`} aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.2">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2">
             <path d="M12 2a10 10 0 0 0-7.07 17.07l2.83-2.83A6 6 0 1 1 12 18v3l5-4-5-4v3a8 8 0 1 0-8-8H2a10 10 0 0 0 10 10z" />
           </svg>
           <span>Drag to turn CHIPI around</span>
@@ -173,7 +148,6 @@ export default function Chipi3DViewer({
               animate={autoRotate}
               labels={labels}
               resetSignal={resetCount}
-              targetAngle={targetAngle}
             />
           ) : (
             <div className="chipi-3d__sleeping" aria-hidden="true">
@@ -196,29 +170,9 @@ export default function Chipi3DViewer({
         )}
       </div>
 
-      {/* Quick Perspective Jump Pills (Front, Keychain, USB-C, Back) */}
-      <div className="chipi-3d__angles-strip">
-        <span className="chipi-3d__strip-label">Inspect Angle:</span>
-        <div className="chipi-3d__angle-pills">
-          {QUICK_ANGLES.map((a) => {
-            const active = a.id === activeAngleId && !autoRotate;
-            return (
-              <button
-                key={a.id}
-                type="button"
-                className={`chipi-3d__angle-pill ${active ? "is-active" : ""}`}
-                onClick={() => handleSelectAngle(a.id, a.angle)}
-              >
-                <span>{a.label}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Expression Selection Strip */}
+      {/* Clean OLED Mood Selector Strip */}
       <div className="chipi-3d__expr-strip" role="tablist" aria-label="Facial Expressions">
-        <span className="chipi-3d__strip-label">OLED Mood:</span>
+        <span className="chipi-3d__strip-label">OLED Face:</span>
         <div className="chipi-3d__expr-pills">
           {EXPRESSIONS.map((item) => {
             const active = item.id === internalExpr;
