@@ -6,6 +6,7 @@ import ProductImage from "./ProductImage";
 import PreOrderModal from "./PreOrderModal";
 
 const statusLabel = {
+  "open-24h": "Pre-orders open 24 hours",
   "opening-soon": "Pre-order opening soon",
   "early-bird": "Limited early-bird pre-orders",
 };

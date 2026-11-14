@@ -5,14 +5,14 @@
 ------------------------------------------------------------------- */
 import { site } from "@/lib/content";
 
-export type LaunchStatus = "opening-soon" | "early-bird";
+export type LaunchStatus = "opening-soon" | "early-bird" | "open-24h";
 export type FeatureIcon = "keychain" | "display" | "face" | "touch" | "motion" | "chip";
 
 export const chipi = {
   name: "CHIPI",
   category: "Smart Pocket Companion / Mini Interactive Gadget",
-  /* "opening-soon" or "early-bird". Changes the label on the product card. */
-  status: "early-bird" as LaunchStatus,
+  /* "open-24h", "early-bird" or "opening-soon". Changes the label on the product card. */
+  status: "open-24h" as LaunchStatus,
   price: "LKR 3,000 – 3,500",
   description:
     "Meet Chipi – your tiny interactive companion. A compact, keychain-sized smart gadget designed to bring personality, interaction, and technology together in your everyday life.",
@@ -57,7 +57,7 @@ export const faq = [
   { q: "What is Chipi?", a: "Chipi is a keychain-sized interactive gadget with an animated face. It responds to touch and motion, and runs on an ESP32." },
   { q: "How much does Chipi cost?", a: `The estimated price is ${chipi.price}. The final price will be confirmed by our team when you pre-order.` },
   { q: "When will Chipi be available?", a: "We have not confirmed a launch date yet. Registering now puts you in line for the first limited release, and we will tell you as soon as dates are set." },
-  { q: "How does the pre-order process work?", a: "Fill in the short form and continue to WhatsApp with your details pre-filled. Our team replies personally to confirm your pre-order and share next steps. No payment is taken on the website." },
+  { q: "How does the pre-order process work?", a: "Pre-order registration is open 24 hours a day. Fill in the short form and continue to WhatsApp with your details pre-filled. Our team replies personally to confirm your pre-order and share next steps. No payment is taken on the website." },
   { q: "How will I receive my product?", a: "Delivery details will be agreed with you on WhatsApp once your pre-order is confirmed. That is why we ask for your delivery address." },
 ];
 
