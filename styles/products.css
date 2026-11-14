@@ -11,8 +11,10 @@
   background: var(--pd-navy);
   color: var(--pd-text);
 }
+.pd { overflow-x: clip; }
+.pd-card > *, .pd-early__in > *, .pd-faq__in > *, .pd-feats li > span:last-child { min-width: 0; }
 .pd-wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); position: relative; }
-.pd h1, .pd h2 { font-family: var(--f-brand); color: #fff; letter-spacing: -0.01em; }
+.pd h1, .pd h2 { font-family: var(--f-brand); color: #fff; letter-spacing: -0.01em; overflow-wrap: anywhere; }
 .pd p { color: var(--pd-text); }
 .pd :focus-visible { outline-color: var(--pd-amber); }
 
@@ -44,7 +46,7 @@
   background: linear-gradient(160deg, var(--pd-navy-2), #070f2b); border: 1px solid var(--pd-line);
   border-radius: 28px; padding: clamp(1rem, 3vw, 2rem); position: relative; }
 .pd-card__media { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 1; background: radial-gradient(circle at 50% 45%, #16286a, var(--pd-navy) 72%); }
-.pd-card__media img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.pd-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
 .pd-card:hover .pd-card__media img { transform: scale(1.05) rotate(-1.5deg); }
 .pd-badge { position: absolute; top: 1rem; left: 1rem; z-index: 2; display: inline-flex; align-items: center; gap: 0.5rem;
   background: rgba(5, 15, 46, 0.85); border: 1px solid var(--pd-amber); color: var(--pd-amber);
@@ -139,12 +141,15 @@
 .pd-sent p { margin-bottom: 1rem; }
 
 @media (max-width: 900px) {
-  .pd-card, .pd-early__in, .pd-faq__in { grid-template-columns: 1fr; }
+  .pd-card, .pd-early__in, .pd-faq__in { grid-template-columns: minmax(0, 1fr); }
   .pd-trust ul { grid-template-columns: 1fr 1fr; }
   .pd-card__media { aspect-ratio: 4 / 3.4; }
 }
 @media (max-width: 560px) {
-  .pd-feats, .pd-trust ul { grid-template-columns: 1fr; }
+  .pd-feats, .pd-trust ul { grid-template-columns: minmax(0, 1fr); }
+  .pd-card { border-radius: 22px; padding: 0.75rem; }
+  .pd-card__body { padding: 0.5rem 0.4rem 0.4rem; }
+  .pd-badge { font-size: 0.64rem; left: 0.6rem; top: 0.6rem; }
   .pd-buy .pd-btn { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
