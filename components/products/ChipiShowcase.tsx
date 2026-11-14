@@ -13,7 +13,7 @@ import {
 } from "@/lib/products";
 import ProductIcon from "./ProductIcon";
 import PreOrderModal from "./PreOrderModal";
-import Chipi360Viewer from "./Chipi360Viewer";
+import Chipi3DViewer from "./Chipi3DViewer";
 
 const statusLabel: Record<string, string> = {
   "opening-soon": "Pre-order opening soon",
@@ -54,7 +54,10 @@ export default function ChipiShowcase() {
               <span className="pd-badge">
                 <b aria-hidden="true" /> {statusLabel[chipi.status]}
               </span>
-              <Chipi360Viewer />
+              <Chipi3DViewer
+                expression={selectedExpr as "normal" | "happy" | "sleepy" | "surprised"}
+                onExpressionChange={(expr) => setSelectedExpr(expr)}
+              />
             </div>
 
             {/* Right Column: Product Overview & Pre-Order Details */}

@@ -530,6 +530,294 @@
 }
 
 /* ==================================================================
+   INTERACTIVE REAL-TIME 3D SHOWCASE (THREE.JS / REACT THREE FIBER)
+   Matching Hardware Lab's ShowcaseScene & OrbitControls
+   ================================================================== */
+.chipi-3d {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 50% 38%, #11204a 0%, #071233 55%, #050f2e 100%);
+  border: 1px solid rgba(255, 175, 13, 0.35);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: inset 0 0 60px rgba(5, 15, 46, 0.9), 0 16px 40px -12px rgba(0, 0, 0, 0.7);
+  outline: none;
+}
+.chipi-3d:focus-visible {
+  box-shadow: 0 0 0 3px var(--pd-amber), inset 0 0 60px rgba(5, 15, 46, 0.9);
+}
+
+.chipi-3d__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1rem 0.4rem;
+  z-index: 3;
+}
+
+.chipi-3d__status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(5, 15, 46, 0.85);
+  border: 1px solid rgba(255, 175, 13, 0.45);
+  border-radius: 999px;
+  padding: 0.32rem 0.75rem;
+  font-family: var(--f-mono);
+  font-size: 0.74rem;
+  color: var(--pd-amber);
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+}
+.chipi-3d__status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pd-amber);
+  animation: pd-blink 1.8s ease-in-out infinite;
+}
+
+.chipi-3d__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  color: #fff;
+  background: rgba(255, 175, 13, 0.12);
+  border: 1px solid rgba(255, 175, 13, 0.3);
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+}
+
+/* Stage matching Hardware Lab's .h3d__stage */
+.chipi-3d__stage {
+  position: relative;
+  width: 100%;
+  height: clamp(340px, 38vw, 440px);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  overflow: hidden;
+}
+.chipi-3d__stage:active {
+  cursor: grabbing;
+}
+.chipi-3d__stage canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.chipi-3d__ambient-glow {
+  position: absolute;
+  inset: 15% 20% 25%;
+  background: radial-gradient(circle at 50% 45%, rgba(255, 175, 13, 0.22) 0%, rgba(255, 175, 13, 0.05) 50%, transparent 70%);
+  pointer-events: none;
+  filter: blur(32px);
+  z-index: 1;
+}
+
+.chipi-3d__hint {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(5, 15, 46, 0.88);
+  border: 1px solid rgba(255, 175, 13, 0.5);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-family: var(--f-mono);
+  font-size: 0.74rem;
+  color: #fff;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  animation: pd-float-hint 2.4s ease-in-out infinite;
+  transition: opacity 0.5s ease;
+}
+.chipi-3d__hint.is-faded {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chipi-3d__loader,
+.chipi-3d__sleeping {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  background: rgba(5, 15, 46, 0.85);
+  color: var(--pd-amber);
+  font-family: var(--f-mono);
+  font-size: 0.82rem;
+  backdrop-filter: blur(4px);
+}
+.chipi-3d__spinner {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 175, 13, 0.2);
+  border-top-color: var(--pd-amber);
+  animation: pd-spin 0.8s linear infinite;
+}
+
+.chipi-3d__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  color: var(--pd-dim);
+  font-size: 0.85rem;
+}
+.chipi-3d__fallback-img {
+  max-width: 240px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+/* OLED Mood Pills Bar */
+.chipi-3d__expr-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  background: rgba(5, 15, 46, 0.75);
+  border-top: 1px solid var(--pd-line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.chipi-3d__expr-strip::-webkit-scrollbar { display: none; }
+.chipi-3d__strip-label {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--pd-amber);
+  white-space: nowrap;
+}
+.chipi-3d__expr-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.chipi-3d__expr-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(11, 26, 69, 0.55);
+  border: 1px solid rgba(232, 236, 248, 0.12);
+  color: var(--pd-dim);
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.chipi-3d__expr-pill:hover {
+  background: rgba(255, 175, 13, 0.12);
+  border-color: rgba(255, 175, 13, 0.4);
+  color: #fff;
+}
+.chipi-3d__expr-pill.is-active {
+  background: rgba(255, 175, 13, 0.2);
+  border-color: var(--pd-amber);
+  color: var(--pd-amber);
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(255, 175, 13, 0.25);
+}
+.chipi-3d__expr-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Controls matching Hardware Lab */
+.chipi-3d__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--pd-line);
+  background: rgba(5, 15, 46, 0.95);
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.chipi-3d__toggles {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+.chipi-3d__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+.chipi-3d__toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--pd-amber);
+  cursor: pointer;
+}
+.chipi-3d__btn-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.chipi-3d__action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.42rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-family: var(--f-mono);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: rgba(11, 26, 69, 0.7);
+  border: 1px solid rgba(255, 175, 13, 0.3);
+  color: #fff;
+}
+.chipi-3d__action-btn:hover {
+  border-color: var(--pd-amber);
+  color: var(--pd-amber);
+  background: rgba(255, 175, 13, 0.12);
+}
+.chipi-3d__action-btn.is-active {
+  border-color: var(--pd-amber);
+  color: var(--pd-amber);
+  background: rgba(255, 175, 13, 0.2);
+}
+.chipi-3d__rotate-ico.is-spinning {
+  display: inline-flex;
+  animation: pd-spin 3s linear infinite;
+}
+
+/* ==================================================================
    SECTION 2: DISPLAY EXPRESSIONS
    ================================================================== */
 .pd-expr-sec {
@@ -1001,9 +1289,13 @@
   .chipi-360__actions { flex-direction: column; align-items: stretch; text-align: center; }
   .chipi-360__desc-text { max-width: 100%; }
   .chipi-360__btn-group { justify-content: center; }
+  .chipi-3d__stage { height: 300px; }
+  .chipi-3d__controls { flex-direction: column; align-items: stretch; text-align: center; }
+  .chipi-3d__toggles { justify-content: center; }
+  .chipi-3d__btn-group { justify-content: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pd-bg, .pd-bg i, .pd-badge b, .pd-modal[open], .chipi-360__status-dot, .chipi-360__rotate-indicator.is-spinning, .chipi-360__hint { animation: none !important; }
+  .pd-bg, .pd-bg i, .pd-badge b, .pd-modal[open], .chipi-360__status-dot, .chipi-360__rotate-indicator.is-spinning, .chipi-360__hint, .chipi-3d__status-dot, .chipi-3d__rotate-ico.is-spinning, .chipi-3d__hint { animation: none !important; }
   .pd-card:hover .pd-card__media img, .pd-btn:hover { transform: none !important; }
 }
