@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/products`, lastModified: new Date() },
     { url: `${baseUrl}/about`, lastModified: new Date() },
     { url: `${baseUrl}/contact`, lastModified: new Date() },
+    { url: `${baseUrl}/idea-lab`, lastModified: new Date() },
     ...labUrls,
     ...projectUrls,
   ];
