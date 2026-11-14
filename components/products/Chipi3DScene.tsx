@@ -512,6 +512,17 @@ export default function Chipi3DScene({
   targetAngle?: number;
 }) {
   const controlsRef = useRef<OrbitControlsType>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Responsive camera framing for mobile
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(typeof window !== "undefined" && window.innerWidth < 640);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Handle reset camera/controls to front
   useEffect(() => {
@@ -532,7 +543,10 @@ export default function Chipi3DScene({
     <Canvas
       shadows
       dpr={[1, 2]}
-      camera={{ position: [0, 0.65, 4.6], fov: 36 }}
+      camera={{
+        position: isMobile ? [0, 0.45, 5.5] : [0, 0.65, 4.6],
+        fov: isMobile ? 38 : 36,
+      }}
       gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping }}
     >
       {/* Soft Ambient Fill */}

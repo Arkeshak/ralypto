@@ -1311,6 +1311,7 @@
 @media (max-width: 900px) {
   .pd-card { grid-template-columns: 1fr; gap: 2rem; padding: 1.5rem; }
   .pd-expr-grid { grid-template-columns: 1fr; }
+  .pd-expr-spotlight { order: -1; margin-bottom: 0.5rem; }
   .pd-specs-grid { grid-template-columns: 1fr; }
   .pd-early__in { grid-template-columns: 1fr; }
   .pd-faq__in { grid-template-columns: 1fr; }
@@ -1318,7 +1319,11 @@
 }
 
 @media (max-width: 640px) {
-  .pd-expr-cards { grid-template-columns: 1fr; }
+  .pd-expr-cards { grid-template-columns: 1fr 1fr; gap: 0.65rem; }
+  .pd-expr-card { padding: 0.75rem 0.65rem; border-radius: 16px; }
+  .pd-expr-card strong { font-size: 0.95rem; }
+  .pd-expr-card__subtitle { font-size: 0.68rem; }
+  .pd-expr-card p { font-size: 0.75rem; line-height: 1.35; }
   .pd-inside-steps { grid-template-columns: 1fr; }
   .pd-specs-row { grid-template-columns: 110px 1fr; gap: 0.5rem; }
   .pd-early__cta-row .pd-btn { width: 100%; }
@@ -1334,10 +1339,52 @@
   .chipi-360__actions { flex-direction: column; align-items: stretch; text-align: center; }
   .chipi-360__desc-text { max-width: 100%; }
   .chipi-360__btn-group { justify-content: center; }
-  .chipi-3d__stage { height: 300px; }
-  .chipi-3d__controls { flex-direction: column; align-items: stretch; text-align: center; }
-  .chipi-3d__toggles { justify-content: center; }
-  .chipi-3d__btn-group { justify-content: center; }
+  
+  /* 3D Showcase Mobile Precision Alignment */
+  .chipi-3d__header { padding: 0.65rem 0.75rem 0.35rem; }
+  .chipi-3d__status-pill { font-size: 0.68rem; padding: 0.25rem 0.6rem; }
+  .chipi-3d__badge { font-size: 0.66rem; padding: 0.25rem 0.55rem; }
+  .chipi-3d__stage { height: clamp(280px, 75vw, 340px); }
+  .chipi-3d__angles-strip,
+  .chipi-3d__expr-strip {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+    padding: 0.5rem 0.75rem;
+    overflow-x: visible;
+  }
+  .chipi-3d__strip-label {
+    font-size: 0.66rem;
+    text-align: center;
+    opacity: 0.85;
+  }
+  .chipi-3d__angle-pills,
+  .chipi-3d__expr-pills {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.3rem;
+    width: 100%;
+  }
+  .chipi-3d__angle-pill,
+  .chipi-3d__expr-pill {
+    justify-content: center;
+    text-align: center;
+    padding: 0.35rem 0.2rem;
+    font-size: 0.68rem;
+    width: 100%;
+  }
+  .chipi-3d__controls { flex-direction: column; align-items: stretch; text-align: center; padding: 0.75rem; gap: 0.65rem; }
+  .chipi-3d__toggles { justify-content: center; gap: 1.2rem; width: 100%; }
+  .chipi-3d__toggle { font-size: 0.72rem; }
+  .chipi-3d__btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; width: 100%; }
+  .chipi-3d__action-btn { justify-content: center; width: 100%; font-size: 0.72rem; padding: 0.42rem 0.5rem; }
+}
+
+@media (max-width: 380px) {
+  .pd-expr-cards { grid-template-columns: 1fr; }
+  .chipi-3d__angle-pills,
+  .chipi-3d__expr-pills { grid-template-columns: repeat(2, 1fr); }
+  .chipi-3d__header { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
