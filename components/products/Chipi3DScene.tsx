@@ -74,98 +74,97 @@ function useChipiFaceTexture(expression: "normal" | "happy" | "sleepy" | "surpri
   const fallbackTex = useMemo(() => {
     const c = document.createElement("canvas");
     c.width = 512;
-    c.height = 360;
+    c.height = 320;
     const ctx = c.getContext("2d")!;
 
     // Pure deep black OLED background
     ctx.fillStyle = "#01040d";
-    ctx.fillRect(0, 0, 512, 360);
+    ctx.fillRect(0, 0, 512, 320);
 
     // Glowing cyan eyes
     ctx.fillStyle = "#00d2ff";
     ctx.strokeStyle = "#00d2ff";
     ctx.shadowColor = "#00e5ff";
-    ctx.shadowBlur = 28;
+    ctx.shadowBlur = 24;
 
-    const eyeY = 175;
-    const leftX = 170;
-    const rightX = 342;
+    const leftX = 172;
+    const rightX = 340;
 
     if (expression === "normal") {
-      // Determined / fierce angled cut eyes
+      const cy = 148;
       ctx.beginPath();
-      ctx.arc(leftX, eyeY + 6, 56, 0, Math.PI * 2);
+      ctx.arc(leftX, cy, 52, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.save();
       ctx.shadowBlur = 0;
       ctx.fillStyle = "#01040d";
       ctx.beginPath();
-      ctx.moveTo(100, 90);
-      ctx.lineTo(240, 155);
-      ctx.lineTo(100, 155);
+      ctx.moveTo(90, 76);
+      ctx.lineTo(240, 146);
+      ctx.lineTo(90, 146);
       ctx.closePath();
       ctx.fill();
       ctx.restore();
 
       ctx.beginPath();
-      ctx.arc(rightX, eyeY + 6, 56, 0, Math.PI * 2);
+      ctx.arc(rightX, cy, 52, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.save();
       ctx.shadowBlur = 0;
       ctx.fillStyle = "#01040d";
       ctx.beginPath();
-      ctx.moveTo(412, 90);
-      ctx.lineTo(272, 155);
-      ctx.lineTo(412, 155);
+      ctx.moveTo(422, 76);
+      ctx.lineTo(272, 146);
+      ctx.lineTo(422, 146);
       ctx.closePath();
       ctx.fill();
       ctx.restore();
 
       // Tiny cute mouth
       ctx.beginPath();
-      ctx.moveTo(248, 222);
-      ctx.lineTo(256, 214);
-      ctx.lineTo(264, 222);
-      ctx.lineWidth = 6;
+      ctx.moveTo(246, 212);
+      ctx.lineTo(256, 204);
+      ctx.lineTo(266, 212);
+      ctx.lineWidth = 5;
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.stroke();
     } else if (expression === "happy") {
-      // Cheerful arched curved eyes (⌒ ⌒)
-      ctx.lineWidth = 26;
+      const cy = 182;
+      ctx.lineWidth = 22;
       ctx.lineCap = "round";
       ctx.beginPath();
-      ctx.arc(leftX, eyeY + 16, 50, Math.PI * 1.05, Math.PI * 1.95, false);
+      ctx.arc(leftX, cy, 46, Math.PI * 1.08, Math.PI * 1.92, false);
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.arc(rightX, eyeY + 16, 50, Math.PI * 1.05, Math.PI * 1.95, false);
+      ctx.arc(rightX, cy, 46, Math.PI * 1.08, Math.PI * 1.92, false);
       ctx.stroke();
     } else if (expression === "sleepy") {
-      // Cozy resting half-circle eyes
+      const cy = 132;
       ctx.beginPath();
-      ctx.arc(leftX, eyeY + 12, 50, 0, Math.PI, false);
+      ctx.arc(leftX, cy, 48, 0, Math.PI, false);
       ctx.closePath();
       ctx.fill();
 
       ctx.beginPath();
-      ctx.arc(rightX, eyeY + 12, 50, 0, Math.PI, false);
+      ctx.arc(rightX, cy, 48, 0, Math.PI, false);
       ctx.closePath();
       ctx.fill();
     } else if (expression === "surprised") {
-      // Big circular round eyes with small cute mouth (o)
+      const cy = 144;
       ctx.beginPath();
-      ctx.arc(leftX, eyeY, 60, 0, Math.PI * 2);
+      ctx.arc(leftX, cy, 52, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.beginPath();
-      ctx.arc(rightX, eyeY, 60, 0, Math.PI * 2);
+      ctx.arc(rightX, cy, 52, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.beginPath();
-      ctx.arc(256, 230, 14, 0, Math.PI * 2);
+      ctx.arc(256, 214, 13, 0, Math.PI * 2);
       ctx.fill();
     }
 
@@ -265,19 +264,19 @@ function ChipiModel({
 
         {/* Front Recessed Bezel Window */}
         <mesh position={[0, -0.05, halfD + 0.002]} receiveShadow>
-          <planeGeometry args={[1.34, 1.04]} />
+          <planeGeometry args={[1.36, 0.88]} />
           <meshStandardMaterial color={C.bezel} roughness={0.85} />
         </mesh>
 
         {/* OLED Screen Plane with Glowing Eyes */}
         <mesh position={[0, -0.05, halfD + 0.006]}>
-          <planeGeometry args={[1.26, 0.96]} />
+          <planeGeometry args={[1.30, 0.8125]} />
           <meshBasicMaterial map={faceTex} toneMapped={false} />
         </mesh>
 
         {/* Glass Screen Gloss Reflection Overlay */}
         <mesh position={[0, -0.05, halfD + 0.01]}>
-          <planeGeometry args={[1.28, 0.98]} />
+          <planeGeometry args={[1.30, 0.8125]} />
           <meshStandardMaterial
             color="#a8ecff"
             roughness={0.06}

@@ -139,8 +139,8 @@ export default function ChipiShowcase() {
                       <Image
                         src={e.img}
                         alt={`${e.name} face expression on blue OLED screen`}
-                        width={180}
-                        height={90}
+                        width={240}
+                        height={150}
                         className="pd-expr-card__img"
                       />
                     </div>
@@ -163,8 +163,8 @@ export default function ChipiShowcase() {
                   <Image
                     src={activeExpression.img}
                     alt={`CHIPI displaying ${activeExpression.name} expression`}
-                    width={220}
-                    height={110}
+                    width={240}
+                    height={150}
                     className="pd-expr-spotlight__face"
                   />
                 </div>
