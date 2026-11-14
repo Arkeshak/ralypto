@@ -16,6 +16,7 @@ export default function Nav() {
       label: labs[id].name,
       lab: id,
     })),
+    { href: "/products", label: "Products", lab: "" },
     { href: "/work", label: "Work", lab: "" },
     { href: "/about", label: "About", lab: "" },
   ];
