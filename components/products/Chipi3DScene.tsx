@@ -290,18 +290,6 @@ function ChipiModel({
         {/* Localized Cyan Screen Glow Light */}
         <pointLight position={[0, -0.05, halfD + 0.4]} color={C.cyan} intensity={1.5} distance={2.4} />
 
-        {/* Top Petting / Capacitive Touch Sensor */}
-        <group position={[0, halfH, 0.08]}>
-          <mesh position={[0, 0.015, 0]} castShadow>
-            <cylinderGeometry args={[0.3, 0.32, 0.04, 32]} />
-            <meshStandardMaterial color={C.bezel} roughness={0.7} />
-          </mesh>
-          <mesh position={[0, 0.045, 0]} scale={[1, 0.62, 1]} castShadow>
-            <sphereGeometry args={[0.22, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2]} />
-            <meshStandardMaterial color={C.white} roughness={0.2} metalness={0.08} />
-          </mesh>
-        </group>
-
         {/* ========================================================
             USB-C FAST CHARGING PORT (Left Profile)
             Precision-molded socket with metallic silver collar,
@@ -394,7 +382,7 @@ function ChipiModel({
         {/* 3D Billboard Labels for Normal Mode */}
         {labels && !exploded && (
           <>
-            <Label position={[0, 1.48, 0.1]}>Motion / Petting Sensor</Label>
+            <Label position={[0, 1.25, 0]}>Touch Petting Zone</Label>
             <Label position={[0, -1.18, halfD + 0.15]}>OLED Expressive Display</Label>
             <Label position={[1.75, 0.35, 0.3]}>Keychain Ready</Label>
             <Label position={[-1.5, -0.32, 0]}>USB-C Charging Port</Label>
