@@ -8,7 +8,7 @@ import type { OrbitControls as OrbitControlsType } from "three-stdlib";
 
 // Premium Studio Material Palette
 const C = {
-  shell: "#282a34",        // Rich matte-charcoal plastic (NOT pure black, catches specular highlights)
+  shell: "#282a34",        // Rich matte-charcoal polymer (catches specular highlights)
   shellBack: "#22242c",    // Subtle darker rear enclosure
   bezel: "#0d0e12",        // Deep recessed screen bezel
   screenBase: "#02050e",   // OLED true-black substrate
@@ -187,7 +187,6 @@ function useChipiFaceTexture(expression: "normal" | "happy" | "sleepy" | "surpri
       },
       undefined,
       () => {
-        // Keep fallback on load error
         setLoadedTex(null);
       }
     );
@@ -196,7 +195,7 @@ function useChipiFaceTexture(expression: "normal" | "happy" | "sleepy" | "surpri
   return loadedTex || fallbackTex;
 }
 
-/* The True 3D CHIPI Model: Cubic proportions, deep bevels, recessed screen, realistic materials */
+/* The True 3D CHIPI Model with USB-C Charging Port & Prominent Stainless Steel Keychain */
 function ChipiModel({
   expression = "normal",
   exploded = false,
@@ -234,7 +233,7 @@ function ChipiModel({
 
     // Subtle gentle chain physics sway
     if (chainRingGroup.current) {
-      chainRingGroup.current.rotation.z = Math.sin(Date.now() * 0.002) * 0.04;
+      chainRingGroup.current.rotation.z = Math.sin(Date.now() * 0.002) * 0.035;
     }
   });
 
@@ -242,22 +241,20 @@ function ChipiModel({
     TRUE CUBIC PROPORTIONS (Matching reference render):
     Width: 1.7
     Height: 1.7
-    Depth: 1.52 (Chunky solid pocket cube, NOT a thin flat 0.52 card!)
-    Bevel radius: 0.2
+    Depth: 1.52 (Chunky solid pocket cube!)
   */
   const W = 1.7;
   const H = 1.7;
   const D = 1.52;
+  const halfW = W / 2; // 0.85
+  const halfH = H / 2; // 0.85
   const halfD = D / 2; // 0.76
 
   return (
     <group position={[0, 0.1, 0]}>
       {/* 1. FRONT ENCLOSURE & SCREEN CAVITY */}
       <group ref={frontGroup} position={[0, 0, 0]}>
-        {/*
-          Solid Chunky Cube Shell with Generous Rounded Fillets
-          Depth is 1.52 so it is a true cube!
-        */}
+        {/* Solid Chunky Cube Shell with Generous Rounded Fillets */}
         <RoundedBox args={[W, H, D]} radius={0.2} smoothness={6} castShadow receiveShadow>
           <meshStandardMaterial
             color={C.shell}
@@ -266,7 +263,7 @@ function ChipiModel({
           />
         </RoundedBox>
 
-        {/* Front Recessed Bezel Window (Carved frame pocket) */}
+        {/* Front Recessed Bezel Window */}
         <mesh position={[0, -0.05, halfD + 0.002]} receiveShadow>
           <planeGeometry args={[1.34, 1.04]} />
           <meshStandardMaterial color={C.bezel} roughness={0.85} />
@@ -293,75 +290,114 @@ function ChipiModel({
         {/* Localized Cyan Screen Glow Light */}
         <pointLight position={[0, -0.05, halfD + 0.4]} color={C.cyan} intensity={1.5} distance={2.4} />
 
-        {/*
-          Top Petting / Capacitive Touch Sensor:
-          Recessed oval pocket + smooth white dome (centered on top face)
-        */}
-        <group position={[0, H / 2, 0.08]}>
-          {/* Recessed oval rim collar */}
+        {/* Top Petting / Capacitive Touch Sensor */}
+        <group position={[0, halfH, 0.08]}>
           <mesh position={[0, 0.015, 0]} castShadow>
             <cylinderGeometry args={[0.3, 0.32, 0.04, 32]} />
             <meshStandardMaterial color={C.bezel} roughness={0.7} />
           </mesh>
-          {/* Smooth white dome sensor */}
           <mesh position={[0, 0.045, 0]} scale={[1, 0.62, 1]} castShadow>
             <sphereGeometry args={[0.22, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2]} />
             <meshStandardMaterial color={C.white} roughness={0.2} metalness={0.08} />
           </mesh>
         </group>
 
-        {/*
-          Top-Right Corner Molded Keychain Eyelet:
-          Positioned on the top-right corner toward the back (matches reference photo)
-        */}
-        <group position={[W / 2 - 0.16, H / 2 + 0.08, -halfD + 0.28]}>
-          {/* Molded dark plastic loop */}
-          <mesh rotation={[0, 0, 0]} castShadow>
-            <torusGeometry args={[0.2, 0.07, 16, 32]} />
+        {/* ========================================================
+            USB-C FAST CHARGING PORT (Left Profile)
+            Precision-molded socket with metallic silver collar,
+            dark interior slot, and gold contact pins
+           ======================================================== */}
+        <group position={[-halfW - 0.005, -0.32, 0]} rotation={[0, -Math.PI / 2, 0]}>
+          {/* Recessed bezel socket in enclosure */}
+          <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]} scale={[1.4, 0.65, 1]}>
+            <cylinderGeometry args={[0.22, 0.22, 0.04, 32]} />
+            <meshStandardMaterial color={C.bezel} roughness={0.8} />
+          </mesh>
+          
+          {/* Metallic USB-C housing collar */}
+          <group position={[0, 0, 0.015]}>
+            <mesh castShadow scale={[1.75, 0.85, 1]}>
+              <torusGeometry args={[0.13, 0.026, 16, 32]} />
+              <meshStandardMaterial color={C.metal} metalness={0.96} roughness={0.15} />
+            </mesh>
+            
+            {/* Dark inner cavity */}
+            <mesh position={[0, 0, -0.01]}>
+              <planeGeometry args={[0.34, 0.14]} />
+              <meshBasicMaterial color="#000000" />
+            </mesh>
+            
+            {/* Center USB-C tongue pin with gold contact finish */}
+            <mesh position={[0, 0, 0.01]}>
+              <boxGeometry args={[0.22, 0.022, 0.06]} />
+              <meshStandardMaterial color={C.gold} metalness={0.92} roughness={0.18} />
+            </mesh>
+          </group>
+        </group>
+
+        {/* ========================================================
+            KEYCHAIN ATTACHMENT LOOP (Top-Right Corner)
+            Protrudes outward and upward from the top-right chamfer
+           ======================================================== */}
+        <group position={[halfW - 0.06, halfH + 0.12, 0.05]}>
+          <mesh rotation={[0, 0, 0.22]} castShadow>
+            <torusGeometry args={[0.18, 0.065, 16, 32]} />
             <meshStandardMaterial color={C.shell} roughness={0.55} metalness={0.15} />
           </mesh>
         </group>
 
-        {/*
-          Metal Keychain Chain & Stainless Steel Split Ring:
-          Dangles naturally along the right side with bright specular chrome finish
-        */}
-        <group ref={chainRingGroup} position={[W / 2 - 0.16, H / 2 + 0.08, -halfD + 0.28]}>
-          {/* Link 1 */}
-          <mesh position={[0.1, -0.15, 0]} rotation={[0, 0, 0.35]} castShadow>
-            <torusGeometry args={[0.09, 0.026, 12, 24]} />
-            <meshStandardMaterial color={C.metal} metalness={0.96} roughness={0.12} />
+        {/* ========================================================
+            3D STAINLESS STEEL KEYCHAIN & SPLIT RING
+            Dangles prominently along the right side — fully visible
+            from the front and 45° perspectives
+           ======================================================== */}
+        <group ref={chainRingGroup} position={[halfW - 0.06, halfH + 0.12, 0.05]}>
+          {/* Link 1 (passes through eyelet, leaning outward to right) */}
+          <mesh position={[0.16, -0.12, 0.08]} rotation={[0.4, 0.2, -0.55]} castShadow>
+            <torusGeometry args={[0.11, 0.03, 14, 28]} />
+            <meshStandardMaterial color={C.metal} metalness={0.98} roughness={0.12} />
           </mesh>
-          {/* Link 2 */}
-          <mesh position={[0.18, -0.3, 0]} rotation={[0, Math.PI / 2, 0.25]} castShadow>
-            <torusGeometry args={[0.09, 0.026, 12, 24]} />
-            <meshStandardMaterial color={C.metal} metalness={0.96} roughness={0.12} />
+          
+          {/* Link 2 (interlocks with Link 1, turned 90°) */}
+          <mesh position={[0.3, -0.28, 0.14]} rotation={[-0.3, 1.4, 0.4]} castShadow>
+            <torusGeometry args={[0.11, 0.03, 14, 28]} />
+            <meshStandardMaterial color={C.metal} metalness={0.98} roughness={0.12} />
           </mesh>
+          
           {/* Link 3 */}
-          <mesh position={[0.25, -0.45, 0]} rotation={[0, 0, 0.15]} castShadow>
-            <torusGeometry args={[0.09, 0.026, 12, 24]} />
-            <meshStandardMaterial color={C.metal} metalness={0.96} roughness={0.12} />
+          <mesh position={[0.42, -0.44, 0.2]} rotation={[0.3, 0.2, -0.3]} castShadow>
+            <torusGeometry args={[0.11, 0.03, 14, 28]} />
+            <meshStandardMaterial color={C.metal} metalness={0.98} roughness={0.12} />
           </mesh>
 
-          {/* Stainless-Steel Split Keyring */}
-          <group position={[0.38, -0.74, 0]} rotation={[0.2, 0.3, 0.15]}>
+          {/* Link 4 */}
+          <mesh position={[0.54, -0.6, 0.24]} rotation={[-0.2, 1.3, 0.2]} castShadow>
+            <torusGeometry args={[0.11, 0.03, 14, 28]} />
+            <meshStandardMaterial color={C.metal} metalness={0.98} roughness={0.12} />
+          </mesh>
+
+          {/* Prominent Stainless-Steel Split Keyring (Resting on right side) */}
+          <group position={[0.78, -0.85, 0.28]} rotation={[0.45, 0.5, 0.25]}>
+            {/* Primary Keyring Coil */}
             <mesh castShadow>
-              <torusGeometry args={[0.38, 0.046, 16, 48]} />
+              <torusGeometry args={[0.44, 0.048, 16, 64]} />
               <meshStandardMaterial color={C.metal} metalness={0.98} roughness={0.1} />
             </mesh>
-            {/* Split overlapping ring section */}
-            <mesh position={[0, 0, 0.035]} castShadow>
-              <torusGeometry args={[0.38, 0.04, 16, 48, Math.PI * 1.65]} />
+            {/* Overlapping secondary split ring coil */}
+            <mesh position={[0, 0, 0.038]} castShadow>
+              <torusGeometry args={[0.44, 0.044, 16, 64, Math.PI * 1.7]} />
               <meshStandardMaterial color={C.metal} metalness={0.98} roughness={0.1} />
             </mesh>
           </group>
         </group>
 
+        {/* 3D Billboard Labels for Normal Mode */}
         {labels && !exploded && (
           <>
-            <Label position={[0, 1.4, 0.1]}>Motion / Petting Sensor</Label>
-            <Label position={[0, -1.15, halfD + 0.15]}>OLED Expressive Display</Label>
-            <Label position={[1.45, -0.2, -0.1]}>Keychain Ready</Label>
+            <Label position={[0, 1.48, 0.1]}>Motion / Petting Sensor</Label>
+            <Label position={[0, -1.18, halfD + 0.15]}>OLED Expressive Display</Label>
+            <Label position={[1.75, 0.35, 0.3]}>Keychain Ready</Label>
+            <Label position={[-1.5, -0.32, 0]}>USB-C Charging Port</Label>
           </>
         )}
       </group>
@@ -400,6 +436,12 @@ function ChipiModel({
           <meshStandardMaterial color={C.chip} roughness={0.4} />
         </mesh>
 
+        {/* USB-C Receptacle on PCB edge */}
+        <mesh position={[-0.72, -0.32, 0.04]} castShadow>
+          <boxGeometry args={[0.16, 0.18, 0.08]} />
+          <meshStandardMaterial color={C.metal} metalness={0.92} roughness={0.2} />
+        </mesh>
+
         {/* Gold mounting vias */}
         {[-0.62, 0.62].map((x) =>
           [-0.62, 0.62].map((y) => (
@@ -410,7 +452,12 @@ function ChipiModel({
           ))
         )}
 
-        {labels && exploded && <Label position={[1.45, 0.2, 0]}>ESP32 Mainboard</Label>}
+        {labels && exploded && (
+          <>
+            <Label position={[1.45, 0.2, 0]}>ESP32 Mainboard</Label>
+            <Label position={[-1.5, -0.32, 0]}>USB-C Port</Label>
+          </>
+        )}
       </group>
 
       {/* 4. BACK COVER ASSEMBLY (Visible when exploded) */}
@@ -434,7 +481,7 @@ function ChipiModel({
       </group>
 
       {/* 5. CIRCULAR GLOWING TURNTABLE BASE (Authentic Ralypto Studio Stage) */}
-      <group position={[0, -H / 2 - 0.16, 0]}>
+      <group position={[0, -halfH - 0.16, 0]}>
         {/* Dark stage pedestal disc */}
         <mesh position={[0, -0.06, 0]} receiveShadow>
           <cylinderGeometry args={[2.35, 2.45, 0.14, 64]} />
@@ -468,12 +515,14 @@ export default function Chipi3DScene({
   animate = true,
   labels = true,
   resetSignal = 0,
+  targetAngle,
 }: {
   expression: "normal" | "happy" | "sleepy" | "surprised";
   exploded: boolean;
   animate: boolean;
   labels: boolean;
   resetSignal?: number;
+  targetAngle?: number;
 }) {
   const controlsRef = useRef<OrbitControlsType>(null);
 
@@ -484,6 +533,14 @@ export default function Chipi3DScene({
     }
   }, [resetSignal]);
 
+  // Handle explicit angle jumps (e.g. Keychain view or USB-C view)
+  useEffect(() => {
+    if (targetAngle !== undefined && controlsRef.current) {
+      controlsRef.current.setAzimuthalAngle(targetAngle);
+      controlsRef.current.update();
+    }
+  }, [targetAngle]);
+
   return (
     <Canvas
       shadows
@@ -491,11 +548,6 @@ export default function Chipi3DScene({
       camera={{ position: [0, 0.65, 4.6], fov: 36 }}
       gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping }}
     >
-      {/*
-        BALANCED 360° STUDIO LIGHTING SYSTEM:
-        Ensures the product is clearly visible, detailed, and beautifully highlighted
-        from EVERY angle (front, back, left, right, top) — NEVER a black silhouette!
-      */}
       {/* Soft Ambient Fill */}
       <ambientLight intensity={1.2} color="#d4e4ff" />
 
@@ -508,14 +560,14 @@ export default function Chipi3DScene({
         shadow-bias={-0.0001}
       />
 
-      {/* Left Fill Light (Prevents pitch-black shadows on left profile!) */}
-      <directionalLight position={[-4, 3, 3]} intensity={1.8} color="#b8d2ff" />
+      {/* Left Fill Light (Directly illuminates the USB-C charging port!) */}
+      <directionalLight position={[-4, 3, 3]} intensity={2.0} color="#b8d2ff" />
 
-      {/* Signature Amber Rim / Backlight (Highlights top & rear chamfers from reference photo!) */}
+      {/* Signature Amber Rim / Backlight (Highlights top & rear chamfers) */}
       <pointLight position={[0, 4.5, -4.5]} intensity={4.5} color="#FFAF0D" />
 
-      {/* Side Amber Accent Light */}
-      <pointLight position={[4, 2, -2.5]} intensity={2.2} color="#FFAF0D" />
+      {/* Right Side Amber Accent Light (Highlights keychain chrome links & split ring!) */}
+      <pointLight position={[4, 2, -1.5]} intensity={2.8} color="#FFAF0D" />
 
       {/* Bottom Turntable Up-Light */}
       <pointLight position={[0, -1.0, 0]} intensity={1.5} color="#FFAF0D" />

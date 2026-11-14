@@ -30,6 +30,13 @@ const EXPRESSIONS: { id: ExpressionType; label: string; mood: string }[] = [
   { id: "surprised", label: "Surprised", mood: "Curious (o o)" },
 ];
 
+const QUICK_ANGLES = [
+  { id: "front", label: "Front (OLED)", angle: 0 },
+  { id: "keychain", label: "Right (Keychain)", angle: -Math.PI / 2 },
+  { id: "usbc", label: "Left (USB-C Port)", angle: Math.PI / 2 },
+  { id: "back", label: "Back (Enclosure)", angle: Math.PI },
+];
+
 export default function Chipi3DViewer({
   expression = "normal",
   onExpressionChange,
@@ -40,6 +47,8 @@ export default function Chipi3DViewer({
   const [labels, setLabels] = useState(true);
   const [autoRotate, setAutoRotate] = useState(true);
   const [resetCount, setResetCount] = useState(0);
+  const [targetAngle, setTargetAngle] = useState<number | undefined>(undefined);
+  const [activeAngleId, setActiveAngleId] = useState<string>("front");
   const [visible, setVisible] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [webglSupported, setWebglSupported] = useState(true);
@@ -102,6 +111,8 @@ export default function Chipi3DViewer({
 
   const handleReset = useCallback(() => {
     setResetCount((prev) => prev + 1);
+    setTargetAngle(0);
+    setActiveAngleId("front");
     setHasInteracted(true);
   }, []);
 
@@ -110,6 +121,13 @@ export default function Chipi3DViewer({
     if (onExpressionChange) {
       onExpressionChange(exprId);
     }
+  };
+
+  const handleSelectAngle = (angleId: string, angle: number) => {
+    setActiveAngleId(angleId);
+    setTargetAngle(angle);
+    setAutoRotate(false); // Pause auto-rotation so user can inspect this side
+    setHasInteracted(true);
   };
 
   return (
@@ -155,6 +173,7 @@ export default function Chipi3DViewer({
               animate={autoRotate}
               labels={labels}
               resetSignal={resetCount}
+              targetAngle={targetAngle}
             />
           ) : (
             <div className="chipi-3d__sleeping" aria-hidden="true">
@@ -175,6 +194,26 @@ export default function Chipi3DViewer({
             <p>Interactive 3D requires WebGL support.</p>
           </div>
         )}
+      </div>
+
+      {/* Quick Perspective Jump Pills (Front, Keychain, USB-C, Back) */}
+      <div className="chipi-3d__angles-strip">
+        <span className="chipi-3d__strip-label">Inspect Angle:</span>
+        <div className="chipi-3d__angle-pills">
+          {QUICK_ANGLES.map((a) => {
+            const active = a.id === activeAngleId && !autoRotate;
+            return (
+              <button
+                key={a.id}
+                type="button"
+                className={`chipi-3d__angle-pill ${active ? "is-active" : ""}`}
+                onClick={() => handleSelectAngle(a.id, a.angle)}
+              >
+                <span>{a.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Expression Selection Strip */}
