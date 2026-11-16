@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { labs, getProject, site, LabId } from "@/lib/content";
+import { labs, getProject, projects, site, LabId } from "@/lib/content";
 import HeroSpotlight from "@/components/home/HeroSpotlight";
 import ChipiTeaser from "@/components/home/ChipiTeaser";
 import HomeMotion from "@/components/home/HomeMotion";
+import LabPreview from "@/components/home/LabPreview";
+import { Stagger, Pull, TiltCard, Stats } from "@/components/home/Anim";
 
 /* Home: say who we are, show the three divisions, one product, why us, proof, one action. */
 
@@ -10,25 +12,21 @@ const divisions: {
   id: LabId;
   blurb: string;
   points: string[];
-  img: string;
 }[] = [
   {
     id: "software",
     blurb: "Intelligent software built around how your business really works.",
     points: ["Web & Mobile Development", "Business Systems, ERP & POS", "AI Solutions & Automation"],
-    img: "/work/booking-agent-dashboard.png",
   },
   {
     id: "creative",
     blurb: "Brands and digital experiences that get noticed.",
     points: ["Branding & Graphic Design", "Video Production", "Digital Marketing"],
-    img: "/creative/graphic-tech-conf.jpg",
   },
   {
     id: "hardware",
     blurb: "Connected devices, designed and prototyped in-house.",
     points: ["IoT & Embedded Systems", "Robotics & Smart Devices", "Hardware Prototyping"],
-    img: "/work/runner-robot.jpg",
   },
 ];
 
@@ -58,12 +56,13 @@ export default function Home() {
               </span>
             ))}
           </h1>
+          <Stagger delay={450} hold={120}>
           <p className="hm-lead">
             We build intelligent software, creative digital experiences, and innovative
             hardware solutions for businesses worldwide.
           </p>
           <div className="hm-actions">
-            <a href="#services" className="hm-btn hm-btn--navy">Explore Our Services</a>
+            <Pull><a href="#services" className="hm-btn hm-btn--navy">Explore Our Services</a></Pull>
             <Link href="/contact" className="hm-textlink">Let&apos;s Work Together <span aria-hidden="true">›</span></Link>
           </div>
           <ul className="hm-labs" aria-label="Our three divisions">
@@ -71,8 +70,20 @@ export default function Home() {
             <li><Link href="/creative"><b aria-hidden="true">✦</b>Creative Studio</Link></li>
             <li><Link href="/hardware"><b aria-hidden="true">⬡</b>Hardware Lab</Link></li>
           </ul>
+          </Stagger>
         </div>
       </HeroSpotlight>
+
+      {/* Stats */}
+      <section className="hm-statsband" aria-label="Ralypto at a glance">
+        <div className="hm-wrap">
+          <Stats items={[
+            { n: 3, label: "Divisions" },
+            { n: 9, label: "Core services" },
+            { n: projects.length, label: "Projects delivered", suffix: "+" },
+          ]} />
+        </div>
+      </section>
 
       {/* 2. What we do */}
       <section id="services" className="hm-section" aria-labelledby="hm-what">
@@ -86,7 +97,7 @@ export default function Home() {
               const lab = labs[d.id];
               return (
                 <div key={d.id} data-reveal style={{ transitionDelay: `${i * 0.1}s` }}>
-                  <article className={`hm-card hm-card--${d.id}`}>
+                  <TiltCard><article className={`hm-card hm-card--${d.id}`}>
                     <div className="hm-card__body">
                       <h3>{lab.name}</h3>
                       <p>{d.blurb}</p>
@@ -98,9 +109,9 @@ export default function Home() {
                       </Link>
                     </div>
                     <Link href={lab.path} className="hm-card__media" tabIndex={-1} aria-hidden="true">
-                      <img src={d.img} alt="" width={640} height={480} loading="lazy" decoding="async" data-parallax />
+                      <LabPreview id={d.id} />
                     </Link>
-                  </article>
+                  </article></TiltCard>
                 </div>
               );
             })}
@@ -141,7 +152,7 @@ export default function Home() {
           <div className="hm-cards hm-cards--4">
             {work.map((p, i) => (
               <div key={p.slug} data-reveal style={{ transitionDelay: `${i * 0.08}s` }}>
-                <article className="hm-card">
+                <TiltCard tilt={4}><article className="hm-card">
                   <Link href={`/work/${p.slug}`} className="hm-card__media" tabIndex={-1} aria-hidden="true">
                     <img src={p.images![0]} alt="" width={640} height={440} loading="lazy" decoding="async" data-parallax />
                   </Link>
@@ -149,7 +160,7 @@ export default function Home() {
                     <span className="hm-tag">{labs[p.labs[0]].name}</span>
                     <h3><Link href={`/work/${p.slug}`}>{p.title}</Link></h3>
                   </div>
-                </article>
+                </article></TiltCard>
               </div>
             ))}
           </div>

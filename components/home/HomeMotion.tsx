@@ -1,8 +1,9 @@
 "use client";
 import { useEffect } from "react";
+import { ScrollBar } from "./Anim";
 
 /* Homepage scroll motion: the hero eases away as you scroll, images drift slightly (parallax),
-   and a thin amber line tracks page progress. Everything is off for reduced motion. */
+   and a spring scroll bar tracks the page. Everything is off for reduced motion. */
 export default function HomeMotion() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -20,8 +21,6 @@ export default function HomeMotion() {
         const p = Math.min(1, Math.max(0, y / (hero.offsetHeight * 0.8)));
         hero.style.setProperty("--hp", p.toFixed(3));
       }
-      const max = document.documentElement.scrollHeight - vh;
-      root.style.setProperty("--prog", max > 0 ? String(Math.min(1, y / max)) : "0");
       for (const el of imgs) {
         const r = el.parentElement!.getBoundingClientRect();
         if (r.bottom < -100 || r.top > vh + 100) continue;
@@ -44,5 +43,5 @@ export default function HomeMotion() {
     };
   }, []);
 
-  return <div className="hm-progress" aria-hidden="true" />;
+  return <ScrollBar />;
 }

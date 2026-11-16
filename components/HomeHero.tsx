@@ -69,7 +69,7 @@ function useTypingLoop() {
   return lines;
 }
 
-function SoftwarePreview() {
+export function SoftwarePreview() {
   const lines = useTypingLoop();
   return (
     <pre className="hd-term">
