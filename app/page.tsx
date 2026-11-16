@@ -2,6 +2,7 @@ import Link from "next/link";
 import { labs, getProject, site, LabId } from "@/lib/content";
 import HeroSpotlight from "@/components/home/HeroSpotlight";
 import ChipiTeaser from "@/components/home/ChipiTeaser";
+import HomeMotion from "@/components/home/HomeMotion";
 
 /* Home: say who we are, show the three divisions, one product, why us, proof, one action. */
 
@@ -45,12 +46,17 @@ const work = ["shop-erp", "cafe-brand", "pump-controller", "tea-leaf-plucking-ro
 export default function Home() {
   return (
     <div className="hm">
+      <HomeMotion />
       {/* 1. Hero */}
       <HeroSpotlight>
         <div className="hm-wrap hm-hero__inner">
           <p className="hm-eyebrow">Ralypto · Sri Lanka</p>
-          <h1 id="hm-h1">
-            We code it. We design it. <span>We build it.</span>
+          <h1 id="hm-h1" aria-label="We code it. We design it. We build it.">
+            {["We code it.", "We design it.", "We build it."].map((line, i) => (
+              <span key={line} className={`hm-line${i === 2 ? " hm-line--grad" : ""}`} aria-hidden="true">
+                <span style={{ animationDelay: `${0.15 + i * 0.14}s` }}>{line}</span>
+              </span>
+            ))}
           </h1>
           <p className="hm-lead">
             We build intelligent software, creative digital experiences, and innovative
@@ -92,7 +98,7 @@ export default function Home() {
                       </Link>
                     </div>
                     <Link href={lab.path} className="hm-card__media" tabIndex={-1} aria-hidden="true">
-                      <img src={d.img} alt="" width={640} height={400} loading="lazy" />
+                      <img src={d.img} alt="" width={640} height={480} loading="lazy" decoding="async" data-parallax />
                     </Link>
                   </article>
                 </div>
@@ -137,7 +143,7 @@ export default function Home() {
               <div key={p.slug} data-reveal style={{ transitionDelay: `${i * 0.08}s` }}>
                 <article className="hm-card">
                   <Link href={`/work/${p.slug}`} className="hm-card__media" tabIndex={-1} aria-hidden="true">
-                    <img src={p.images![0]} alt="" width={640} height={400} loading="lazy" />
+                    <img src={p.images![0]} alt="" width={640} height={440} loading="lazy" decoding="async" data-parallax />
                   </Link>
                   <div className="hm-card__body">
                     <span className="hm-tag">{labs[p.labs[0]].name}</span>
