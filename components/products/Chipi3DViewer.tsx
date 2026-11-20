@@ -161,8 +161,8 @@ export default function Chipi3DViewer({
             <Image
               src="/products/chipi/chipi-hero.jpg"
               alt="CHIPI front view"
-              width={340}
-              height={340}
+              width={1376}
+              height={768}
               className="chipi-3d__fallback-img"
             />
             <p>Interactive 3D requires WebGL support.</p>

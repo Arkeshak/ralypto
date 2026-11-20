@@ -198,9 +198,10 @@ export default function ChipiShowcase() {
               <Image
                 src="/products/chipi/inside-chipi.png"
                 alt="Exploded diagram of CHIPI showing Front Cover, OLED Display, Motion Sensor, ESP32 Board, and Back Cover"
-                width={800}
-                height={350}
+                width={1376}
+                height={768}
                 className="pd-inside-diagram__img"
+                priority={false}
               />
             </div>
 
@@ -239,8 +240,8 @@ export default function ChipiShowcase() {
                 <Image
                   src="/products/chipi/chipi-dimensions.png"
                   alt="Isometric dimension diagram of CHIPI: 32 mm width, 16 mm depth, 32 mm height"
-                  width={380}
-                  height={380}
+                  width={1376}
+                  height={768}
                   className="pd-specs-wireframe__img"
                 />
                 <div className="pd-specs-wireframe__caption">
