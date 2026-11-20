@@ -20,7 +20,7 @@ export const chipi = {
   teaser: "Small enough to carry. Smart enough to surprise.",
   images: [
     {
-      src: "/products/chipi/chipi-hero.jpg",
+      src: "/products/chipi/chipi-hero.png",
       alt: "Chipi, a keychain-sized interactive companion with an animated blue OLED display",
     },
   ],

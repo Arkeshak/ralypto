@@ -28,7 +28,7 @@
 
 /* hero + animated background */
 .pd-hero { position: relative; overflow: hidden; padding: clamp(4.2rem, 8vw, 6.5rem) 0 clamp(3rem, 7vw, 6rem); }
-.pd-bg { position: absolute; inset: 0; pointer-events: none;
+.pd-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; max-width: 100%;
   background-image: linear-gradient(var(--pd-line) 1px, transparent 1px), linear-gradient(90deg, var(--pd-line) 1px, transparent 1px);
   background-size: 56px 56px; opacity: 0.35;
   mask-image: radial-gradient(ellipse at 70% 40%, #000 10%, transparent 70%);
@@ -762,11 +762,15 @@
   color: var(--pd-dim);
   font-size: 0.85rem;
 }
-.chipi-3d__fallback-img {
-  max-width: 240px;
+.chipi-3d__fallback-img,
+.chipi-360__frame img,
+.pd-prod-img {
+  max-width: 280px;
   height: auto;
   object-fit: contain;
   margin-bottom: 0.5rem;
+  filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.45)) drop-shadow(0 4px 10px rgba(255, 175, 13, 0.2));
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 /* Quick Angles Bar (Inspect Front, Keychain, USB-C, Back) */

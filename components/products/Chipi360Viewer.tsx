@@ -24,7 +24,7 @@ export const ANGLES: AngleInfo[] = [
 const FRAME_COUNT = 8;
 const WEBP_FRAMES = Array.from({ length: FRAME_COUNT }, (_, i) => `/products/chipi/chipi-360-${i}.webp`);
 const PNG_FRAMES = Array.from({ length: FRAME_COUNT }, (_, i) => `/products/chipi/chipi-360-${i}.png`);
-const FALLBACK_HERO = "/products/chipi/chipi-hero.jpg";
+const FALLBACK_HERO = "/products/chipi/chipi-hero.png";
 
 const DRAG_STEP_PX = 20; // Pixels dragged per 45° angle step
 

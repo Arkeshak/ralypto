@@ -96,7 +96,7 @@ export default function Home() {
       <Marquee speed={26} />
 
       {/* 2. What we do (Services) */}
-      <section id="services" className="hm-section" data-theme="light" aria-labelledby="hm-what">
+      <section id="services" className="hm-section" data-theme="navy" aria-labelledby="hm-what">
         <div className="hm-wrap">
           <header className="hm-head" data-reveal>
             <h2 id="hm-what">What we do.</h2>
@@ -135,7 +135,7 @@ export default function Home() {
       </section>
 
       {/* 4. Why Ralypto (Signature Amber Section with Statement Word Reveal) */}
-      <section className="hm-section hm-section--amber" data-theme="amber" aria-labelledby="hm-why">
+      <section className="hm-section hm-section--amber" data-theme="navy" aria-labelledby="hm-why">
         <div className="hm-wrap">
           <header className="hm-head" data-reveal>
             <h2 id="hm-why" style={{ color: "#050f2e" }}>Why Ralypto.</h2>
@@ -169,7 +169,7 @@ export default function Home() {
       <Marquee reverse speed={32} />
 
       {/* 6. Final CTA */}
-      <section className="hm-cta" data-theme="light" aria-labelledby="hm-cta-h">
+      <section className="hm-cta" data-theme="navy" aria-labelledby="hm-cta-h">
         <div className="hm-wrap">
           <h2 id="hm-cta-h">Have an idea? Let&apos;s build it together.</h2>
           <p>Whether you need software, creative services, or innovative hardware, let&apos;s make it happen.</p>

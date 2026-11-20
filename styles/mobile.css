@@ -29,10 +29,12 @@
 
 @media (max-width: 600px) {
   /* Bigger touch targets for menus and chips on phones */
-  .nav__toggle { min-height: 44px; min-width: 44px; }
+  .nav__toggle, .nav__btn { min-height: 44px; min-width: 44px; }
   .nav__links a { min-height: 44px; display: flex; align-items: center; }
-  .filter, .chip { min-height: 40px; }
+  .filter, .chip { min-height: 44px; }
   .footer__cols a { padding-block: 0.35rem; }
+  .hm-btn, .pd-btn { min-height: 44px; }
+  .chipi-3d__action-btn { min-height: 42px; }
 }
 
 /* More contrast fixes */

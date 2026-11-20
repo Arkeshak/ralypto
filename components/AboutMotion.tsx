@@ -134,10 +134,10 @@ function TiltCard({ f, index }: { f: Founder; index: number }) {
   return (
     <motion.div
       className="about-tilt"
-      initial={{ opacity: 0, x: index % 2 === 0 ? -80 : 80, rotate: index % 2 === 0 ? -2 : 2 }}
-      whileInView={{ opacity: 1, x: 0, rotate: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.9, ease, delay: 0.05 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, ease, delay: index * 0.08 }}
       onPointerMove={onMove}
       onPointerLeave={onLeave}
       style={{ rotateX: srx, rotateY: sry, transformPerspective: 900 }}

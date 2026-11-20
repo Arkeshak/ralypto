@@ -757,6 +757,8 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 2rem;
   perspective: 900px;
+  overflow-x: clip;
+  max-width: 100%;
 }
 .about-tilt {
   display: flex;
