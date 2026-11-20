@@ -4,6 +4,11 @@ import HeroSpotlight from "@/components/home/HeroSpotlight";
 import ChipiTeaser from "@/components/home/ChipiTeaser";
 import HomeMotion from "@/components/home/HomeMotion";
 import LabPreview from "@/components/home/LabPreview";
+import ScrollTheme from "@/components/home/ScrollTheme";
+import TextReveal from "@/components/home/TextReveal";
+import Marquee from "@/components/home/Marquee";
+import HorizontalProjects from "@/components/home/HorizontalProjects";
+import InteractiveConsole from "@/components/home/InteractiveConsole";
 import { Stagger, Pull, TiltCard, Stats } from "@/components/home/Anim";
 
 /* Home: say who we are, show the three divisions, one product, why us, proof, one action. */
@@ -45,31 +50,33 @@ export default function Home() {
   return (
     <div className="hm">
       <HomeMotion />
+      <ScrollTheme />
+
       {/* 1. Hero */}
       <HeroSpotlight>
         <div className="hm-wrap hm-hero__inner">
           <p className="hm-eyebrow">Ralypto · Sri Lanka</p>
           <h1 id="hm-h1" aria-label="We code it. We design it. We build it.">
             {["We code it.", "We design it.", "We build it."].map((line, i) => (
-              <span key={line} className={`hm-line${i === 2 ? " hm-line--grad" : ""}`} aria-hidden="true">
-                <span style={{ animationDelay: `${0.15 + i * 0.14}s` }}>{line}</span>
+              <span key={line} className={`hm-line ln${i === 2 ? " hm-line--grad" : ""}`} aria-hidden="true">
+                <span style={{ transitionDelay: `${0.12 + i * 0.14}s` }}>{line}</span>
               </span>
             ))}
           </h1>
           <Stagger delay={450} hold={120}>
-          <p className="hm-lead">
-            We build intelligent software, creative digital experiences, and innovative
-            hardware solutions for businesses worldwide.
-          </p>
-          <div className="hm-actions">
-            <Pull><a href="#services" className="hm-btn hm-btn--navy">Explore Our Services</a></Pull>
-            <Link href="/contact" className="hm-textlink">Let&apos;s Work Together <span aria-hidden="true">›</span></Link>
-          </div>
-          <ul className="hm-labs" aria-label="Our three divisions">
-            <li><Link href="/software"><b aria-hidden="true">{"</>"}</b>Software Lab</Link></li>
-            <li><Link href="/creative"><b aria-hidden="true">✦</b>Creative Studio</Link></li>
-            <li><Link href="/hardware"><b aria-hidden="true">⬡</b>Hardware Lab</Link></li>
-          </ul>
+            <p className="hm-lead">
+              We build intelligent software, creative digital experiences, and innovative
+              hardware solutions for businesses worldwide.
+            </p>
+            <div className="hm-actions">
+              <Pull><a href="#services" className="hm-btn hm-btn--navy">Explore Our Services</a></Pull>
+              <Link href="/contact" className="hm-textlink">Let&apos;s Work Together <span aria-hidden="true">›</span></Link>
+            </div>
+            <ul className="hm-labs" aria-label="Our three divisions">
+              <li><Link href="/software"><b aria-hidden="true">{"</>"}</b>Software Lab</Link></li>
+              <li><Link href="/creative"><b aria-hidden="true">✦</b>Creative Studio</Link></li>
+              <li><Link href="/hardware"><b aria-hidden="true">⬡</b>Hardware Lab</Link></li>
+            </ul>
           </Stagger>
         </div>
       </HeroSpotlight>
@@ -85,8 +92,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. What we do */}
-      <section id="services" className="hm-section" aria-labelledby="hm-what">
+      {/* Marquee Ticker 1 */}
+      <Marquee speed={26} />
+
+      {/* 2. What we do (Services) */}
+      <section id="services" className="hm-section" data-theme="light" aria-labelledby="hm-what">
         <div className="hm-wrap">
           <header className="hm-head" data-reveal>
             <h2 id="hm-what">What we do.</h2>
@@ -120,16 +130,23 @@ export default function Home() {
       </section>
 
       {/* 3. Featured product */}
-      <section className="hm-section hm-section--navy" aria-labelledby="hm-product">
+      <section className="hm-section hm-section--navy" data-theme="navy" aria-labelledby="hm-product">
         <ChipiTeaser />
       </section>
 
-      {/* 4. Why Ralypto */}
-      <section className="hm-section hm-section--white" aria-labelledby="hm-why">
+      {/* 4. Why Ralypto (Signature Amber Section with Statement Word Reveal) */}
+      <section className="hm-section hm-section--amber" data-theme="amber" aria-labelledby="hm-why">
         <div className="hm-wrap">
           <header className="hm-head" data-reveal>
-            <h2 id="hm-why">Why Ralypto.</h2>
+            <h2 id="hm-why" style={{ color: "#050f2e" }}>Why Ralypto.</h2>
           </header>
+          
+          <TextReveal
+            as="p"
+            className="hm-why__statement"
+            text="We believe the best products happen when software, hardware, and design are built together as one continuous discipline."
+          />
+
           <ul className="hm-why">
             {why.map((w, i) => (
               <li key={w.t} data-reveal style={{ transitionDelay: `${i * 0.08}s` }}>
@@ -142,33 +159,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Selected work */}
-      <section className="hm-section" aria-labelledby="hm-work">
-        <div className="hm-wrap">
-          <header className="hm-head hm-head--row" data-reveal>
-            <h2 id="hm-work">Selected work.</h2>
-            <Link href="/work" className="hm-textlink">View all projects <span aria-hidden="true">›</span></Link>
-          </header>
-          <div className="hm-cards hm-cards--4">
-            {work.map((p, i) => (
-              <div key={p.slug} data-reveal style={{ transitionDelay: `${i * 0.08}s` }}>
-                <TiltCard tilt={4}><article className="hm-card">
-                  <Link href={`/work/${p.slug}`} className="hm-card__media" tabIndex={-1} aria-hidden="true">
-                    <img src={p.images![0]} alt="" width={640} height={440} loading="lazy" decoding="async" data-parallax />
-                  </Link>
-                  <div className="hm-card__body">
-                    <span className="hm-tag">{labs[p.labs[0]].name}</span>
-                    <h3><Link href={`/work/${p.slug}`}>{p.title}</Link></h3>
-                  </div>
-                </article></TiltCard>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Interactive Tactile Console Keypad */}
+      <InteractiveConsole />
+
+      {/* 5. Selected work (Pinned Horizontal Scroll Section) */}
+      <HorizontalProjects projects={work} />
+
+      {/* Marquee Ticker 2 (Reverse direction) */}
+      <Marquee reverse speed={32} />
 
       {/* 6. Final CTA */}
-      <section className="hm-cta" aria-labelledby="hm-cta-h">
+      <section className="hm-cta" data-theme="light" aria-labelledby="hm-cta-h">
         <div className="hm-wrap">
           <h2 id="hm-cta-h">Have an idea? Let&apos;s build it together.</h2>
           <p>Whether you need software, creative services, or innovative hardware, let&apos;s make it happen.</p>

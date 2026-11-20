@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ChipiYuyk from "@/components/products/ChipiYuyk";
+import ChipiShowcase from "@/components/products/ChipiShowcase";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function ProductsPage() {
-  return <ChipiYuyk />;
+  return <ChipiShowcase />;
 }

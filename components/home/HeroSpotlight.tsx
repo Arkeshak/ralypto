@@ -13,7 +13,7 @@ export default function HeroSpotlight({ children }: { children: React.ReactNode 
     el.style.setProperty("--my", `${e.clientY - r.top}px`);
   }
   return (
-    <section ref={ref} className="hm-hero" aria-labelledby="hm-h1" onPointerMove={move}>
+    <section ref={ref} className="hm-hero" data-theme="light" aria-labelledby="hm-h1" onPointerMove={move}>
       <span className="hm-hero__glow" aria-hidden="true" />
       {children}
     </section>

@@ -250,7 +250,7 @@ function ChipiModel({
   const halfH = H / 2; // 0.85
   const halfD = D / 2; // 0.76
 
-  const labelScale = isMobile ? 0.20 : 0.28;
+  const labelScale = isMobile ? 0.17 : 0.28;
 
   return (
     <group position={[0, 0.05, 0]}>
@@ -373,10 +373,10 @@ function ChipiModel({
         {/* 3D Billboard Labels for Normal Mode (Responsive Scaling) */}
         {labels && !exploded && (
           <>
-            <Label position={[0, 1.25, 0]} scale={labelScale}>Touch Petting Zone</Label>
-            <Label position={[0, -1.18, halfD + 0.15]} scale={labelScale}>OLED Expressive Display</Label>
-            <Label position={[isMobile ? 1.4 : 1.75, 0.3, 0.25]} scale={labelScale}>Keychain Ready</Label>
-            <Label position={[isMobile ? -1.3 : -1.5, -0.32, 0]} scale={labelScale}>USB-C Port</Label>
+            <Label position={[0, isMobile ? 1.18 : 1.25, 0]} scale={labelScale}>Touch Petting Zone</Label>
+            <Label position={[0, isMobile ? -1.1 : -1.18, halfD + 0.15]} scale={labelScale}>OLED Expressive Display</Label>
+            <Label position={[isMobile ? 1.15 : 1.75, 0.3, 0.25]} scale={labelScale}>Keychain Ready</Label>
+            <Label position={[isMobile ? -1.1 : -1.5, -0.32, 0]} scale={labelScale}>USB-C Port</Label>
           </>
         )}
       </group>
@@ -515,7 +515,7 @@ export default function Chipi3DScene({
       shadows
       dpr={[1, 2]}
       camera={{
-        position: isMobile ? [0, 0.45, 5.2] : [0, 0.65, 4.6],
+        position: isMobile ? [0, 0.45, 5.6] : [0, 0.65, 4.6],
         fov: isMobile ? 38 : 36,
       }}
       gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping }}

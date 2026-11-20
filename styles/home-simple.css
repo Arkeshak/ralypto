@@ -109,6 +109,42 @@
 .hm-moods button:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
 
 /* why */
+.hm-section--amber {
+  background: var(--amber);
+  color: var(--navy);
+}
+.hm-section--amber .hm-head h2 {
+  color: var(--navy);
+}
+.hm-why__statement {
+  font-family: var(--f-brand);
+  font-size: clamp(1.35rem, 3vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  max-width: 32ch !important;
+  margin: 0 auto 3.5rem !important;
+  text-align: center;
+  color: var(--navy);
+}
+.hm-section--amber .hm-why li {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(5, 15, 46, 0.12);
+  border-radius: 20px;
+  padding: 1.6rem 1.4rem;
+  backdrop-filter: blur(8px);
+}
+.hm-section--amber .hm-why h3 {
+  color: var(--navy);
+}
+.hm-section--amber .hm-why p {
+  color: rgba(5, 15, 46, 0.82);
+}
+.hm-section--amber .hm-why__n {
+  color: var(--navy);
+  opacity: 0.7;
+}
+
 .hm-why { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.5rem 2rem; grid-template-columns: repeat(4, 1fr); }
 .hm-why li { transition: transform .25s ease; }
 .hm-why li:hover { transform: translateY(-3px); }
