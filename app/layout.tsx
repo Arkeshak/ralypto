@@ -26,6 +26,7 @@ import "@/styles/showcase.css";
 import "@/styles/structure.css";
 import "@/styles/type.css";
 import "@/styles/products.css";
+import "@/styles/chipi-yuyk.css";
 import "@/styles/home-simple.css";
 import "@/styles/nav-dropdown.css";
 import "@/styles/mobile.css";
